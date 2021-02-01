@@ -1,7 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import "./assets/scss/blk-design-system-react.scss?v=1.2.0";
+import "./assets/demo/demo.css";
 
 ReactDOM.render(
   <React.StrictMode>
