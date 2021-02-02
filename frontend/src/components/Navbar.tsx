@@ -29,7 +29,7 @@ export default function IndexNavbar() {
       document.documentElement.scrollTop > 99 ||
       document.body.scrollTop > 99
     ) {
-      setColor("bg-info");
+      setColor("bg-dark");
     } else if (
       document.documentElement.scrollTop < 100 ||
       document.body.scrollTop < 100
@@ -104,11 +104,12 @@ export default function IndexNavbar() {
             </NavItem>
             <NavItem>
               <Button
-                className="nav-link d-none d-lg-block"
+                className="nav-link d-lg-block"
                 color="primary"
-                href="#footer"
               >
+                <Link to='/input'>
                 Start now
+                </Link>
               </Button>
             </NavItem>
           </Nav>
