@@ -1,0 +1,38 @@
+.dashboard {
+display:flex;
+flex-direction:row;
+align-items:center;
+height:70vh;
+margin:10vh 0 10vh 20px;
+}
+
+.dashboard-table {
+flex-grow:0.1;
+background-color:#000;
+font-size:x-large;
+border-radius:2px;
+}
+
+.exercise {
+padding:0 30px;
+}
+
+.exercise-category {
+color:#40E0D0;
+font-weight:700;
+padding:20px 15px 0 20px;
+}
+
+iframe,.empty-frame {
+align-self:stretch;
+flex-grow:0.7;
+}
+
+.empty-frame {
+border:2px solid gray;
+display:flex;
+font-size:large;
+font-weight:700;
+justify-content:center;
+align-items:center;
+}

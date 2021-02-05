@@ -4,7 +4,7 @@ import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import Home from './views/Home'
-import Dashboard from './views/Dashboard'
+import Dashboard from './views/Dashboard.js'
 function App() {
   React.useEffect(() => {
     document.body.classList.toggle("index-page");
