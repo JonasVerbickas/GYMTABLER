@@ -29,7 +29,7 @@ export default function IndexNavbar() {
       document.documentElement.scrollTop > 99 ||
       document.body.scrollTop > 99
     ) {
-      setColor("bg-info");
+      setColor("bg-dark");
     } else if (
       document.documentElement.scrollTop < 100 ||
       document.body.scrollTop < 100
@@ -51,8 +51,10 @@ export default function IndexNavbar() {
     <Navbar className={"fixed-top " + color} color-on-scroll="100" expand="lg">
       <Container>
         <div className="navbar-translate">
-          <NavbarBrand id="navbar-brand" tag={Link}>
-          Logo
+          <NavbarBrand id="navbar-brand">
+          <Link to='/'>
+            Logo
+          </Link>
           </NavbarBrand>
           <button
             aria-expanded={collapseOpen}
@@ -104,11 +106,12 @@ export default function IndexNavbar() {
             </NavItem>
             <NavItem>
               <Button
-                className="nav-link d-none d-lg-block"
+                className="nav-link d-lg-block"
                 color="primary"
-                href="#footer"
               >
+                <Link to='/input'>
                 Start now
+                </Link>
               </Button>
             </NavItem>
           </Nav>
