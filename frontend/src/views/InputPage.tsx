@@ -28,7 +28,6 @@ function InputPage() {
     function decrementStep() {
         // step is current value
         UpdateStep(prevStep => prevStep - 1)
-        console.log(step)
         //remove active className
         if (step === 2 && second && second.current && user.current && pref.current) {
             second.current.className = ""
@@ -45,7 +44,6 @@ function InputPage() {
     function incrementStep() {
         // step is current value
         UpdateStep(prevStep => prevStep + 1)
-        console.log(step)
         if (step === 1 && second.current && user.current && pref.current) {
             second.current.className = "active"
             user.current.className = "hidden"
@@ -92,16 +90,32 @@ function InputPage() {
     }, [])
 
     function SubmitForm() {
-        console.log("Form Submitted")
         toast.success('Registered Successfully!', {
             position: "bottom-right",
             autoClose: 2000,
             hideProgressBar: false,
             closeOnClick: true,
             pauseOnHover: false,
-            draggable: true,
+            draggable: false,
             progress: undefined,
         });
+        let element = document.querySelector('form') as HTMLFormElement
+        const sliderRef = document.getElementById('slider') as Slider.Instance
+        const experienceRef = document.getElementById('experienceSlider') as Slider.Instance
+        if (element){
+            let formData = new FormData(element)
+            for(let [name, value] of formData) {
+                console.log(`${name} = ${value}`); // key1 = value1, then key2 = value2
+              }
+            console.log(weightUnit)
+            console.log(heightUnit)
+            if (sliderRef && experienceRef){
+                console.log(sliderRef.noUiSlider.get())
+                console.log(experienceRef.noUiSlider.get())
+            }
+
+        }
+            
     }
     function selectUnitforWeight(value:string){
         UpdateWeightUnit(value)
@@ -163,13 +177,13 @@ function InputPage() {
                                     <div className="custom-form-radio" >
                                         <FormText style={{ margin: '20px' }}>Select your equipment access: </FormText>
                                         <Label >
-                                            <Input type="radio" name="radio2" id="equipment1" defaultChecked />No equipment
+                                            <Input type="radio" name="noEquipment" id="equipment1" defaultChecked />No equipment
                                     </Label>
                                         <Label >
-                                            <Input type="radio" name="radio2" id="equipment2" />Basic equipment
+                                            <Input type="radio" name="basicEquipment" id="equipment2" />Basic equipment
                                     </Label>
                                         <Label className="form-check-label">
-                                            <Input type="radio" name="radio2" id="equipment3" />Gym equipment
+                                            <Input type="radio" name="gymEquipment" id="equipment3" />Gym equipment
                                     </Label>
                                     </div>
                                     <FormText>How would you rate your level of comfort and experience working out:</FormText>
@@ -192,11 +206,11 @@ function InputPage() {
                                     </div>
                                 </FormGroup>
                             </div>
-                            <div className="hidden" ref={info}>
+                            <div ref={info} className="hidden" >
                                 <FormGroup>
                                     <div>
                                         <Label for="exampleSelectMulti">Select Age</Label>
-                                        <Input className="selectGroup" type="select" name="select" id="exampleSelectMulti">
+                                        <Input className="selectGroup" type="select" name="ageSelect" id="ageSelect">
                                             <option>16-18</option>
                                             <option>18-25</option>
                                             <option>25-35</option>
@@ -205,7 +219,7 @@ function InputPage() {
                                         </Input>
                                         <Label for="exampleSelectMulti">Select Height</Label>
                                         <div className="split-dropdown">
-                                            <Input className="selectGroup" type="number" name="select" id="exampleSelectMulti"/>
+                                            <Input className="selectGroup" type="number" name="heightSelect" id="heightSelect"/>
                                             <UncontrolledDropdown>
                                                 <DropdownToggle caret data-toggle="dropdown">
                                                     {heightUnit || 'Select a unit' } 
@@ -218,7 +232,7 @@ function InputPage() {
                                         </div>
                                         <Label for="exampleSelectMulti">Select Weight</Label>
                                         <div className="split-dropdown">
-                                            <Input className="selectGroup" type="number" name="select" id="exampleSelectMulti" />
+                                            <Input className="selectGroup" type="number" name="weightSelect" id="weightSelect" />
                                             <UncontrolledDropdown>
                                                 <DropdownToggle caret data-toggle="dropdown">
                                                     {weightUnit || 'Select a unit' } 
@@ -238,13 +252,15 @@ function InputPage() {
                                             onClick={decrementStep}>
                                             Previous
                                     </Button>
+                                    <Link style={{ color: 'white' }} to="/">
                                         <Button
                                             className="nav-link d-lg-block"
                                             color="primary"
                                             name="next"
                                             onClick={SubmitForm}>
-                                            <Link style={{ color: 'white' }} to="/">Confirm</Link>
+                                            Confirm
                                         </Button>
+                                    </Link>
                                     </div>
                                 </FormGroup>
                             </div>

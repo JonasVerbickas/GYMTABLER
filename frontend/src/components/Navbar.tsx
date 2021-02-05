@@ -51,8 +51,10 @@ export default function IndexNavbar() {
     <Navbar className={"fixed-top " + color} color-on-scroll="100" expand="lg">
       <Container>
         <div className="navbar-translate">
-          <NavbarBrand id="navbar-brand" tag={Link}>
-          Logo
+          <NavbarBrand id="navbar-brand">
+          <Link to='/'>
+            Logo
+          </Link>
           </NavbarBrand>
           <button
             aria-expanded={collapseOpen}
