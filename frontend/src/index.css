@@ -5,8 +5,14 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #000 !important;
 }
-
+.footer{
+  background: radial-gradient(ellipse at bottom, #0c0d1d 30%, #0c0d22 80%) !important;
+}
+.navbar.bg-info{
+  background-color:  #0c0d1d !important;
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
