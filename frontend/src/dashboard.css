@@ -2,30 +2,31 @@
 display:flex;
 flex-direction:row;
 align-items:center;
-height:70vh;
-margin:12vh 5vw 12vh 5vw;
+height:85vh;
+margin:75px;
 }
 
 .dashboard-table {
-flex-grow:0.1;
-background-color:#000;
+width: 250px;
 font-size:x-large;
 border-radius:2px;
+background-color: slateblue;
 }
 
 .exercise {
 padding:0 30px;
+font-weight: 500;
 }
 
 .exercise-category {
 color:#40E0D0;
 font-weight:700;
-padding:20px 15px 0 20px;
+padding:15px 20px 0px 20px;
 }
 
 iframe,.empty-frame {
 align-self:stretch;
-flex-grow:0.9;
+flex-grow:1;
 }
 
 .empty-frame {
