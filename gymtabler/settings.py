@@ -25,8 +25,9 @@ SECRET_KEY = '8b-_ipms93odbvqb*rvq-75qmmuv6jj-0cw8a288=5h41j_prh'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
+ROOT_URLCONF = 'gymtabler.urls'
 
 # Application definition
 
@@ -37,7 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'main'
+    'main',
+    'rest_framework',
+    'corsheaders',
+    'frontend'
 ]
 
 MIDDLEWARE = [
@@ -48,6 +52,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware'
 ]
 
 ROOT_URLCONF = 'gymtabler.urls'
@@ -69,7 +74,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'gymtabler.wsgi.application'
-
+CORS_ORIGIN_ALLOW_ALL = True
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases

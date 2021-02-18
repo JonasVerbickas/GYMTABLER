@@ -8,9 +8,14 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from .user_methods import *
 import json
+import os
 from .workout_gen import workout_generator
-
+from .models import Exercise
 # Create your views here.
+
+current_path = os.path.dirname(__file__)
+exe_pth = os.path.join(current_path, 'exercise.json')
+print(exe_pth)
 
 def index(request):
     template = loader.get_template('main/index.html')
@@ -87,6 +92,33 @@ def get_workout(request):
     return HttpResponse(workout_data_response)
 
 
+@csrf_exempt
+@require_http_methods(["POST"])
+def populate_db(request):
+    try:
+        with open(exe_pth, 'r') as f:
+	        exercise_dict = json.load(f)
 
+        for exercise in exercise_dict:
+            exercise_var = Exercise(name=exercise['name'],description=exercise['description'],equipment=exercise['equipment'],difficulty=exercise['difficulty'],bodypart=exercise['bodypart'],link=exercise['link'])
+            exercise_var.save()
+    except ValueError:
+        res = HttpResponse("<h2>ERROR</h2>")
+        res.status_code = 400
+        return res
+
+    return HttpResponse("Done!")
+
+@csrf_exempt
+@require_http_methods(["GET"])
+def getexercises(request):
+    try:
+        print(Exercise.objects.values())
+        exercises = list(Exercise.objects.values())
+        response = json.dumps(exercises)
+    except ValueError:
+        response = json.dumps([{'Error': 'No exercises found.'}])
+
+    return HttpResponse(response, content_type='text/json')
 
     

@@ -1,14 +1,14 @@
 from django.db import models
 
 class Exercise(models.Model):
-    name_ex = models.CharField(max_length = 100)
-    score = models.IntegerField()
-    body_part = models.TextField()
-    reps = models.IntegerField()
+	name = models.CharField(max_length = 100)
+	description= models.TextField()
+	equipment = models.TextField(null=True)
+	difficulty = models.IntegerField()
+	bodypart = models.TextField(null=True)
+	link = models.TextField()
 
-    class Meta:
-        db_table = "Exercises"
+	def __str__(self):
+		return f"{self.name};{self.description};{self.equipment};{self.difficulty};{self.bodypart};{self.link}"
 
-    def __str__(self):
-        return self.name_ex
-    
+
