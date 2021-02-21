@@ -1,7 +1,7 @@
 [{
 		"name": "Squat",
 		"description": "lowers their hips from a standing position and then stands back up",
-		"Equipment": null,
+		"equipment": null,
 		"difficulty": 1,
 		"bodypart": ["legs"],
 		"link": "https://www.youtube.com/watch?v=aclHkVaku9U"
@@ -50,8 +50,8 @@
 		"description": "Go onto your side in a plank formation",
 		"equipment": null,
 		"difficulty": 3,
-		"Bodypart": ["core"],
-		"Link": "https://www.youtube.com/watch?v=K2VljzCC16g"
+		"bodypart": ["core"],
+		"link": "https://www.youtube.com/watch?v=K2VljzCC16g"
 	},
 	{
 		"name": "Side leg raises",
@@ -75,7 +75,7 @@
 		"difficulty": 2,
 		"bodypart": ["core", "legs"],
 		"link": "https://www.youtube.com/watch?v=ANVdMDaYRts"
-	}
+	},
 	{
 		"name": "Alternate Side Plank",
 		"description": "Switch your position from side plank on one arm to plank on both arms and back to side plank on another arm",
