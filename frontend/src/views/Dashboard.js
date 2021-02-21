@@ -1,6 +1,6 @@
 import React from 'react';
-import Exercise from '../components/Exercise.js';
-import Category from '../components/Category.js';
+import Exercise from '../components/DashboardExercise.js';
+import Category from '../components/DashboardCategory.js';
 import Video from '../components/Video.js';
 import "../dashboard.css"
 
