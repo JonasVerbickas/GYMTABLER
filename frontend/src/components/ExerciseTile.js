@@ -6,7 +6,8 @@ const default_exercise = {
     img: "https://www.muscletech.com/wp-content/uploads/muscletech-add-50-lbs-to-your-bench-press.jpg",
     title: "Placeholder title",
     difficulty: "X",
-    equipment: "None"
+    equipment: ["None"],
+    muscle_groups: ["Lorem", "Ipsum"]
 }
 
 
@@ -22,6 +23,7 @@ class ExerciseTile extends React.Component {
             title: adjusted_exercise.title,
             difficulty: adjusted_exercise.difficulty,
             equipment: adjusted_exercise.equipment,
+            muscle_groups: adjusted_exercise.muscle_groups,
             expanded: false
         }
     }
@@ -48,13 +50,21 @@ class ExerciseTile extends React.Component {
                         </div>
                         <div className="exercise-stats-row">
                             <p>Difficulty level: {this.state.difficulty}</p>
-                            <p>Equipment needed: {this.state.equipment}</p>
                         </div>
-                        <div className="exercise-stats-row muscle-group-row">
+                        <div className="exercise-stats-row">
+                            <p>Equipment needed:</p>
+                            <ul> 
+                                {this.state.equipment.map(function (equipment, i) {
+                                    return <li key={"equipment:"+i}>{equipment}</li>
+                                })}
+                            </ul>
+                        </div>
+                        <div className="exercise-stats-row">
                             <p>Muscle groups:</p>
-                            <ul className="muscle-group-list"> 
-                                <li>KA</li>
-                                <li>BOOM</li>
+                            <ul> 
+                                {this.state.muscle_groups.map(function (muscle_groups, i) {
+                                    return <li key={"muscle_group:"+i}>{muscle_groups}</li>
+                                })}
                             </ul>
                         </div>
                     </div>

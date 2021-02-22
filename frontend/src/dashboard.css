@@ -3,7 +3,7 @@ display:flex;
 flex-direction:row;
 align-items:center;
 height:85vh;
-margin:75px;
+margin:120px 5vw;
 }
 
 .dashboard-table {

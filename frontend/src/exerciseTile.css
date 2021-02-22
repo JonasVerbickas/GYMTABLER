@@ -8,6 +8,7 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
+  background-color: tan;
 }
 
 
@@ -16,7 +17,7 @@
   align-items: center;
   width: 400px;
   background-color: white;
-  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
   border-radius: 15px;
   margin: 10px 0;
 }
@@ -24,6 +25,7 @@
 .exercise-stats  p{
   color: #2e2e2e !important;
   font-weight: 400;
+  margin: 0;
 }
 
 .small-exercise-tile{
@@ -35,8 +37,6 @@
 .expanded-exercise-tile
 {
   flex-direction: column;
-  background-color: white;
-  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.25);
   padding: 10px;
 }
 
@@ -78,23 +78,18 @@
 .exercise-stats-row{
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   margin: 15px 0;
 }
 
-.muscle-group-row{
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.muscle-group-list{
+.exercise-tile ul{
   display: inline-block;
-  margin-left: auto;
+  padding-left: 30px;
   color: #2e2e2e;
   margin: 0;
 }
 
-.muscle-group-list > li{
+.exercise-tile li{
   color: #2e2e2e;
 }

@@ -13,7 +13,7 @@ export default function ExerciseTileTable(props) {
     props.listOfExercises.forEach(function (element) {
         exercise_columns[index].push(element);
         index++;
-        if (index == NUM_OF_COLUMNS) {
+        if (index === NUM_OF_COLUMNS) {
             index = 0;
         }
     })
