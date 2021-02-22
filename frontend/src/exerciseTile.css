@@ -21,6 +21,11 @@
   margin: 10px 0;
 }
 
+.exercise-stats  p{
+  color: #2e2e2e !important;
+  font-weight: 400;
+}
+
 .small-exercise-tile{
   flex-direction: row;
   height: 140px;
@@ -45,8 +50,51 @@
   margin-bottom: 15px;
 }
 
-.exercise-tile > p, .expanded-exercise-tile > p{
+.exercise-title{
   font-size: large;
   font-weight: 600;
-  color: #272727;
+  color: #2e2e2e;
+}
+
+.expanded-exercise-tile > .exercise-title{
+  font-size: x-large;
+} 
+
+.exercise-description{
+  font-size: medium;
+  color: #2e2e2e;
+  text-align: center;
+  width: 100%;
+}
+
+.exercise-stats{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  padding: 0 30px;
+}
+
+.exercise-stats-row{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 15px 0;
+}
+
+.muscle-group-row{
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.muscle-group-list{
+  display: inline-block;
+  margin-left: auto;
+  color: #2e2e2e;
+  margin: 0;
+}
+
+.muscle-group-list > li{
+  color: #2e2e2e;
 }
