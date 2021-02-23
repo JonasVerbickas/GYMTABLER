@@ -8,8 +8,6 @@ import SortedExerciseTables from '../components/SortedExerciseTables.js';
 import exercise_json from '../exercise.json';
 
 
-const exercises = [{ title: 'Deadlift', img: "https://www.t-nation.com/system/publishing/articles/10006927/original/Crappy-Genetics-Deadlift-Like-This.jpg?1543517874" }, { title: 'Benchpress', link: "https://www.youtube.com/watch?v=rT7DgCr-3pg" }, { title: 'Squat', img: "https://d50b62f6164e0c4a0279-11570554cb5edae3285603e6ab25c978.ssl.cf5.rackcdn.com/html_body_blocks/images/000/014/508/original/SquatForm_enaca8d07704a3bef0815ed8ee3b7fdf76.jpg?1571368813" }, { title: 'Overhead press', img: "https://cdn2.omidoo.com/sites/default/files/imagecache/1200x630/images/headline/201705/13hl.jpg"}];
-
 function Home() {
     return (
         <div>

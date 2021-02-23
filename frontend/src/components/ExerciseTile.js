@@ -5,6 +5,7 @@ import "../exerciseTile.css"
 const default_exercise = {
     img: null,
     name: "Placeholder title",
+    description: "A short description about the exercise",
     difficulty: "X",
     equipment: ["None"],
     bodypart: ["Lorem", "Ipsum"],
@@ -14,7 +15,6 @@ const default_exercise = {
 class ExerciseTile extends React.Component {
     URL2IMG(link){
         if (link) {
-            console.log(link);
             if (link.includes("youtube.com")) {
 
                 if (link[link.length - 1] === "/") {
@@ -22,7 +22,6 @@ class ExerciseTile extends React.Component {
                 }
                 let video_id = link.slice(link.length - 11, link.length);
                 let thumbnail_link = "http://img.youtube.com/vi/" + video_id + "/0.jpg";
-                console.log(thumbnail_link);
                 return thumbnail_link;
             }
         }
@@ -38,6 +37,7 @@ class ExerciseTile extends React.Component {
         this.state = {
             img: adjusted_exercise.img,
             name: adjusted_exercise.name,
+            description: adjusted_exercise.description,
             difficulty: adjusted_exercise.difficulty,
             equipment: adjusted_exercise.equipment,
             bodypart: adjusted_exercise.bodypart,
@@ -65,7 +65,7 @@ class ExerciseTile extends React.Component {
                     <p className="exercise-title">{this.state.name}</p>
                     <div className="exercise-stats">
                         <div className="exercise-stats-row">
-                            <p className="exercise-description">A short description about the exercise</p>
+                            <p className="exercise-description">{this.state.description}</p>
                         </div>
                         <div className="exercise-stats-row" style={{justifyContent: "space-around"}}>
                             <p>Difficulty level: {this.state.difficulty}</p>
@@ -74,7 +74,7 @@ class ExerciseTile extends React.Component {
                             <p>Equipment needed:</p>
                             <ul> 
                                 {this.state.equipment.map(function (equipment, i) {
-                                    return <li key={"equipment:"+i}>{equipment}</li>
+                                    return <li key={i}>{equipment}</li>
                                 })}
                             </ul>
                         </div>
@@ -82,7 +82,7 @@ class ExerciseTile extends React.Component {
                             <p>Muscle groups:</p>
                             <ul> 
                                 {this.state.bodypart.map(function (bodypart, i) {
-                                    return <li key={"muscle_group:"+i}>{bodypart}</li>
+                                    return <li key={i}>{bodypart}</li>
                                 })}
                             </ul>
                         </div>

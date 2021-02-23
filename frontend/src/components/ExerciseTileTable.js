@@ -1,6 +1,20 @@
 import ExerciseTileColumn from '../components/ExerciseTileColumn.js';
 import PropTypes from 'prop-types';
 
+
+function checkIfMatchesFilter(exercise, filter) {
+    if (exercise.name.toLowerCase().includes(filter.text)) {
+        return true;
+    }
+    else if (exercise.description.toLowerCase().includes(filter.text))
+    {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+
 // FIXED SIZE ROWS
 const NUM_OF_COLUMNS = 3;
 export default function ExerciseTileTable(props) {
@@ -9,39 +23,30 @@ export default function ExerciseTileTable(props) {
         exercise_columns.push([]);
     }
     let index = 0;
-
-    props.listOfExercises.forEach(function (element) {
-        exercise_columns[index].push(element);
-        index++;
-        if (index === NUM_OF_COLUMNS) {
-            index = 0;
+    props.listOfExercises.forEach(function (exercise, OG_index) {
+        if(checkIfMatchesFilter(exercise, props.filter))
+        {
+            exercise_columns[index].push([OG_index, exercise]);
+            index++;
+            if (index === NUM_OF_COLUMNS) {
+                index = 0;
+            }
         }
     })
+
+    console.log(exercise_columns);
+    console.log(props.filter);
     return (<div className="exercise-tile-table">
-        {exercise_columns.map((column_list, index) => (<ExerciseTileColumn key={"exercise_tile_column:" + index} listOfExercises={column_list} />))}
+        {exercise_columns.map((column_list, index) => (<ExerciseTileColumn key={index} listOfExercises={column_list}/>))}
     </div>)
 }
 
 ExerciseTileTable.defaultProps = {
-    listOfExercises: []
+    listOfExercises: [],
+    filter: {text: ""}
 }
 
 ExerciseTileTable.propTypes = {
-    listOfExercises: PropTypes.array.isRequired
-}
-
-// FIXED SIZE COLUMS
-const NUM_OF_ROWS = 2;
-function ExerciseTileTableBasedOnColumnSize(props) {
-    let index = 0;
-    let exercise_columns = [];
-    while (index < props.listOfExercises.length) {
-        exercise_columns.push(props.listOfExercises.slice(index, index + NUM_OF_ROWS));
-        index += NUM_OF_ROWS;
-    };
-
-    return (<div className="exercise-tile-table">
-        {exercise_columns.map((column_list) => (<ExerciseTileColumn listOfExercises={column_list} />))}
-    </div>)
-
+    listOfExercises: PropTypes.array.isRequired,
+    filter: PropTypes.object
 }

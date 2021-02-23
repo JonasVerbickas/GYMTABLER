@@ -27,7 +27,8 @@ class SortedExerciseTables extends React.Component {
         this.state = {
             listOfExercises: props.listOfExercises,
             sorted_exercises: sorted_exercises,
-            expanded_exercises: expanded_exercises
+            expanded_exercises: expanded_exercises,
+            filter: {text: ""}
         };
     }
 
@@ -36,7 +37,7 @@ class SortedExerciseTables extends React.Component {
         {
             return (<div>
                 <h1 className="body-part-header" onClick={() => this.expandOnClick(bodypart)}>{bodypart}</h1>
-                <ExerciseTileTable listOfExercises={this.state.sorted_exercises[bodypart]} />
+                <ExerciseTileTable listOfExercises={this.state.sorted_exercises[bodypart]} filter={this.state.filter}/>
             </div>)
         }
         else
@@ -47,21 +48,24 @@ class SortedExerciseTables extends React.Component {
         }
     }
 
+    onTextFilterChange(e){
+        let new_filter = this.state.filter;
+        new_filter.text = e.target.value.toLowerCase();
+        this.setState({filter: new_filter});
+    }
+
     expandOnClick(bodypart){
         let new_expanded_exercises = this.state.expanded_exercises;
         new_expanded_exercises[bodypart] = !new_expanded_exercises[bodypart];
-        console.log(new_expanded_exercises);
         this.setState({expanded_exercises: new_expanded_exercises});
     }
 
     render(){
         if(this.state)
-        {
             return (<div>
-                <input type="text" placeholder="Search.."></input>
+                <input type="text" placeholder="Search.." onChange={(e) => this.onTextFilterChange(e)}></input>
                 <div>{Object.keys(this.state.sorted_exercises).map((exercise) => this.bodypartList2Table(exercise))}</div>
             </div>)
-        }
     }
 }
 
