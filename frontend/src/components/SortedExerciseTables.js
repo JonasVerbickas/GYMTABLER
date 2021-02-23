@@ -62,7 +62,7 @@ class SortedExerciseTables extends React.Component {
 
     render(){
         if(this.state)
-            return (<div>
+            return (<div className="all-exercises">
                 <input type="text" placeholder="Search.." onChange={(e) => this.onTextFilterChange(e)}></input>
                 <div>{Object.keys(this.state.sorted_exercises).map((exercise) => this.bodypartList2Table(exercise))}</div>
             </div>)

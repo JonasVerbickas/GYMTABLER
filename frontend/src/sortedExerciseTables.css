@@ -1,13 +1,19 @@
 input[type=text]{
-  display: inline;
-  border-radius: 5px;
-  margin: auto;
-  width: auto;
+  padding: 20px 50px;
+  margin: 20px;
+  width: 500px;
+  font-size: large;
 }
 
 .body-part-header{
     margin: 0;
     padding: 15px 30px;
-    background-color: dimgray;
+    background-color: #1b1b1b;
     border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.all-exercises{
+  display: flex;
+  flex-direction: column;
+  margin: 50px;
 }
