@@ -4,7 +4,7 @@ import Typical from 'react-typical'
 import {
     Container
 } from "reactstrap";
-import ExerciseTileTable from '../components/ExerciseTileTable.js';
+import SortedExerciseTables from '../components/SortedExerciseTables.js';
 import exercise_json from '../exercise.json';
 
 
@@ -28,7 +28,7 @@ function Home() {
                     </div>
                 </Container>
             </div>
-            <ExerciseTileTable listOfExercises={exercise_json}/>
+            <SortedExerciseTables listOfExercises={exercise_json}/>
             <div className="section section-examples" data-background-color="black">
                 <div className="space-50" />
                 <h3 className="text-center d-sm-block">
