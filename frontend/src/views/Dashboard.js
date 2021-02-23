@@ -1,7 +1,7 @@
 import React from 'react';
-import Exercise from '../components/Exercise.js';
-import Category from '../components/Category.js';
-import Video from '../components/Video.js';
+import Exercise from '../components/DashboardExercise.js';
+import Category from '../components/DashboardCategory.js';
+import DashboardVideo from '../components/DashboardVideo.js';
 import "../dashboard.css"
 
 
@@ -63,7 +63,7 @@ class Dashboard extends React.Component {
             {this.renderExercise("Bench Press")}
             {this.renderExercise("Deadlift")}
         </table>
-        <Video video_link={this.state.video_link}/>
+        <DashboardVideo video_link={this.state.video_link}/>
       </div>
     );
   }

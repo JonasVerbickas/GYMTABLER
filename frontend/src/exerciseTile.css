@@ -1,0 +1,95 @@
+.exercise-tile-column{
+  display: flex;
+  flex-direction: column;
+  margin: 0px 10px;
+}
+
+.exercise-tile-table{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background-color: tan;
+}
+
+
+.exercise-tile{
+  display: inline-flex;
+  align-items: center;
+  width: 400px;
+  background-color: white;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+  border-radius: 15px;
+  margin: 10px 0;
+}
+
+.exercise-stats  p{
+  color: #2e2e2e !important;
+  font-weight: 400;
+  margin: 0;
+}
+
+.small-exercise-tile{
+  flex-direction: row;
+  height: 140px;
+  padding: 20px;
+}
+
+.expanded-exercise-tile
+{
+  flex-direction: column;
+  padding: 10px;
+}
+
+.small-exercise-tile > img{
+  width: 160px;
+  height: 100px;
+  margin-right: 20px;
+}
+
+.expanded-exercise-tile > img{
+  margin-bottom: 15px;
+}
+
+.exercise-title{
+  font-size: large;
+  font-weight: 600;
+  color: #2e2e2e;
+}
+
+.expanded-exercise-tile > .exercise-title{
+  font-size: x-large;
+} 
+
+.exercise-description{
+  font-size: medium;
+  color: #2e2e2e;
+  text-align: center;
+  width: 100%;
+}
+
+.exercise-stats{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  padding: 0 30px;
+}
+
+.exercise-stats-row{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 15px 0;
+}
+
+.exercise-tile ul{
+  display: inline-block;
+  padding-left: 30px;
+  color: #2e2e2e;
+  margin: 0;
+}
+
+.exercise-tile li{
+  color: #2e2e2e;
+}

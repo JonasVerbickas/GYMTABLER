@@ -4,6 +4,10 @@ import Typical from 'react-typical'
 import {
     Container
 } from "reactstrap";
+import ExerciseTileTable from '../components/ExerciseTileTable.js';
+
+
+const exercises = [{ title: 'Deadlift', img: "https://www.t-nation.com/system/publishing/articles/10006927/original/Crappy-Genetics-Deadlift-Like-This.jpg?1543517874" }, { title: 'Benchpress' }, { title: 'Squat', img: "https://d50b62f6164e0c4a0279-11570554cb5edae3285603e6ab25c978.ssl.cf5.rackcdn.com/html_body_blocks/images/000/014/508/original/SquatForm_enaca8d07704a3bef0815ed8ee3b7fdf76.jpg?1571368813" }, { title: 'Overhead press', img: "https://cdn2.omidoo.com/sites/default/files/imagecache/1200x630/images/headline/201705/13hl.jpg"}];
 
 function Home() {
     return (
@@ -23,6 +27,7 @@ function Home() {
                     </div>
                 </Container>
             </div>
+            <ExerciseTileTable listOfExercises={exercises}/>
             <div className="section section-examples" data-background-color="black">
                 <div className="space-50" />
                 <h3 className="text-center d-sm-block">

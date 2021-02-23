@@ -1,4 +1,4 @@
-export default function Video(props) {
+export default function DashboardVideo(props) {
     if (props.video_link.length > 0)
     {
         return (

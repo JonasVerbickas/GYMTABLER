@@ -1,4 +1,5 @@
 import React from 'react';
+import MainLogo from "../assets/img/logo.png"
 
 import { Link } from "react-router-dom";
 // reactstrap components
@@ -53,7 +54,7 @@ export default function IndexNavbar() {
         <div className="navbar-translate">
           <NavbarBrand id="navbar-brand">
           <Link to='/'>
-            Logo
+              <img src={MainLogo} alt="Logo" style={{height: "50px"}}/>
           </Link>
           </NavbarBrand>
           <button
@@ -101,7 +102,7 @@ export default function IndexNavbar() {
             </NavItem>
             <NavItem className="p-0">
               <div style={{ paddingLeft: '20px', paddingTop: '8px' }}>
-              <Link to="/login">Login</Link>
+              <Link to="/workouts">Workouts</Link>
             </div>
             </NavItem>
             <NavItem>
