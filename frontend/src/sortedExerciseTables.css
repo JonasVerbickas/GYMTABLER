@@ -1,0 +1,12 @@
+input[type=text]{
+  display: inline;
+  border-radius: 5px;
+  margin: auto;
+  width: auto;
+}
+
+.body-part-header{
+    margin: 0;
+    padding: 15px 30px;
+    background-color: dimgray;
+}

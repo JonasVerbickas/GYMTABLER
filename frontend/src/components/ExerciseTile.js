@@ -11,7 +11,6 @@ const default_exercise = {
     link: null
 }
 
-
 class ExerciseTile extends React.Component {
     URL2IMG(link){
         if (link) {
@@ -53,7 +52,7 @@ class ExerciseTile extends React.Component {
             let class_name = "exercise-tile small-exercise-tile";
             return (
                 <div className={class_name} onClick={() => this.setState({ expanded: !this.state.expanded })}>
-                    <img src={this.state.img} alt={this.state.name}></img>
+                    <img src={this.state.img} alt={this.state.name + " image"}></img>
                     <p className="exercise-title">{this.state.name}</p>
                 </div>
             );
@@ -62,13 +61,13 @@ class ExerciseTile extends React.Component {
             let class_name = "exercise-tile expanded-exercise-tile";
             return (
                 <div className={class_name} onClick={() => this.setState({ expanded: !this.state.expanded })}>
-                    <img src={this.state.img} alt={this.state.name}></img>
+                    <img src={this.state.img} alt={this.state.name + " image"}></img>
                     <p className="exercise-title">{this.state.name}</p>
                     <div className="exercise-stats">
                         <div className="exercise-stats-row">
                             <p className="exercise-description">A short description about the exercise</p>
                         </div>
-                        <div className="exercise-stats-row">
+                        <div className="exercise-stats-row" style={{justifyContent: "space-around"}}>
                             <p>Difficulty level: {this.state.difficulty}</p>
                         </div>
                         <div className="exercise-stats-row">
@@ -86,6 +85,9 @@ class ExerciseTile extends React.Component {
                                     return <li key={"muscle_group:"+i}>{bodypart}</li>
                                 })}
                             </ul>
+                        </div>
+                        <div className="exercise-stats-row">
+                            <a href={this.state.link} style={{ fontWeight: 400 }}>VIDEO</a>
                         </div>
                     </div>
                 </div>
