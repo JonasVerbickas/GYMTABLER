@@ -17,7 +17,6 @@ export default function ExerciseTileTable(props) {
             index = 0;
         }
     })
-    console.log(exercise_columns);
     return (<div className="exercise-tile-table">
         {exercise_columns.map((column_list, index) => (<ExerciseTileColumn key={"exercise_tile_column:" + index} listOfExercises={column_list} />))}
     </div>)
