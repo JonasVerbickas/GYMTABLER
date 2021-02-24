@@ -1,4 +1,5 @@
 import ExerciseTileColumn from '../components/ExerciseTileColumn.js';
+import ExerciseTile from "../components/ExerciseTile"
 import "../exerciseTable.css"
 import PropTypes from 'prop-types';
 
@@ -41,28 +42,18 @@ function checkIfMatchesFilter(exercise, filter) {
     }
 }
 
-// FIXED SIZE ROWS
-const NUM_OF_COLUMNS = 3;
 export default function ExerciseTileTable(props) {
-    let exercise_columns = [];
-    for (let i = 0; i < NUM_OF_COLUMNS; i++) {
-        exercise_columns.push([]);
-    }
-    let index = 0;
+    let filtered_exercises = []
     props.listOfExercises.forEach(function (exercise) {
         if(checkIfMatchesFilter(exercise, props.filter))
         {
-            exercise_columns[index].push(exercise);
-            index++;
-            if (index === NUM_OF_COLUMNS) {
-                index = 0;
-            }
+            filtered_exercises.push(exercise);
         }
     })
 
     console.log(props.filter);
     return (<div className="exercise-tile-table">
-        {exercise_columns.map((column_list, index) => (<ExerciseTileColumn key={index} listOfExercises={column_list}/>))}
+        {filtered_exercises.map((exercise) => (<ExerciseTile key={exercise.name} exercise={exercise}/>))}
     </div>)
 }
 
