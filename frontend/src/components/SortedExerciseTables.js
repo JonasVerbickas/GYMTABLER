@@ -4,11 +4,11 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 class SortedExerciseTables extends React.Component {
-
     constructor(props){
         super(props);
-        let sorted_exercises = {};
-        let expanded_exercises = {};
+        let sorted_exercises = {};  // stores all possible exercises sorted by bodypart
+        let expanded_categories = {};
+        let possible_equipment = [];  // list of every possible piece of equipment used
         props.listOfExercises.forEach(function (exercise) {
             if (exercise) {
                 if (exercise.bodypart) {
@@ -18,7 +18,15 @@ class SortedExerciseTables extends React.Component {
                         }
                         else {
                             sorted_exercises[bp] = [exercise];
-                            expanded_exercises[bp] = false;
+                            expanded_categories[bp] = false;
+                        }
+                    })
+                }
+                if (exercise.equipment)
+                {
+                    exercise.equipment.forEach(function (e){
+                        if (!possible_equipment.includes(e)) {
+                            possible_equipment.push(e);
                         }
                     })
                 }
@@ -27,13 +35,14 @@ class SortedExerciseTables extends React.Component {
         this.state = {
             listOfExercises: props.listOfExercises,
             sorted_exercises: sorted_exercises,
-            expanded_exercises: expanded_exercises,
-            filter: {text: ""}
+            expanded_categories: expanded_categories,
+            possible_equipment: possible_equipment,
+            filter: {text: "", equipment: []}
         };
     }
 
     bodypartList2Table(bodypart){
-        if(this.state.expanded_exercises[bodypart])
+        if(this.state.expanded_categories[bodypart])
         {
             return (<div>
                 <h1 className="body-part-header" onClick={() => this.expandOnClick(bodypart)}>{bodypart}</h1>
@@ -48,22 +57,40 @@ class SortedExerciseTables extends React.Component {
         }
     }
 
-    onTextFilterChange(e){
+    searchFilterChange(e){
         let new_filter = this.state.filter;
         new_filter.text = e.target.value.toLowerCase();
         this.setState({filter: new_filter});
     }
 
+    equipmentCheckboxChange(e){
+        let name_of_changed = e.target.name;
+        console.log(name_of_changed);
+        let new_filter = this.state.filter;
+        if (new_filter.equipment.includes(name_of_changed)){
+            let i = new_filter.equipment.indexOf(name_of_changed);
+            new_filter.equipment.splice(i, 1);
+        }
+        else{
+            new_filter.equipment.push(name_of_changed);
+        }
+        this.setState({filter: new_filter});
+    }
+
     expandOnClick(bodypart){
-        let new_expanded_exercises = this.state.expanded_exercises;
-        new_expanded_exercises[bodypart] = !new_expanded_exercises[bodypart];
-        this.setState({expanded_exercises: new_expanded_exercises});
+        let new_expanded_categories = this.state.expanded_categories;
+        new_expanded_categories[bodypart] = !new_expanded_categories[bodypart];
+        this.setState({expanded_categories: new_expanded_categories});
     }
 
     render(){
         if(this.state)
             return (<div className="all-exercises">
-                <input type="text" placeholder="Search.." onChange={(e) => this.onTextFilterChange(e)}></input>
+                <div className="filters">
+                    <input type="search" placeholder="Search.." onChange={(e) => this.searchFilterChange(e)}></input>
+                    <p>Equipment:</p>
+                    {this.state.possible_equipment.map(piece_of_equipment => <div><input type="checkbox" name={piece_of_equipment} onChange={(e) => this.equipmentCheckboxChange(e)}></input>{piece_of_equipment}</div>)}
+                </div>
                 <div>{Object.keys(this.state.sorted_exercises).map((exercise) => this.bodypartList2Table(exercise))}</div>
             </div>)
     }

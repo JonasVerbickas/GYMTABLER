@@ -2,15 +2,40 @@ import ExerciseTileColumn from '../components/ExerciseTileColumn.js';
 import PropTypes from 'prop-types';
 
 
-function checkIfMatchesFilter(exercise, filter) {
+function matchesSearchFilter(exercise, filter) {
     if (exercise.name.toLowerCase().includes(filter.text)) {
         return true;
     }
-    else if (exercise.description.toLowerCase().includes(filter.text))
-    {
+    else if (exercise.description.toLowerCase().includes(filter.text)) {
         return true;
     }
     else {
+        return false;
+    } 
+}
+
+function matchesEquipmentFilter(exercise, filter) {
+    if(filter.equipment.length > 0)
+    {
+        if (exercise.equipment) {
+            for (let i = 0; i < exercise.equipment.length; i++) {
+                if (filter.equipment.includes(exercise.equipment[i])) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    return true;
+}
+
+function checkIfMatchesFilter(exercise, filter) {
+    if(matchesSearchFilter(exercise, filter) && matchesEquipmentFilter(exercise, filter))
+    {
+        return true;
+    }
+    else
+    {
         return false;
     }
 }
@@ -34,7 +59,6 @@ export default function ExerciseTileTable(props) {
         }
     })
 
-    console.log(exercise_columns);
     console.log(props.filter);
     return (<div className="exercise-tile-table">
         {exercise_columns.map((column_list, index) => (<ExerciseTileColumn key={index} listOfExercises={column_list}/>))}
