@@ -1,4 +1,5 @@
 import ExerciseTileColumn from '../components/ExerciseTileColumn.js';
+import "../exerciseTable.css"
 import PropTypes from 'prop-types';
 
 
