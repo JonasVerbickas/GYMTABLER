@@ -1,8 +1,37 @@
 input[type=search]{
-  padding: 20px 50px;
-  margin: 20px;
+  padding: 0 30px;
+  margin: 20px 0;
   width: 500px;
+  height: 75px;
   font-size: large;
+}
+
+#filters{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px;
+}
+
+#equipment-filter{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 20px;
+}
+
+#equipment-checkboxes{
+  margin: 10px;
+}
+
+#equipment-filter > p{
+  font-size: medium;
+}
+
+.equipment-checkbox{
+  color: rgb(168, 168, 168);
+  font-weight: 500;
 }
 
 .body-part-header{

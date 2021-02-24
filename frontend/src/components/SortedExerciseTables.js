@@ -86,10 +86,14 @@ class SortedExerciseTables extends React.Component {
     render(){
         if(this.state)
             return (<div className="all-exercises">
-                <div className="filters">
+                <div id="filters">
                     <input type="search" placeholder="Search.." onChange={(e) => this.searchFilterChange(e)}></input>
-                    <p>Equipment:</p>
-                    {this.state.possible_equipment.map(piece_of_equipment => <div><input type="checkbox" name={piece_of_equipment} onChange={(e) => this.equipmentCheckboxChange(e)}></input>{piece_of_equipment}</div>)}
+                    <div id="equipment-filter">
+                        <p>Equipment:</p>
+                        <div id="equipment-checkboxes">
+                            {this.state.possible_equipment.map(piece_of_equipment => <div className="equipment-checkbox"><input type="checkbox" name={piece_of_equipment} onChange={(e) => this.equipmentCheckboxChange(e)}></input> {piece_of_equipment}</div>)}
+                        </div>
+                    </div>
                 </div>
                 <div>{Object.keys(this.state.sorted_exercises).map((exercise) => this.bodypartList2Table(exercise))}</div>
             </div>)
