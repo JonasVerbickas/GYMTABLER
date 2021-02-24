@@ -101,10 +101,6 @@ class SortedExerciseTables extends React.Component {
 }
 
 
-SortedExerciseTables.defaultProps = {
-    listOfExercises: []
-}
-
 SortedExerciseTables.propTypes = {
     listOfExercises: PropTypes.array.isRequired
 }

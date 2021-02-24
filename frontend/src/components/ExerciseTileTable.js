@@ -1,4 +1,5 @@
 import ExerciseTileColumn from '../components/ExerciseTileColumn.js';
+import "../exerciseTable.css"
 import PropTypes from 'prop-types';
 
 
@@ -48,10 +49,10 @@ export default function ExerciseTileTable(props) {
         exercise_columns.push([]);
     }
     let index = 0;
-    props.listOfExercises.forEach(function (exercise, OG_index) {
+    props.listOfExercises.forEach(function (exercise) {
         if(checkIfMatchesFilter(exercise, props.filter))
         {
-            exercise_columns[index].push([OG_index, exercise]);
+            exercise_columns[index].push(exercise);
             index++;
             if (index === NUM_OF_COLUMNS) {
                 index = 0;
@@ -63,11 +64,6 @@ export default function ExerciseTileTable(props) {
     return (<div className="exercise-tile-table">
         {exercise_columns.map((column_list, index) => (<ExerciseTileColumn key={index} listOfExercises={column_list}/>))}
     </div>)
-}
-
-ExerciseTileTable.defaultProps = {
-    listOfExercises: [],
-    filter: {text: ""}
 }
 
 ExerciseTileTable.propTypes = {
