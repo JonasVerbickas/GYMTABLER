@@ -4,6 +4,10 @@ import PropTypes from 'prop-types';
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry"
 
 
+const MAX_NUM_OF_COLUMNS = 5;
+const MAX_SIZE_OF_EACH_COL = 450; // px
+
+
 function matchesSearchFilter(exercise, filter) {
     if (exercise.name.toLowerCase().includes(filter.text)) {
         return true;
@@ -50,12 +54,7 @@ export default function ExerciseTileTable(props) {
             filtered_exercises.push(exercise);
         }
     })
-
-    
-    let breakpoints = Object.fromEntries([1, 2, 3, 4, 5].map(item => [item * 450, item]))
-
-    console.log(breakpoints);
-
+    let breakpoints = Object.fromEntries([...Array(MAX_NUM_OF_COLUMNS).keys()].map(item => [item * MAX_SIZE_OF_EACH_COL, item]))
     return (<ResponsiveMasonry columnsCountBreakPoints={breakpoints}>
         <Masonry className="exercise-tile-table">
         {filtered_exercises.map((exercise) => (<ExerciseTile key={exercise.name} exercise={exercise}/>))}
