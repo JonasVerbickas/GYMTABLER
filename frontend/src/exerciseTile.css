@@ -18,7 +18,7 @@
 
 .small-exercise-tile{
   flex-direction: row;
-  height: 140px;
+  height: 125px;
   padding: 20px;
 }
 
@@ -29,8 +29,7 @@
 }
 
 .small-exercise-tile > img{
-  width: 150px;
-  height: 112.5px;
+  height: 100%;
   margin-right: 20px;
 }
 
@@ -44,9 +43,6 @@
   margin: 0;
 }
 
-.expanded-exercise-tile > .exercise-title{
-  font-size: x-large;
-} 
 
 .exercise-description{
   font-size: medium;

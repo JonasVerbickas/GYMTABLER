@@ -66,7 +66,7 @@ class ExerciseTile extends React.Component {
                 <div className="exercise-tile-border">
                     <div className={class_name} onClick={() => this.setState({ expanded: !this.state.expanded })}>
                         <img src={this.state.img} alt={this.state.name + " image"}></img>
-                        <h4 className="exercise-title">{this.state.name}</h4>
+                        <h3 className="exercise-title">{this.state.name}</h3>
                         <div className="exercise-stats">
                             <div className="exercise-stats-row">
                                 <p className="exercise-description">{this.state.description}</p>
