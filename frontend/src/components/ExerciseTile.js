@@ -51,46 +51,52 @@ class ExerciseTile extends React.Component {
         if (!this.state.expanded) {
             let class_name = "exercise-tile small-exercise-tile";
             return (
-                <div className={class_name} onClick={() => this.setState({ expanded: !this.state.expanded })}>
-                    <img src={this.state.img} alt={this.state.name + " image"}></img>
-                    <p className="exercise-title">{this.state.name}</p>
+                <div className="exercise-tile-border">
+                    <div className={class_name} onClick={() => this.setState({ expanded: !this.state.expanded })}>
+                        <img src={this.state.img} alt={this.state.name + " image"}></img>
+                        <h4 className="exercise-title">{this.state.name}</h4>
+                    </div>
                 </div>
+                
             );
         }
         else {
             let class_name = "exercise-tile expanded-exercise-tile";
             return (
-                <div className={class_name} onClick={() => this.setState({ expanded: !this.state.expanded })}>
-                    <img src={this.state.img} alt={this.state.name + " image"}></img>
-                    <p className="exercise-title">{this.state.name}</p>
-                    <div className="exercise-stats">
-                        <div className="exercise-stats-row">
-                            <p className="exercise-description">{this.state.description}</p>
-                        </div>
-                        <div className="exercise-stats-row" style={{justifyContent: "space-around"}}>
-                            <p>Difficulty level: {this.state.difficulty}</p>
-                        </div>
-                        <div className="exercise-stats-row">
-                            <p>Equipment needed:</p>
-                            <ul> 
-                                {this.state.equipment.map(function (equipment, i) {
-                                    return <li key={i}>{equipment}</li>
-                                })}
-                            </ul>
-                        </div>
-                        <div className="exercise-stats-row">
-                            <p>Muscle groups:</p>
-                            <ul> 
-                                {this.state.bodypart.map(function (bodypart, i) {
-                                    return <li key={i}>{bodypart}</li>
-                                })}
-                            </ul>
-                        </div>
-                        <div className="exercise-stats-row">
-                            <a href={this.state.link} style={{ fontWeight: 400 }}>VIDEO</a>
+                <div className="exercise-tile-border">
+                    <div className={class_name} onClick={() => this.setState({ expanded: !this.state.expanded })}>
+                        <img src={this.state.img} alt={this.state.name + " image"}></img>
+                        <h4 className="exercise-title">{this.state.name}</h4>
+                        <div className="exercise-stats">
+                            <div className="exercise-stats-row">
+                                <p className="exercise-description">{this.state.description}</p>
+                            </div>
+                            <div className="exercise-stats-row" style={{ justifyContent: "space-around" }}>
+                                <p>Difficulty level: {this.state.difficulty}</p>
+                            </div>
+                            <div className="exercise-stats-row">
+                                <p>Equipment needed:</p>
+                                <ul>
+                                    {this.state.equipment.map(function (equipment, i) {
+                                        return <li key={i}>{equipment}</li>
+                                    })}
+                                </ul>
+                            </div>
+                            <div className="exercise-stats-row">
+                                <p>Muscle groups:</p>
+                                <ul>
+                                    {this.state.bodypart.map(function (bodypart, i) {
+                                        return <li key={i}>{bodypart}</li>
+                                    })}
+                                </ul>
+                            </div>
+                            <div className="exercise-stats-row">
+                                <a href={this.state.link} style={{ fontWeight: 400 }}>VIDEO</a>
+                            </div>
                         </div>
                     </div>
                 </div>
+               
             );
         }
     }

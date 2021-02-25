@@ -1,10 +1,13 @@
 .exercise-tile{
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  width: 400px;
+  width: 100%;
   background-color: white;
   border-radius: 15px;
-  margin: 10px 0;
+}
+
+.exercise-tile-border{
+  padding: 10px;
 }
 
 .exercise-stats  p{
@@ -36,9 +39,9 @@
 }
 
 .exercise-title{
-  font-size: large;
-  font-weight: 600;
   color: #2e2e2e;
+  font-weight: 600;
+  margin: 0;
 }
 
 .expanded-exercise-tile > .exercise-title{

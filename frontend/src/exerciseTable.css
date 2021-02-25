@@ -1,14 +1,4 @@
-.exercise-tile-column{
-  display: flex;
-  flex-direction: column;
-  margin: 0px 10px;
-}
-
 .exercise-tile-table{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
   background-color: #1b1b1b;
-  padding: 10px 0 20px 0;
+  padding: 20px;
 }

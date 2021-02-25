@@ -45,14 +45,14 @@ class SortedExerciseTables extends React.Component {
         if(this.state.expanded_categories[bodypart])
         {
             return (<div>
-                <h1 className="body-part-header" onClick={() => this.expandOnClick(bodypart)}>{bodypart}</h1>
+                <h3 className="body-part-header" onClick={() => this.expandOnClick(bodypart)}>{bodypart}</h3>
                 <ExerciseTileTable listOfExercises={this.state.sorted_exercises[bodypart]} filter={this.state.filter}/>
             </div>)
         }
         else
         {
             return (<div>
-                <h1 className="body-part-header" onClick={() => this.expandOnClick(bodypart)}>{bodypart}</h1>
+                <h3 className="body-part-header" onClick={() => this.expandOnClick(bodypart)}>{bodypart}</h3>
             </div>) 
         }
     }
@@ -95,7 +95,9 @@ class SortedExerciseTables extends React.Component {
                         </div>
                     </div>
                 </div>
-                <div>{Object.keys(this.state.sorted_exercises).map((exercise) => this.bodypartList2Table(exercise))}</div>
+                <div>
+                    {Object.keys(this.state.sorted_exercises).map((exercise) => this.bodypartList2Table(exercise))}
+                </div>
             </div>)
     }
 }

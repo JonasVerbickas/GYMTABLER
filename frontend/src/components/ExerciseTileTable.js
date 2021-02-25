@@ -1,7 +1,7 @@
-import ExerciseTileColumn from '../components/ExerciseTileColumn.js';
-import ExerciseTile from "../components/ExerciseTile"
 import "../exerciseTable.css"
+import ExerciseTile from "../components/ExerciseTile"
 import PropTypes from 'prop-types';
+import Masonry, { ResponsiveMasonry } from "react-responsive-masonry"
 
 
 function matchesSearchFilter(exercise, filter) {
@@ -51,10 +51,15 @@ export default function ExerciseTileTable(props) {
         }
     })
 
-    console.log(props.filter);
-    return (<div className="exercise-tile-table">
+    
+    let breakpoints = Object.fromEntries([1, 2, 3, 4, 5].map(item => [item * 450, item]))
+
+    console.log(breakpoints);
+
+    return (<ResponsiveMasonry columnsCountBreakPoints={breakpoints}>
+        <Masonry className="exercise-tile-table">
         {filtered_exercises.map((exercise) => (<ExerciseTile key={exercise.name} exercise={exercise}/>))}
-    </div>)
+    </Masonry></ResponsiveMasonry>)
 }
 
 ExerciseTileTable.propTypes = {
