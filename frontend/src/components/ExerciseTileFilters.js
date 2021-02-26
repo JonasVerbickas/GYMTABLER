@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import "../assets/css/tileFilters.css"
 
-
 function ExerciseTileFilters(props) {
     return(
     <div id="filters">
@@ -9,9 +8,9 @@ function ExerciseTileFilters(props) {
         <div id="equipment-filter">
             <p>Equipment:</p>
             <div id="equipment-checkboxes">
-                {props.possible_equipment.map(piece_of_equipment => <div className="equipment-checkbox">
+                {props.possible_equipment.map(piece_of_equipment => <div key={piece_of_equipment} className="equipment-checkbox">
                     <input id={piece_of_equipment} type="checkbox" name={piece_of_equipment} onChange={(e) => props.equipmentChange(e)}></input> 
-                    <label for={piece_of_equipment}> {piece_of_equipment}</label>
+                    <label htmlFor={piece_of_equipment}> {piece_of_equipment}</label>
                     </div>)}
             </div>
         </div>

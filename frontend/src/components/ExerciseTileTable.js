@@ -7,7 +7,6 @@ import Masonry, { ResponsiveMasonry } from "react-responsive-masonry"
 const MAX_NUM_OF_COLUMNS = 5;
 const MAX_SIZE_OF_EACH_COL = 450; // px
 
-
 function matchesSearchFilter(exercise, filter) {
     if (exercise.name.toLowerCase().includes(filter.text)) {
         return true;

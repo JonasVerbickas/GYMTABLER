@@ -1,15 +1,14 @@
-import ExerciseTileTable from './ExerciseTileTable.js';
+import TableForASpecificBodypart from './tableForASpecificBodypart.js'
 import ExerciseTileFilters from './ExerciseTileFilters.js';
 import "../assets/css/sortedExerciseTables.css"
 import PropTypes from 'prop-types';
-import { Transition, animated } from 'react-spring/renderprops'
 import React from 'react';
+
 
 class SortedExerciseTables extends React.Component {
     constructor(props){
         super(props);
         let sorted_exercises = {};  // stores all possible exercises sorted by bodypart
-        let expanded_categories = {};
         let possible_equipment = [];  // list of every possible piece of equipment used
         // sort the dataset
         // should probably be done on the backend
@@ -17,13 +16,7 @@ class SortedExerciseTables extends React.Component {
             if (exercise) {
                 if (exercise.bodypart) {
                     exercise.bodypart.forEach(function (bp) {
-                        if (Object.keys(sorted_exercises).includes(bp)) {
-                            sorted_exercises[bp].push(exercise);
-                        }
-                        else {
-                            sorted_exercises[bp] = [exercise];
-                            expanded_categories[bp] = false;
-                        }
+                        Object.keys(sorted_exercises).includes(bp) ? sorted_exercises[bp].push(exercise) : sorted_exercises[bp] = [exercise];
                     })
                 }
                 if (exercise.equipment)
@@ -39,31 +32,11 @@ class SortedExerciseTables extends React.Component {
         this.state = {
             listOfExercises: props.listOfExercises,
             sorted_exercises: sorted_exercises,
-            expanded_categories: expanded_categories,
             possible_equipment: possible_equipment,
             filter: {text: "", equipment: []}
         };
         this.searchFilterChange =  this.searchFilterChange.bind(this);
         this.equipmentCheckboxChange = this.equipmentCheckboxChange.bind(this);
-    }
-
-    bodypartList2Table(bodypart) {
-        return (<div>
-            <h2 className="body-part-header" onClick={() => this.expandOnClick(bodypart)}>{bodypart}</h2>
-            <Transition
-                native
-                items={this.state.expanded_categories[bodypart]}
-                from={{ overflow: 'hidden', height: 0 }}
-                enter={[{ height: 'auto'}]}
-                leave={{ height: 0 }}>
-                {show =>
-                    show && (props => (
-                    <animated.div style={props}>
-                        <ExerciseTileTable listOfExercises={this.state.sorted_exercises[bodypart]} filter={this.state.filter} />
-                    </animated.div>
-                    ))}
-            </Transition>
-        </div>)
     }
 
     searchFilterChange(e){
@@ -86,27 +59,19 @@ class SortedExerciseTables extends React.Component {
         this.setState({filter: new_filter});
     }
 
-    expandOnClick(bodypart){
-        let new_expanded_categories = this.state.expanded_categories;
-        new_expanded_categories[bodypart] = !new_expanded_categories[bodypart];
-        this.setState({expanded_categories: new_expanded_categories});
-    }
-
     render(){
         if(this.state)
             return (<div className="all-exercises">
                 <ExerciseTileFilters searchChange={this.searchFilterChange} equipmentChange={this.equipmentCheckboxChange} possible_equipment={this.state.possible_equipment}/>
                 <div>
-                    {Object.keys(this.state.sorted_exercises).map((exercise) => this.bodypartList2Table(exercise))}
+                    {Object.keys(this.state.sorted_exercises).map((bodypart) => (<TableForASpecificBodypart key={bodypart} bodypart={bodypart} listOfExercises={this.state.sorted_exercises[bodypart]} filter={this.state.filter}/>))}
                 </div>
             </div>)
     }
 }
 
-
 SortedExerciseTables.propTypes = {
     listOfExercises: PropTypes.array.isRequired
 }
-
 
 export default SortedExerciseTables;

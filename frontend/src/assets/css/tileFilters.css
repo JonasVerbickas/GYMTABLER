@@ -1,3 +1,10 @@
+input[type=search]{
+  padding: 0 30px;
+  width: 500px;
+  height: 55px;
+  font-size: large;
+}
+
 #filters{
   display: flex;
   flex-direction: row;
@@ -17,7 +24,7 @@
   margin: 10px;
 }
 
-#equipment-filter > p{
+#equipment-filter > label{
   font-size: medium;
 }
 
