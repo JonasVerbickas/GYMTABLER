@@ -1,6 +1,7 @@
 import ExerciseTileTable from './ExerciseTileTable.js';
 import "../sortedExerciseTables.css"
 import PropTypes from 'prop-types';
+import { Transition, animated } from 'react-spring/renderprops'
 import React from 'react';
 
 class SortedExerciseTables extends React.Component {
@@ -41,20 +42,23 @@ class SortedExerciseTables extends React.Component {
         };
     }
 
-    bodypartList2Table(bodypart){
-        if(this.state.expanded_categories[bodypart])
-        {
-            return (<div>
-                <h2 className="body-part-header" onClick={() => this.expandOnClick(bodypart)}>{bodypart}</h2>
-                <ExerciseTileTable listOfExercises={this.state.sorted_exercises[bodypart]} filter={this.state.filter}/>
-            </div>)
-        }
-        else
-        {
-            return (<div>
-                <h2 className="body-part-header" onClick={() => this.expandOnClick(bodypart)}>{bodypart}</h2>
-            </div>) 
-        }
+    bodypartList2Table(bodypart) {
+        return (<div>
+            <h2 className="body-part-header" onClick={() => this.expandOnClick(bodypart)}>{bodypart}</h2>
+            <Transition
+                native
+                items={this.state.expanded_categories[bodypart]}
+                from={{ overflow: 'hidden', height: 0 }}
+                enter={[{ height: 'auto'}]}
+                leave={{ height: 0 }}>
+                {show =>
+                    show && (props => (
+                    <animated.div style={props}>
+                        <ExerciseTileTable listOfExercises={this.state.sorted_exercises[bodypart]} filter={this.state.filter} />
+                    </animated.div>
+                    ))}
+            </Transition>
+        </div>)
     }
 
     searchFilterChange(e){
