@@ -1,5 +1,6 @@
 import ExerciseTileTable from './ExerciseTileTable.js';
-import "../sortedExerciseTables.css"
+import ExerciseTileFilters from './ExerciseTileFilters.js';
+import "../assets/css/sortedExerciseTables.css"
 import PropTypes from 'prop-types';
 import { Transition, animated } from 'react-spring/renderprops'
 import React from 'react';
@@ -10,6 +11,8 @@ class SortedExerciseTables extends React.Component {
         let sorted_exercises = {};  // stores all possible exercises sorted by bodypart
         let expanded_categories = {};
         let possible_equipment = [];  // list of every possible piece of equipment used
+        // sort the dataset
+        // should probably be done on the backend
         props.listOfExercises.forEach(function (exercise) {
             if (exercise) {
                 if (exercise.bodypart) {
@@ -40,6 +43,8 @@ class SortedExerciseTables extends React.Component {
             possible_equipment: possible_equipment,
             filter: {text: "", equipment: []}
         };
+        this.searchFilterChange =  this.searchFilterChange.bind(this);
+        this.equipmentCheckboxChange = this.equipmentCheckboxChange.bind(this);
     }
 
     bodypartList2Table(bodypart) {
@@ -90,15 +95,7 @@ class SortedExerciseTables extends React.Component {
     render(){
         if(this.state)
             return (<div className="all-exercises">
-                <div id="filters">
-                    <input type="search" placeholder="Search.." onChange={(e) => this.searchFilterChange(e)}></input>
-                    <div id="equipment-filter">
-                        <p>Equipment:</p>
-                        <div id="equipment-checkboxes">
-                            {this.state.possible_equipment.map(piece_of_equipment => <div className="equipment-checkbox"><input type="checkbox" name={piece_of_equipment} onChange={(e) => this.equipmentCheckboxChange(e)}></input> {piece_of_equipment}</div>)}
-                        </div>
-                    </div>
-                </div>
+                <ExerciseTileFilters searchChange={this.searchFilterChange} equipmentChange={this.equipmentCheckboxChange} possible_equipment={this.state.possible_equipment}/>
                 <div>
                     {Object.keys(this.state.sorted_exercises).map((exercise) => this.bodypartList2Table(exercise))}
                 </div>

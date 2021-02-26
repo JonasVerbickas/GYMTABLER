@@ -1,0 +1,20 @@
+input[type=search]{
+  padding: 0 30px;
+  width: 500px;
+  height: 55px;
+  font-size: large;
+}
+
+.body-part-header{
+    margin: 0;
+    padding: 15px 30px;
+    background-color: #232b42;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.all-exercises{
+  display: flex;
+  flex-direction: column;
+  width: auto;
+  margin: 5vw;
+}

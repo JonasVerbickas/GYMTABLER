@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import "../exerciseTile.css"
+import "../assets/css/exerciseTile.css"
 
 const default_exercise = {
     img: null,

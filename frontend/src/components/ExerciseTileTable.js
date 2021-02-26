@@ -1,4 +1,4 @@
-import "../exerciseTable.css"
+import "../assets/css/exerciseTable.css"
 import ExerciseTile from "../components/ExerciseTile"
 import PropTypes from 'prop-types';
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry"
