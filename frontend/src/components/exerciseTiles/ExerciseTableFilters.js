@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import "../assets/css/tileFilters.css"
+import "../../assets/css/exerciseTileFilters.css";
 
 function ExerciseTileFilters(props) {
     return(

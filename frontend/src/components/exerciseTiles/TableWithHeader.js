@@ -2,10 +2,10 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { Transition, animated } from 'react-spring/renderprops'
 import ExerciseTileTable from './ExerciseTileTable.js';
-import "../assets/css/tableForASpecificBodypart.css"
+import "../../assets/css/TableWithHeader.css"
 
 
-class TableForASpecificBodypart extends React.Component {
+class TableWithHeader extends React.Component {
     constructor(props){
         super(props);
         this.state = {
@@ -42,10 +42,10 @@ class TableForASpecificBodypart extends React.Component {
 }
 
 
-TableForASpecificBodypart.propTypes = {
+TableWithHeader.propTypes = {
     bodypart: PropTypes.string.isRequired,
     listOfExercises: PropTypes.array.isRequired,
     filter: PropTypes.object.isRequired,
 }
 
-export default TableForASpecificBodypart;
+export default TableWithHeader;

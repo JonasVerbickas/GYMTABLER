@@ -1,11 +1,11 @@
-import TableForASpecificBodypart from './tableForASpecificBodypart.js'
-import ExerciseTileFilters from './ExerciseTileFilters.js';
-import "../assets/css/sortedExerciseTables.css"
+import TableForASpecificBodypart from './TableWithHeader.js';
+import ExerciseTileFilters from './ExerciseTableFilters.js';
+import "../../assets/css/AllSortedExercises.css";
 import PropTypes from 'prop-types';
 import React from 'react';
 
 
-class SortedExerciseTables extends React.Component {
+class AllSortedExercises extends React.Component {
     constructor(props){
         super(props);
         let sorted_exercises = {};  // stores all possible exercises sorted by bodypart
@@ -70,8 +70,8 @@ class SortedExerciseTables extends React.Component {
     }
 }
 
-SortedExerciseTables.propTypes = {
+AllSortedExercises.propTypes = {
     listOfExercises: PropTypes.array.isRequired
 }
 
-export default SortedExerciseTables;
+export default AllSortedExercises;
