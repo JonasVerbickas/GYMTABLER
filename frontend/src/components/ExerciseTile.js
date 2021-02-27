@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import "../assets/css/exerciseTile.css"
+import "../assets/css/exerciseTile.css";
+import SmallExerciseTile from "../components/SmallExerciseTile.js";
+import ExpandedExerciseTile from "../components/ExpandedExerciseTile.js";
 
 const default_exercise = {
     img: null,
@@ -34,70 +36,25 @@ class ExerciseTile extends React.Component {
         Object.keys(default_exercise).forEach(function (key) {
             adjusted_exercise[key] = props.exercise[key] ? props.exercise[key] : default_exercise[key];
         })
+        adjusted_exercise.img = this.URL2IMG(this.props.exercise.link);
         this.state = {
-            img: adjusted_exercise.img,
-            name: adjusted_exercise.name,
-            description: adjusted_exercise.description,
-            difficulty: adjusted_exercise.difficulty,
-            equipment: adjusted_exercise.equipment,
-            bodypart: adjusted_exercise.bodypart,
-            link: adjusted_exercise.link,
+            exercise: adjusted_exercise,
             expanded: false
         }
-        this.state.img = this.URL2IMG(this.props.exercise.link);
+        this.handleClick = this.handleClick.bind(this);
+    }
+
+    handleClick()
+    {
+        this.setState({expanded: !this.state.expanded});
     }
 
     render() {
         if (!this.state.expanded) {
-            let class_name = "exercise-tile small-exercise-tile";
-            return (
-                <div className="exercise-tile-border">
-                    <div className={class_name} onClick={() => this.setState({ expanded: !this.state.expanded })}>
-                        <img src={this.state.img} alt={this.state.name + " image"}></img>
-                        <h4 className="exercise-title">{this.state.name}</h4>
-                    </div>
-                </div>
-                
-            );
+            return (<SmallExerciseTile handleClick={this.handleClick} exercise={this.state.exercise}/>);
         }
         else {
-            let class_name = "exercise-tile expanded-exercise-tile";
-            return (
-                <div className="exercise-tile-border">
-                    <div className={class_name} onClick={() => this.setState({ expanded: !this.state.expanded })}>
-                        <img src={this.state.img} alt={this.state.name + " image"}></img>
-                        <h3 className="exercise-title">{this.state.name}</h3>
-                        <div className="exercise-stats">
-                            <div className="exercise-stats-row">
-                                <p className="exercise-description">{this.state.description}</p>
-                            </div>
-                            <div className="exercise-stats-row" style={{ justifyContent: "space-around" }}>
-                                <p>Difficulty level: {this.state.difficulty}</p>
-                            </div>
-                            <div className="exercise-stats-row">
-                                <p>Equipment needed:</p>
-                                <ul>
-                                    {this.state.equipment.map(function (equipment, i) {
-                                        return <li key={i}>{equipment}</li>
-                                    })}
-                                </ul>
-                            </div>
-                            <div className="exercise-stats-row">
-                                <p>Muscle groups:</p>
-                                <ul>
-                                    {this.state.bodypart.map(function (bodypart, i) {
-                                        return <li key={i}>{bodypart}</li>
-                                    })}
-                                </ul>
-                            </div>
-                            <div className="exercise-stats-row">
-                                <a href={this.state.link} style={{ fontWeight: 400 }}>VIDEO</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-               
-            );
+            return (<ExpandedExerciseTile handleClick={this.handleClick} exercise={this.state.exercise} />);
         }
     }
 }
