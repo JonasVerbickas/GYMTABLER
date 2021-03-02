@@ -136,6 +136,10 @@ function LoginPage() {
                                         onClick={validateForm}>
                                         Login
                                     </Button>
+                                    <span>
+                                        <a href="" target="_blank">Forgotten password? </a>|
+                                        <a href="/input"> Register an account</a>
+                                    </span>
                                 </FormGroup>
                             </div>
                         </form>
