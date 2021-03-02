@@ -105,6 +105,11 @@ export default function IndexNavbar() {
               <Link to="/workouts">Workouts</Link>
             </div>
             </NavItem>
+            <NavItem className="p-0">
+            <div style={{ paddingLeft: '20px', paddingTop: '8px' }}>
+            <Link to="/loginpage">Login</Link>
+            </div>
+            </NavItem>
             <NavItem>
               <Button
                 className="nav-link d-lg-block"
