@@ -1,8 +1,7 @@
 input[type=search]{
   padding: 0 30px;
-  margin: 20px 0;
   width: 500px;
-  height: 75px;
+  height: 55px;
   font-size: large;
 }
 
@@ -25,24 +24,11 @@ input[type=search]{
   margin: 10px;
 }
 
-#equipment-filter > p{
+#equipment-filter > label{
   font-size: medium;
 }
 
 .equipment-checkbox{
   color: rgb(168, 168, 168);
   font-weight: 500;
-}
-
-.body-part-header{
-    margin: 0;
-    padding: 15px 30px;
-    background-color: #232b42;
-    border: 1px solid rgba(255, 255, 255, 0.25);
-}
-
-.all-exercises{
-  display: flex;
-  flex-direction: column;
-  margin: 50px;
 }

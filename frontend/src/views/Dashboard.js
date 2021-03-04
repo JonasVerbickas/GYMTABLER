@@ -1,8 +1,8 @@
 import React from 'react';
-import Exercise from '../components/DashboardExercise.js';
-import Category from '../components/DashboardCategory.js';
-import DashboardVideo from '../components/DashboardVideo.js';
-import "../dashboard.css"
+import Exercise from '../components/dashboard/DashboardExercise.js';
+import Category from '../components/dashboard/DashboardCategory.js';
+import DashboardVideo from '../components/dashboard/DashboardVideo.js';
+import "../assets/css/dashboard.css"
 
 
 class Dashboard extends React.Component {

@@ -1,10 +1,14 @@
 .exercise-tile{
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  width: 400px;
+  width: 100%;
   background-color: white;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 1);
   border-radius: 15px;
-  margin: 10px 0;
+}
+
+.exercise-tile-border{
+  padding: 10px;
 }
 
 .exercise-stats  p{
@@ -15,19 +19,23 @@
 
 .small-exercise-tile{
   flex-direction: row;
-  height: 140px;
-  padding: 20px;
+  padding: 10px 15px;
+  height: 125px;
+  transition: all .2s ease-in-out;
+}
+
+.small-exercise-tile:hover{
+  transform: scale(1.01);
 }
 
 .expanded-exercise-tile
 {
-  flex-direction: column;
   padding: 10px;
+  flex-direction: column;
 }
 
 .small-exercise-tile > img{
-  width: 160px;
-  height: 100px;
+  height: 90%;
   margin-right: 20px;
 }
 
@@ -36,14 +44,10 @@
 }
 
 .exercise-title{
-  font-size: large;
-  font-weight: 600;
   color: #2e2e2e;
+  font-weight: 600;
+  margin: 0;
 }
-
-.expanded-exercise-tile > .exercise-title{
-  font-size: x-large;
-} 
 
 .exercise-description{
   font-size: medium;

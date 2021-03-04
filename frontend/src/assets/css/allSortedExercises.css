@@ -1,0 +1,6 @@
+.all-exercises{
+  display: flex;
+  flex-direction: column;
+  width: auto;
+  margin: 5vw;
+}
