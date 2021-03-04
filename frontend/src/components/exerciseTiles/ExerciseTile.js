@@ -45,6 +45,7 @@ class ExerciseTile extends React.Component {
         super(props);
         this.state = {
             exercise: fillInBlanksInExercise(props.exercise),
+            addToCart: props.addToCart,
             expanded: false
         }
         this.handleClick = this.handleClick.bind(this);
@@ -57,7 +58,7 @@ class ExerciseTile extends React.Component {
 
     render() {
         if (!this.state.expanded) {
-            return (<SmallExerciseTile handleClick={this.handleClick} exercise={this.state.exercise}/>);
+            return (<SmallExerciseTile handleClick={this.handleClick} exercise={this.state.exercise} addToCart={this.state.addToCart}/>);
         }
         else {
             return (<ExpandedExerciseTile handleClick={this.handleClick} exercise={this.state.exercise} />);

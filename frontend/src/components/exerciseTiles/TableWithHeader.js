@@ -12,6 +12,7 @@ class TableWithHeader extends React.Component {
             bodypart: props.bodypart,
             listOfExercises: props.listOfExercises,
             filter: props.filter,
+            addToCart: props.addToCart,
             expaded: false
         }
     }
@@ -27,7 +28,7 @@ class TableWithHeader extends React.Component {
                 {show =>
                     show && (props2 => (
                         <animated.div style={props2}>
-                            <ExerciseTileTable listOfExercises={this.state.listOfExercises} filter={this.state.filter} />
+                            <ExerciseTileTable listOfExercises={this.state.listOfExercises} filter={this.state.filter} addToCart={this.state.addToCart} />
                         </animated.div>
                     ))}
             </Transition>
@@ -44,6 +45,7 @@ TableWithHeader.propTypes = {
     bodypart: PropTypes.string.isRequired,
     listOfExercises: PropTypes.array.isRequired,
     filter: PropTypes.object.isRequired,
+    addToCart: PropTypes.func.isRequired
 }
 
 export default TableWithHeader;

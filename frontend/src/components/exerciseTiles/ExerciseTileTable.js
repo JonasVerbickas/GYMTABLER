@@ -13,11 +13,12 @@ export default function ExerciseTileTable(props) {
     let breakpoints = Object.fromEntries([...Array(MAX_NUM_OF_COLUMNS).keys()].map(item => [item * MAX_SIZE_OF_EACH_COL, item]))
     return (<ResponsiveMasonry columnsCountBreakPoints={breakpoints}>
         <Masonry className="exercise-tile-table">
-        {filtered_exercises.map((exercise) => (<ExerciseTile key={exercise.name} exercise={exercise}/>))}
+        {filtered_exercises.map((exercise) => (<ExerciseTile key={exercise.name} exercise={exercise} addToCart={props.addToCart}/>))}
     </Masonry></ResponsiveMasonry>)
 }
 
 ExerciseTileTable.propTypes = {
     listOfExercises: PropTypes.array.isRequired,
-    filter: PropTypes.object
+    filter: PropTypes.object.isRequired,
+    addToCart: PropTypes.func.isRequired
 }

@@ -1,4 +1,4 @@
-.add-btn{
+.cart-btn{
     display:inline-block;
     padding:0.3em 1.2em;
     margin:0.3em 0.3em;
@@ -7,12 +7,23 @@
     text-decoration:none;
     font-weight:300;
     color:#FFFFFF;
-    background-color:#4eb5f1;
     text-align:center;
     transition: all 0.2s;
     border: 0;
 }
 
-.add-btn:hover{
+.btn-add{
+    background-color:#4eb5f1;
+}
+
+.btn-add:hover{
     background-color:#4095c6;
+}
+
+.btn-remove{
+    background-color:#f14e4e;
+}
+
+.btn-remove:hover{
+    background-color:#bb3b3b;
 }

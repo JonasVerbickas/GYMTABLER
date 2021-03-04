@@ -1,5 +1,6 @@
 import TableForASpecificBodypart from './TableWithHeader.js';
 import ExerciseTileFilters from './ExerciseTableFilters.js';
+import ExerciseCart from './exerciseCart.js'
 import "../../assets/css/allSortedExercises.css";
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -7,7 +8,7 @@ import React from 'react';
 
 class AllSortedExercises extends React.Component {
     constructor(props){
-        super(props);
+        super(props);        
         let sorted_exercises = {};  // stores all possible exercises sorted by bodypart
         let possible_equipment = [];  // list of every possible piece of equipment used
         // sort the dataset
@@ -33,10 +34,12 @@ class AllSortedExercises extends React.Component {
             listOfExercises: props.listOfExercises,
             sorted_exercises: sorted_exercises,
             possible_equipment: possible_equipment,
-            filter: {text: "", equipment: []}
+            filter: {text: "", equipment: []},
+            cart: []
         };
         this.searchFilterChange =  this.searchFilterChange.bind(this);
         this.equipmentCheckboxChange = this.equipmentCheckboxChange.bind(this);
+        this.addExerciseToCart = this.addExerciseToCart.bind(this);
         console.log(sorted_exercises);
     }
 
@@ -59,14 +62,29 @@ class AllSortedExercises extends React.Component {
         }
         this.setState({filter: new_filter});
     }
+    
+    addExerciseToCart(e){
+        let new_cart = this.state.cart;
+        let index = this.state.cart.indexOf(e);
+        if (index > -1)
+        {
+            new_cart.splice(index, 1);
+        }
+        else
+        {
+            new_cart.push(e);
+        }
+        this.setState({cart: new_cart});
+    }
 
     render(){
         if(this.state)
             return (<div id="exercise-tables-and-filters">
                 <ExerciseTileFilters searchChange={this.searchFilterChange} equipmentChange={this.equipmentCheckboxChange} possible_equipment={this.state.possible_equipment}/>
                 <div id="all-exercise-tables-with-headers">
-                    {Object.keys(this.state.sorted_exercises).map((bodypart) => (<TableForASpecificBodypart key={bodypart} bodypart={bodypart} listOfExercises={this.state.sorted_exercises[bodypart]} filter={this.state.filter}/>))}
+                    {Object.keys(this.state.sorted_exercises).map((bodypart) => (<TableForASpecificBodypart key={bodypart} bodypart={bodypart} listOfExercises={this.state.sorted_exercises[bodypart]} filter={this.state.filter} addToCart={this.addExerciseToCart}/>))}
                 </div>
+                <ExerciseCart cart={this.state.cart}/>
             </div>)
     }
 }
