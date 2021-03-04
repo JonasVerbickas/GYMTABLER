@@ -1,7 +1,7 @@
 export default function ExpandedExerciseTile(props) {
     return (
         <div className="exercise-tile-border">
-            <div className="exercise-tile expanded-exercise-tile" onClick={() => props.handleClick()}>
+            <div className="exercise-tile expanded-exercise-tile" onClick={() => props.expandOnClick()}>
                 <img src={props.exercise.img} alt={props.exercise.name + " image"}></img>
                 <h3 className="exercise-title">{props.exercise.name}</h3>
                 <div className="exercise-stats">

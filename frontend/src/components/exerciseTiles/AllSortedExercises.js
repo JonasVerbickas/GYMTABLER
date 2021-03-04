@@ -63,16 +63,16 @@ class AllSortedExercises extends React.Component {
         this.setState({filter: new_filter});
     }
     
-    addExerciseToCart(e){
+    addExerciseToCart(new_exercise){
         let new_cart = this.state.cart;
-        let index = this.state.cart.indexOf(e);
+        let index = this.state.cart.map(old_exercise => old_exercise.name).indexOf(new_exercise.name);
         if (index > -1)
         {
             new_cart.splice(index, 1);
         }
         else
         {
-            new_cart.push(e);
+            new_cart.push(new_exercise);
         }
         this.setState({cart: new_cart});
     }
