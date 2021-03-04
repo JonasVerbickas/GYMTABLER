@@ -62,9 +62,9 @@ class AllSortedExercises extends React.Component {
 
     render(){
         if(this.state)
-            return (<div className="all-exercises">
+            return (<div id="exercise-tables-and-filters">
                 <ExerciseTileFilters searchChange={this.searchFilterChange} equipmentChange={this.equipmentCheckboxChange} possible_equipment={this.state.possible_equipment}/>
-                <div>
+                <div id="all-exercise-tables-with-headers">
                     {Object.keys(this.state.sorted_exercises).map((bodypart) => (<TableForASpecificBodypart key={bodypart} bodypart={bodypart} listOfExercises={this.state.sorted_exercises[bodypart]} filter={this.state.filter}/>))}
                 </div>
             </div>)

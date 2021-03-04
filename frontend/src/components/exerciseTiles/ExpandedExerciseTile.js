@@ -27,8 +27,8 @@ export default function ExpandedExerciseTile(props) {
                             })}
                         </ul>
                     </div>
-                    <div className="exercise-stats-row">
-                        <a href={props.exercise.link} style={{ fontWeight: 400 }}>VIDEO</a>
+                    <div className="exercise-stats-row" onClick={(e) => (e.stopPropagation())}>
+                        <a href={props.exercise.link} target="_blank" style={{ fontWeight: 400 }}>VIDEO</a>
                     </div>
                 </div>
             </div>

@@ -36,7 +36,6 @@
 
 .small-exercise-tile > img{
   height: 90%;
-  margin-right: 20px;
 }
 
 .expanded-exercise-tile > img{
@@ -44,6 +43,7 @@
 }
 
 .exercise-title{
+  padding: 15px;
   color: #2e2e2e;
   font-weight: 600;
   margin: 0;
@@ -81,4 +81,8 @@
 
 .exercise-tile li{
   color: #2e2e2e;
+}
+
+.small-exercise-tile > .add-btn{
+  margin-left: auto;
 }

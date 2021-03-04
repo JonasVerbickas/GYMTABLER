@@ -16,7 +16,7 @@ class TableWithHeader extends React.Component {
         }
     }
     render(){
-        return (<div>
+        return (<div className="header-with-table">
             <h2 className="body-part-header" onClick={() => this.expandOnClick()}>{this.state.bodypart}</h2>
             <Transition
                 native
