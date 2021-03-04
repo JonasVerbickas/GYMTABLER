@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Transition, animated } from 'react-spring/renderprops'
+import { Spring, animated } from 'react-spring/renderprops'
 import ExerciseTileTable from './ExerciseTileTable.js';
 import "../../assets/css/tableWithHeader.css"
 
@@ -19,19 +19,16 @@ class TableWithHeader extends React.Component {
     render(){
         return (<div className="header-with-table">
             <h2 className="body-part-header" onClick={() => this.expandOnClick()}>{this.state.bodypart}</h2>
-            <Transition
+            <Spring
                 native
-                items={this.state.expaded}
-                from={{ overflow: 'hidden', height: 0 }}
-                enter={[{ height: 'auto' }]}
-                leave={{ height: 0 }}>
-                {show =>
-                    show && (props2 => (
-                        <animated.div style={props2}>
+                to={{ height: this.state.expaded ?  "auto" : 0}}
+                onRest={() => console.log('done')}>
+                {({ height }) =>
+                    <animated.div style={{ height: height, overflow: "hidden"}}>
                             <ExerciseTileTable listOfExercises={this.state.listOfExercises} filter={this.state.filter} addToCart={this.state.addToCart} />
                         </animated.div>
-                    ))}
-            </Transition>
+                    }
+            </Spring>
         </div>)
     }
     
