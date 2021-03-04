@@ -265,7 +265,7 @@
 		"description": "Get into a prone position and raise your arms and legs as much as possible and hold",
 		"equipment": null,
 		"difficulty": 1,
-		"bodypart": null,
+		"bodypart": ["back", "core"],
 		"link": "https://www.youtube.com/watch?v=z6PJMT2y8GQ"
 	},
 	{
@@ -273,7 +273,7 @@
 		"description": "Get into a prone position and raise your arms and legs as much as possible and hold and relax alternatingly",
 		"equipment": null,
 		"difficulty": 1,
-		"bodypart": null,
+		"bodypart": ["back", "core"],
 		"link": "https://www.youtube.com/watch?v=VUT1RHyMEuc"
 	},
 	{
@@ -281,7 +281,7 @@
 		"description": "Get into a prone position and rotate your arms like a butterfly",
 		"equipment": null,
 		"difficulty": 1,
-		"bodypart": null,
+		"bodypart": ["back", "shoulders"],
 		"link": "https://www.youtube.com/watch?v=Q_5fUoY7TkA"
 	},
 	{
