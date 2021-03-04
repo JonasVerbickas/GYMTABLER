@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { Transition, animated } from 'react-spring/renderprops'
 import ExerciseTileTable from './ExerciseTileTable.js';
-import "../../assets/css/TableWithHeader.css"
+import "../../assets/css/tableWithHeader.css"
 
 
 class TableWithHeader extends React.Component {
@@ -15,9 +15,7 @@ class TableWithHeader extends React.Component {
             expaded: false
         }
     }
-
     render(){
-        
         return (<div>
             <h2 className="body-part-header" onClick={() => this.expandOnClick()}>{this.state.bodypart}</h2>
             <Transition

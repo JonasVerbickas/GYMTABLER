@@ -1,6 +1,6 @@
 import TableForASpecificBodypart from './TableWithHeader.js';
 import ExerciseTileFilters from './ExerciseTableFilters.js';
-import "../../assets/css/AllSortedExercises.css";
+import "../../assets/css/allSortedExercises.css";
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -37,6 +37,7 @@ class AllSortedExercises extends React.Component {
         };
         this.searchFilterChange =  this.searchFilterChange.bind(this);
         this.equipmentCheckboxChange = this.equipmentCheckboxChange.bind(this);
+        console.log(sorted_exercises);
     }
 
     searchFilterChange(e){
