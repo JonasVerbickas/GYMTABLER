@@ -4,6 +4,7 @@ import ExerciseCart from './exerciseCart.js'
 import "../../assets/css/allSortedExercises.css";
 import React from 'react';
 
+const EMPTY_FILTER = { text: "", equipment: [] }
 
 class AllSortedExercises extends React.Component {
     constructor(props){
@@ -11,14 +12,9 @@ class AllSortedExercises extends React.Component {
         this.state = {
             sorted_exercises: {},
             possible_equipment: [],
-            filter: {text: "", equipment: []},
+            filter: Object.assign({}, EMPTY_FILTER),
             cart: [],
-            // TO DO!!!
-            // cia pridedam array, kuris keeps track of the expansion state for each of the categories
-            // galima sakyt darom state lift
-            // ir kai filter != {text: "", equipment: []} tada visus values sitam array padarom true
-            // ATEITYJE DAR GALECIAU SUGRAZINT I PRADINE PADETI DINGUS VISIEMS FILTRAMS
-            expanded: []
+            expanded: [] // keeps track of the expansion state for each of the categories
         };
         this.addExerciseToCart = this.addExerciseToCart.bind(this);
         this.onFilterChange = this.onFilterChange.bind(this);
@@ -31,12 +27,21 @@ class AllSortedExercises extends React.Component {
             .then(res => res.json())
             .then((result) => {
                 console.log(result);
-                this.setState({ sorted_exercises: result, expanded: Object.keys(result).map((e) => false) });
+                this.setState({ sorted_exercises: result, expanded: Object.keys(result).map(() => false) });
             });
     }
 
     onFilterChange(new_filter){
-        this.setState({filter: new_filter});
+        let compared_to_empty = Object.keys(new_filter).map(key => (EMPTY_FILTER[key] === new_filter[key]));
+        let back_to_being_empty = !compared_to_empty.includes(false);
+        if (back_to_being_empty)
+        {
+            this.setState({ filter: new_filter, expanded: this.state.expanded.map(() => false) });
+        }
+        else
+        {
+            this.setState({ filter: new_filter, expanded: this.state.expanded.map(() => true) });
+        }
     }
     
     addExerciseToCart(new_exercise){
