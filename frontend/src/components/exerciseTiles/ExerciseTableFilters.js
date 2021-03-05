@@ -9,8 +9,8 @@ function ExerciseTileFilters(props) {
             <p>Equipment:</p>
             <div id="equipment-checkboxes">
                 {props.possible_equipment.map(piece_of_equipment => <div key={piece_of_equipment} className="equipment-checkbox">
-                    <input id={piece_of_equipment} type="checkbox" name={piece_of_equipment} onChange={(e) => props.equipmentChange(e)}></input> 
-                    <label htmlFor={piece_of_equipment}> {piece_of_equipment}</label>
+                    <input id={"checkbox "+piece_of_equipment} type="checkbox" name={piece_of_equipment} onChange={(e) => props.equipmentChange(e)}></input> 
+                    <label htmlFor={"checkbox "+piece_of_equipment}>{piece_of_equipment}</label>
                     </div>)}
             </div>
         </div>

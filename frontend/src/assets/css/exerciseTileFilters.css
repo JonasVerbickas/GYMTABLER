@@ -3,6 +3,11 @@ input[type=search]{
   width: 500px;
   height: 55px;
   font-size: large;
+  border: 0;
+}
+
+#equipment-filter > p{
+  margin: 0;
 }
 
 #filters{
@@ -21,15 +26,12 @@ input[type=search]{
   margin: 20px;
 }
 
-#equipment-checkboxes{
-  margin: 10px;
+.equipment-checkbox > input{
+  margin: 5px 5px 5px 10px;
 }
 
-#equipment-filter > label{
-  font-size: medium;
-}
-
-.equipment-checkbox{
+.equipment-checkbox > label{
   color: rgb(168, 168, 168);
   font-weight: 500;
+  margin: 0;
 }
