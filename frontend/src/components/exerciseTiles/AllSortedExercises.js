@@ -1,4 +1,4 @@
-import TableForASpecificBodypart from './TableWithHeader.js';
+import MansonryWithHeader from './MasonryWithHeader.js';
 import ExerciseTileFilters from './ExerciseTableFilters.js';
 import ExerciseCart from './exerciseCart.js'
 import "../../assets/css/allSortedExercises.css";
@@ -25,8 +25,15 @@ class AllSortedExercises extends React.Component {
         fetch("http://127.0.0.1:8000/get_exercises")
             .then(res => res.json())
             .then((result) => {
-                this.setState({ sorted_exercises: result });
-                console.log(result);
+                if(result)
+                {
+                    console.log(result);
+                    this.setState({ sorted_exercises: result });
+                }
+                else
+                {
+
+                }
             });
     }
 
@@ -70,7 +77,7 @@ class AllSortedExercises extends React.Component {
             return (<div id="exercise-tables-and-filters">
                 <ExerciseTileFilters searchChange={this.searchFilterChange} equipmentChange={this.equipmentCheckboxChange} possible_equipment={this.state.possible_equipment} />
                 <div id="all-exercise-tables-with-headers">
-                    {Object.keys(this.state.sorted_exercises).map((bodypart) => (<TableForASpecificBodypart key={bodypart} bodypart={bodypart} listOfExercises={this.state.sorted_exercises[bodypart]} filter={this.state.filter} addToCart={this.addExerciseToCart} />))}
+                    {Object.keys(this.state.sorted_exercises).map((bodypart) => (<MansonryWithHeader key={bodypart} bodypart={bodypart} listOfExercises={this.state.sorted_exercises[bodypart]} filter={this.state.filter} addToCart={this.addExerciseToCart} />))}
                 </div>
                 <ExerciseCart cart={this.state.cart} />
             </div>)

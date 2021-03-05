@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Spring, animated } from 'react-spring/renderprops'
-import ExerciseTileTable from './ExerciseTileTable.js';
+import ExerciseTileMansonry from './ExerciseTileMansonry.js';
 import "../../assets/css/tableWithHeader.css"
 
 
-class TableWithHeader extends React.Component {
+class MansonryWithHeader extends React.Component {
     constructor(props){
         super(props);
         this.state = {
@@ -24,7 +24,7 @@ class TableWithHeader extends React.Component {
                 to={{ height: this.state.expaded ?  "auto" : 0}}>
                 {({ height }) =>
                     <animated.div style={{ height: height, overflow: "hidden"}}>
-                            <ExerciseTileTable listOfExercises={this.state.listOfExercises} filter={this.state.filter} addToCart={this.state.addToCart} />
+                        <ExerciseTileMansonry listOfExercises={this.state.listOfExercises} filter={this.state.filter} addToCart={this.state.addToCart} />
                         </animated.div>
                     }
             </Spring>
@@ -37,11 +37,11 @@ class TableWithHeader extends React.Component {
 }
 
 
-TableWithHeader.propTypes = {
+MansonryWithHeader.propTypes = {
     bodypart: PropTypes.string.isRequired,
     listOfExercises: PropTypes.array.isRequired,
     filter: PropTypes.object.isRequired,
     addToCart: PropTypes.func.isRequired
 }
 
-export default TableWithHeader;
+export default MansonryWithHeader;
