@@ -8,9 +8,9 @@ input[type=search]{
 #filters{
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  flex-wrap: wrap;
+  justify-content: space-evenly;
   align-items: center;
+  flex-wrap: wrap;
   margin: 20px;
 }
 
