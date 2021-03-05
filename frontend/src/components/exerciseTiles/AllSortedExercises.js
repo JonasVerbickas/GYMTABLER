@@ -12,10 +12,17 @@ class AllSortedExercises extends React.Component {
             sorted_exercises: {},
             possible_equipment: [],
             filter: {text: "", equipment: []},
-            cart: []
+            cart: [],
+            // TO DO!!!
+            // cia pridedam array, kuris keeps track of the expansion state for each of the categories
+            // galima sakyt darom state lift
+            // ir kai filter != {text: "", equipment: []} tada visus values sitam array padarom true
+            // ATEITYJE DAR GALECIAU SUGRAZINT I PRADINE PADETI DINGUS VISIEMS FILTRAMS
+            expanded: []
         };
         this.addExerciseToCart = this.addExerciseToCart.bind(this);
         this.onFilterChange = this.onFilterChange.bind(this);
+        this.expandACategory = this.expandACategory.bind(this);
     }
 
     componentDidMount()
@@ -23,15 +30,8 @@ class AllSortedExercises extends React.Component {
         fetch("http://127.0.0.1:8000/get_exercises")
             .then(res => res.json())
             .then((result) => {
-                if(result)
-                {
-                    console.log(result);
-                    this.setState({ sorted_exercises: result });
-                }
-                else
-                {
-
-                }
+                console.log(result);
+                this.setState({ sorted_exercises: result, expanded: Object.keys(result).map((e) => false) });
             });
     }
 
@@ -53,13 +53,19 @@ class AllSortedExercises extends React.Component {
         this.setState({cart: new_cart});
     }
 
+    expandACategory(index){
+        let curr_expanded = this.state.expanded;
+        curr_expanded[index] = !curr_expanded[index];
+        this.setState({expanded: curr_expanded});
+    }
+
     render(){
         if(Object.keys(this.state.sorted_exercises).length > 0)
         {
            return (<div id="exercise-tables-and-filters">
                <ExerciseTileFilters onFilterChange={this.onFilterChange} possible_equipment={this.state.possible_equipment} filter={this.state.filter} />
                 <div id="all-exercise-tables-with-headers">
-                    {Object.keys(this.state.sorted_exercises).map((bodypart) => (<MansonryWithHeader key={bodypart} bodypart={bodypart} listOfExercises={this.state.sorted_exercises[bodypart]} filter={this.state.filter} addToCart={this.addExerciseToCart} />))}
+                    {Object.keys(this.state.sorted_exercises).map((bodypart, index) => (<MansonryWithHeader key={bodypart} bodypart={bodypart} listOfExercises={this.state.sorted_exercises[bodypart]} filter={this.state.filter} addToCart={this.addExerciseToCart} expanded={this.state.expanded[index]} expandOnClick={() => this.expandACategory(index)} />))}
                 </div>
                 <ExerciseCart cart={this.state.cart} />
             </div>)

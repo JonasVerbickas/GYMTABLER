@@ -40,7 +40,7 @@ function ExerciseTileFilters(props) {
 ExerciseTileFilters.propTypes = {
     onFilterChange: PropTypes.func.isRequired,
     possible_equipment: PropTypes.array.isRequired,
-    current_filter: PropTypes.array.isRequired
+    filter: PropTypes.object.isRequired
 }
 
 export default ExerciseTileFilters;
