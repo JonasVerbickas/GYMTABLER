@@ -14,7 +14,12 @@ export default function ExerciseTileMansonry(props) {
         return (<ResponsiveMasonry columnsCountBreakPoints={breakpoints}>
             <Masonry className="exercise-tile-table">
                 {props.listOfExercises.map((exercise, index) => {
-                    return (<div key={exercise.name} style={{ display: filtered_exercise_mask[index] ? 'inherit' : 'none'}}><ExerciseTile exercise={exercise} addToCart={props.addToCart} /></div>);
+                        if (filtered_exercise_mask[index])
+                        {
+                            return (
+                                <ExerciseTile key={exercise.name} exercise={exercise} addToCart={props.addToCart} getExerciseCartStatus={() => props.getExerciseCartStatus(exercise.name)}/>
+                            );
+                        }
                     })
                 }
             </Masonry></ResponsiveMasonry>)

@@ -13,10 +13,11 @@ class AllSortedExercises extends React.Component {
             sorted_exercises: {},
             possible_equipment: [],
             filter: Object.assign({}, EMPTY_FILTER),
-            cart: [],
-            expanded: [] // keeps track of the expansion state for each of the categories
+            cart: [],  // uses exercise.name that way works better with duplicates
+            expanded: []  // keeps track of the expansion state for each of the categories
         };
         this.addExerciseToCart = this.addExerciseToCart.bind(this);
+        this.getExerciseCartStatus = this.getExerciseCartStatus.bind(this);
         this.onFilterChange = this.onFilterChange.bind(this);
         this.expandACategory = this.expandACategory.bind(this);
     }
@@ -46,16 +47,21 @@ class AllSortedExercises extends React.Component {
     
     addExerciseToCart(new_exercise){
         let new_cart = this.state.cart;
-        let index = this.state.cart.map(old_exercise => old_exercise.name).indexOf(new_exercise.name);
+        let index = this.state.cart.indexOf(new_exercise.name);
         if (index > -1)
         {
             new_cart.splice(index, 1);
         }
         else
         {
-            new_cart.push(new_exercise);
+            new_cart.push(new_exercise.name);
         }
         this.setState({cart: new_cart});
+    }
+
+    getExerciseCartStatus(exercise_name){
+        let status = this.state.cart.includes(exercise_name);
+        return status;
     }
 
     expandACategory(index){
@@ -70,7 +76,7 @@ class AllSortedExercises extends React.Component {
            return (<div id="exercise-tables-and-filters">
                <ExerciseTileFilters onFilterChange={this.onFilterChange} possible_equipment={this.state.possible_equipment} filter={this.state.filter} />
                 <div id="all-exercise-tables-with-headers">
-                    {Object.keys(this.state.sorted_exercises).map((bodypart, index) => (<MansonryWithHeader key={bodypart} bodypart={bodypart} listOfExercises={this.state.sorted_exercises[bodypart]} filter={this.state.filter} addToCart={this.addExerciseToCart} expanded={this.state.expanded[index]} expandOnClick={() => this.expandACategory(index)} />))}
+                   {Object.keys(this.state.sorted_exercises).map((bodypart, index) => (<MansonryWithHeader key={bodypart} bodypart={bodypart} listOfExercises={this.state.sorted_exercises[bodypart]} filter={this.state.filter} addToCart={this.addExerciseToCart} expanded={this.state.expanded[index]} expandOnClick={() => this.expandACategory(index)} getExerciseCartStatus={this.getExerciseCartStatus} />))}
                 </div>
                 <ExerciseCart cart={this.state.cart} />
             </div>)

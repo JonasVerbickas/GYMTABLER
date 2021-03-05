@@ -12,7 +12,7 @@ function MansonryWithHeader (props) {
             to={{ height: props.expanded ?  "auto" : 0}}>
             {({ height }) =>
                 <animated.div style={{ height: height, overflow: "hidden"}}>
-                    <ExerciseTileMansonry listOfExercises={props.listOfExercises} filter={props.filter} addToCart={props.addToCart} />
+                    <ExerciseTileMansonry listOfExercises={props.listOfExercises} filter={props.filter} getExerciseCartStatus={props.getExerciseCartStatus} addToCart={props.addToCart}/>
                     </animated.div>
                 }
         </Spring>
