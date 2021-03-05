@@ -8,39 +8,26 @@ import React from 'react';
 
 class AllSortedExercises extends React.Component {
     constructor(props){
-        super(props);        
-        let sorted_exercises = {};  // stores all possible exercises sorted by bodypart
-        let possible_equipment = [];  // list of every possible piece of equipment used
-        // sort the dataset
-        // should probably be done on the backend
-        props.listOfExercises.forEach(function (exercise) {
-            if (exercise) {
-                if (exercise.bodypart) {
-                    exercise.bodypart.forEach(function (bp) {
-                        Object.keys(sorted_exercises).includes(bp) ? sorted_exercises[bp].push(exercise) : sorted_exercises[bp] = [exercise];
-                    })
-                }
-                if (exercise.equipment)
-                {
-                    exercise.equipment.forEach(function (e){
-                        if (!possible_equipment.includes(e)) {
-                            possible_equipment.push(e);
-                        }
-                    })
-                }
-            }
-        });
+        super(props);
         this.state = {
-            listOfExercises: props.listOfExercises,
-            sorted_exercises: sorted_exercises,
-            possible_equipment: possible_equipment,
+            sorted_exercises: {},
+            possible_equipment: [],
             filter: {text: "", equipment: []},
             cart: []
         };
         this.searchFilterChange =  this.searchFilterChange.bind(this);
         this.equipmentCheckboxChange = this.equipmentCheckboxChange.bind(this);
         this.addExerciseToCart = this.addExerciseToCart.bind(this);
-        console.log(sorted_exercises);
+    }
+
+    componentDidMount()
+    {
+        fetch("http://127.0.0.1:8000/get_exercises")
+            .then(res => res.json())
+            .then((result) => {
+                this.setState({ sorted_exercises: result });
+                console.log(result);
+            });
     }
 
     searchFilterChange(e){
@@ -78,19 +65,21 @@ class AllSortedExercises extends React.Component {
     }
 
     render(){
-        if(this.state)
+        if(Object.keys(this.state.sorted_exercises).length > 0)
+        {
             return (<div id="exercise-tables-and-filters">
-                <ExerciseTileFilters searchChange={this.searchFilterChange} equipmentChange={this.equipmentCheckboxChange} possible_equipment={this.state.possible_equipment}/>
+                <ExerciseTileFilters searchChange={this.searchFilterChange} equipmentChange={this.equipmentCheckboxChange} possible_equipment={this.state.possible_equipment} />
                 <div id="all-exercise-tables-with-headers">
-                    {Object.keys(this.state.sorted_exercises).map((bodypart) => (<TableForASpecificBodypart key={bodypart} bodypart={bodypart} listOfExercises={this.state.sorted_exercises[bodypart]} filter={this.state.filter} addToCart={this.addExerciseToCart}/>))}
+                    {Object.keys(this.state.sorted_exercises).map((bodypart) => (<TableForASpecificBodypart key={bodypart} bodypart={bodypart} listOfExercises={this.state.sorted_exercises[bodypart]} filter={this.state.filter} addToCart={this.addExerciseToCart} />))}
                 </div>
-                <ExerciseCart cart={this.state.cart}/>
+                <ExerciseCart cart={this.state.cart} />
             </div>)
+        }
+        else
+        {
+            return <h1 style={{color: 'red'}}>Fetching data from server</h1>
+        }
     }
-}
-
-AllSortedExercises.propTypes = {
-    listOfExercises: PropTypes.array.isRequired
 }
 
 export default AllSortedExercises;

@@ -21,8 +21,7 @@ class TableWithHeader extends React.Component {
             <h2 className="body-part-header" onClick={() => this.expandOnClick()}>{this.state.bodypart}</h2>
             <Spring
                 native
-                to={{ height: this.state.expaded ?  "auto" : 0}}
-                onRest={() => console.log('done')}>
+                to={{ height: this.state.expaded ?  "auto" : 0}}>
                 {({ height }) =>
                     <animated.div style={{ height: height, overflow: "hidden"}}>
                             <ExerciseTileTable listOfExercises={this.state.listOfExercises} filter={this.state.filter} addToCart={this.state.addToCart} />

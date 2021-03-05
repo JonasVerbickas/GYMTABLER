@@ -9,7 +9,6 @@ export default function ExerciseTileTable(props) {
     let filtered_exercises = filteredExercises(props.listOfExercises, props.filter);
     // map breakpoints where the number of columns displayed increases
     let breakpoints = { 400: 1, 800: 2, 1200: 3, 1600: 4, 2000: 5 } 
-    console.log("breakpoints"+breakpoints[1]);
     if (filtered_exercises.length)
     {
         return (<ResponsiveMasonry columnsCountBreakPoints={breakpoints}>
@@ -19,7 +18,7 @@ export default function ExerciseTileTable(props) {
     }
     else
     {
-        return <div></div>;
+        return <div className='exercise-tile-table'><p style={{textAlign:'center', margin: 0}}>No exercises found</p></div>;
     }
 }
 
