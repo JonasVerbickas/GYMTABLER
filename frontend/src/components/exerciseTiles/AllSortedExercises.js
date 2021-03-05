@@ -2,7 +2,6 @@ import MansonryWithHeader from './MasonryWithHeader.js';
 import ExerciseTileFilters from './ExerciseTableFilters.js';
 import ExerciseCart from './exerciseCart.js'
 import "../../assets/css/allSortedExercises.css";
-import PropTypes from 'prop-types';
 import React from 'react';
 
 
@@ -35,8 +34,6 @@ class AllSortedExercises extends React.Component {
                 }
             });
     }
-
-    // cia sukuriam pagrindi metoda, kuris keis state, ir duodam kaip prop <ExerciseTableFilters onFilterChange={metodas}/>
 
     onFilterChange(new_filter){
         this.setState({filter: new_filter});
