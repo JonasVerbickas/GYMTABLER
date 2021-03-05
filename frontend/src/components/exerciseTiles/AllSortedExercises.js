@@ -15,9 +15,8 @@ class AllSortedExercises extends React.Component {
             filter: {text: "", equipment: []},
             cart: []
         };
-        this.searchFilterChange =  this.searchFilterChange.bind(this);
-        this.equipmentCheckboxChange = this.equipmentCheckboxChange.bind(this);
         this.addExerciseToCart = this.addExerciseToCart.bind(this);
+        this.onFilterChange = this.onFilterChange.bind(this);
     }
 
     componentDidMount()
@@ -37,23 +36,9 @@ class AllSortedExercises extends React.Component {
             });
     }
 
-    searchFilterChange(e){
-        let new_filter = this.state.filter;
-        new_filter.text = e.target.value.toLowerCase();
-        this.setState({filter: new_filter});
-    }
+    // cia sukuriam pagrindi metoda, kuris keis state, ir duodam kaip prop <ExerciseTableFilters onFilterChange={metodas}/>
 
-    equipmentCheckboxChange(e){
-        let name_of_changed = e.target.name;
-        console.log(name_of_changed);
-        let new_filter = this.state.filter;
-        if (new_filter.equipment.includes(name_of_changed)){
-            let i = new_filter.equipment.indexOf(name_of_changed);
-            new_filter.equipment.splice(i, 1);
-        }
-        else{
-            new_filter.equipment.push(name_of_changed);
-        }
+    onFilterChange(new_filter){
         this.setState({filter: new_filter});
     }
     
@@ -74,8 +59,8 @@ class AllSortedExercises extends React.Component {
     render(){
         if(Object.keys(this.state.sorted_exercises).length > 0)
         {
-            return (<div id="exercise-tables-and-filters">
-                <ExerciseTileFilters searchChange={this.searchFilterChange} equipmentChange={this.equipmentCheckboxChange} possible_equipment={this.state.possible_equipment} />
+           return (<div id="exercise-tables-and-filters">
+               <ExerciseTileFilters onFilterChange={this.onFilterChange} possible_equipment={this.state.possible_equipment} filter={this.state.filter} />
                 <div id="all-exercise-tables-with-headers">
                     {Object.keys(this.state.sorted_exercises).map((bodypart) => (<MansonryWithHeader key={bodypart} bodypart={bodypart} listOfExercises={this.state.sorted_exercises[bodypart]} filter={this.state.filter} addToCart={this.addExerciseToCart} />))}
                 </div>
