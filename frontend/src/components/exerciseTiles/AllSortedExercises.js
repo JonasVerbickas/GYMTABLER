@@ -21,6 +21,7 @@ class AllSortedExercises extends React.Component {
         this.getExerciseCartStatus = this.getExerciseCartStatus.bind(this);
         this.onFilterChange = this.onFilterChange.bind(this);
         this.expandACategory = this.expandACategory.bind(this);
+        this.removeExerciseFromCart = this.removeExerciseFromCart.bind(this);
     }
 
     componentDidMount()
@@ -87,6 +88,15 @@ class AllSortedExercises extends React.Component {
         this.setState({cart: new_cart});
     }
 
+    removeExerciseFromCart(to_remove_name) {
+        let new_cart = this.state.cart;
+        let index = this.state.cart.indexOf(to_remove_name);
+        if (index > -1) {
+            new_cart.splice(index, 1);
+        }
+        this.setState({ cart: new_cart });
+    }
+
     getExerciseCartStatus(exercise_name){
         let status = this.state.cart.includes(exercise_name);
         return status;
@@ -106,12 +116,12 @@ class AllSortedExercises extends React.Component {
                 <div id="all-exercise-tables-with-headers">
                    {Object.keys(this.state.sorted_exercises).map((bodypart, index) => (<MansonryWithHeader key={bodypart} bodypart={bodypart} listOfExercises={this.state.sorted_exercises[bodypart]} filter={this.state.filter} addToCart={this.addExerciseToCart} expanded={this.state.expanded[index]} expandOnClick={() => this.expandACategory(index)} getExerciseCartStatus={this.getExerciseCartStatus} />))}
                 </div>
-                <ExerciseCart cart={this.state.cart} />
+                <ExerciseCart cart={this.state.cart} removeFromCart={this.removeExerciseFromCart} />
             </div>)
         }
         else
         {
-            return <h1 style={{color: 'red'}}>Fetching data from server</h1>
+            return <h1 style={{color: 'red'}}>Fetching data from server...<br/>If nothing changes in a couple of seconds try refreshing</h1>
         }
     }
 }
