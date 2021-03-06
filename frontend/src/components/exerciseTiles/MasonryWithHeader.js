@@ -9,6 +9,7 @@ function MansonryWithHeader (props) {
         <h2 className="body-part-header" onClick={() => props.expandOnClick()}>{props.bodypart}</h2>
         <Spring
             native
+            from={{height: 0}}
             to={{ height: props.expanded ?  "auto" : 0}}>
             {({ height }) =>
                 <animated.div style={{ height: height, overflow: "hidden"}}>

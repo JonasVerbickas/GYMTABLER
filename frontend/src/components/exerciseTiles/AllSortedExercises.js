@@ -12,7 +12,8 @@ class AllSortedExercises extends React.Component {
         this.state = {
             sorted_exercises: {},
             possible_equipment: [],
-            filter: Object.assign({}, EMPTY_FILTER),
+            filter: this.deepObjectCopy(EMPTY_FILTER),
+            old_expansion_states: [],  // is used to remember the expanded categories before a filter was applied AND later to restore their state after the filter becomes EMPTY again
             cart: [],  // uses exercise.name that way works better with duplicates
             expanded: []  // keeps track of the expansion state for each of the categories
         };
@@ -27,21 +28,48 @@ class AllSortedExercises extends React.Component {
         fetch("http://127.0.0.1:8000/get_exercises")
             .then(res => res.json())
             .then((result) => {
-                console.log(result);
-                this.setState({ sorted_exercises: result, expanded: Object.keys(result).map(() => false) });
+                console.log("Server response:", result);
+                let expansion_states = Object.keys(result).map(() => false);
+                this.setState({ sorted_exercises: result, expanded: expansion_states.slice(), old_expansion_states: expansion_states.slice() });
             });
     }
 
+    compareFilterToEmpty(filter){
+        // compare everything both filters
+        let compared_to_empty = Object.keys(filter).map(key => (EMPTY_FILTER[key].length === filter[key].length));
+        // if there is at least one miss match return false
+        return !compared_to_empty.includes(false);
+    }
+    
+    deepObjectCopy(obj){
+        return JSON.parse(JSON.stringify(obj));
+    }
+
+
+    // new_filter param is a DEEP copy of this.state.filters after one change
     onFilterChange(new_filter){
-        let compared_to_empty = Object.keys(new_filter).map(key => (EMPTY_FILTER[key] === new_filter[key]));
-        let back_to_being_empty = !compared_to_empty.includes(false);
+        let back_to_being_empty = this.compareFilterToEmpty(new_filter);
         if (back_to_being_empty)
         {
-            this.setState({ filter: new_filter, expanded: this.state.expanded.map(() => false) });
+            console.log("ALL FILTERS ARE GONE!");
+            let old_expansion_states = this.state.old_expansion_states.slice();
+            this.setState({ filter: new_filter, expanded: old_expansion_states });
         }
         else
         {
-            this.setState({ filter: new_filter, expanded: this.state.expanded.map(() => true) });
+            let old_expansion_states;
+            // if the filter before this change was empty
+            // save the current category expansion state
+            if(this.compareFilterToEmpty(this.state.filter))
+            {
+                old_expansion_states = this.state.expanded.slice();
+            }
+            // otherwise don't change it
+            else
+            {
+                old_expansion_states = this.state.old_expansion_states;
+            }
+            this.setState({ filter: new_filter, old_expansion_states: old_expansion_states, expanded: this.state.expanded.map(() => true) });
         }
     }
     
@@ -74,7 +102,7 @@ class AllSortedExercises extends React.Component {
         if(Object.keys(this.state.sorted_exercises).length > 0)
         {
            return (<div id="exercise-tables-and-filters">
-               <ExerciseTileFilters onFilterChange={this.onFilterChange} possible_equipment={this.state.possible_equipment} filter={this.state.filter} />
+               <ExerciseTileFilters onFilterChange={this.onFilterChange} possible_equipment={this.state.possible_equipment} filter={this.deepObjectCopy(this.state.filter)} />
                 <div id="all-exercise-tables-with-headers">
                    {Object.keys(this.state.sorted_exercises).map((bodypart, index) => (<MansonryWithHeader key={bodypart} bodypart={bodypart} listOfExercises={this.state.sorted_exercises[bodypart]} filter={this.state.filter} addToCart={this.addExerciseToCart} expanded={this.state.expanded[index]} expandOnClick={() => this.expandACategory(index)} getExerciseCartStatus={this.getExerciseCartStatus} />))}
                 </div>
