@@ -9,3 +9,9 @@
 .item-name{
     display: inline;
 }
+
+
+.continue-button{
+    margin: 40px;
+    padding: 10px 20px;
+}
