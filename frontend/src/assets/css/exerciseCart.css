@@ -1,3 +1,11 @@
 #exercise-cart{
     background-color: darkred;
 }
+
+.cart-item{
+    padding: 10px;
+}
+
+.item-name{
+    display: inline;
+}

@@ -1,5 +1,8 @@
 import RemoveButton from "./removeButton.js";
 
 export default function CartItem(props) {
-    return (<div><p style={{ display: "inline" }}>{props.name}</p><RemoveButton onClick={() => props.removeFromCart()}/></div>);
+    return (<div className="cart-item">
+            <p className="item-name">{props.name}</p>
+            <RemoveButton onClick={() => props.removeFromCart()}/>
+        </div>);
 }
