@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { Spring, animated, config } from 'react-spring/renderprops'
-import ExerciseTileMansonry from './ExerciseTileMansonry.js';
+import ExerciseMansonry from './ExerciseMansonry.js';
 import "../../assets/css/tableWithHeader.css"
 
 
@@ -15,7 +15,7 @@ function MansonryWithHeader (props) {
             to={{ height: "auto" }}>
             {({ height }) =>
                 <animated.div style={{ height: height, overflow: "hidden"}}>
-                    { props.expanded ? (<ExerciseTileMansonry listOfExercises={props.listOfExercises} filter={props.filter} getExerciseCartStatus={props.getExerciseCartStatus} addToCart={props.addToCart}/>) : <></>}
+                    { props.expanded ? (<ExerciseMansonry listOfExercises={props.listOfExercises} filter={props.filter} getExerciseCartStatus={props.getExerciseCartStatus} addToCart={props.addToCart}/>) : <></>}
                     </animated.div>
                 }
         </Spring>}

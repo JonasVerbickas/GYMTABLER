@@ -1,11 +1,11 @@
-import "../../assets/css/exerciseTable.css";
+import "../../assets/css/exerciseMasonry.css";
 import ExerciseTile from "./ExerciseTile";
 import PropTypes from 'prop-types';
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 import filteredExerciseMask from "./exerciseFiltering.js";
 
 
-export default function ExerciseTileMansonry(props) {
+export default function ExerciseMansonry(props) {
     let filtered_exercise_mask = filteredExerciseMask(props.listOfExercises, props.filter);
     // map breakpoints where the number of columns displayed increases
     let breakpoints = { 400: 1, 850: 2, 1300: 3, 1750: 4, 2200: 5 };
@@ -30,7 +30,7 @@ export default function ExerciseTileMansonry(props) {
     }
 }
 
-ExerciseTileMansonry.propTypes = {
+ExerciseMansonry.propTypes = {
     listOfExercises: PropTypes.array.isRequired,
     filter: PropTypes.object.isRequired,
     addToCart: PropTypes.func.isRequired
