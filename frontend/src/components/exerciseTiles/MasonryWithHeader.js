@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { Spring, animated } from 'react-spring/renderprops'
+import { Spring, animated, config } from 'react-spring/renderprops'
 import ExerciseTileMansonry from './ExerciseTileMansonry.js';
 import "../../assets/css/tableWithHeader.css"
 
@@ -9,11 +9,13 @@ function MansonryWithHeader (props) {
         <h2 className="body-part-header" onClick={() => props.expandOnClick()}>{props.bodypart}</h2>
         {<Spring
             native
-            from={{height: 0}}
-            to={{ height: props.expanded ?  "auto" : 0}}>
+            force
+            config={config.stiff}
+            from={{ height: "auto" }}
+            to={{ height: "auto" }}>
             {({ height }) =>
                 <animated.div style={{ height: height, overflow: "hidden"}}>
-                    <ExerciseTileMansonry listOfExercises={props.listOfExercises} filter={props.filter} getExerciseCartStatus={props.getExerciseCartStatus} addToCart={props.addToCart}/>
+                    { props.expanded ? (<ExerciseTileMansonry listOfExercises={props.listOfExercises} filter={props.filter} getExerciseCartStatus={props.getExerciseCartStatus} addToCart={props.addToCart}/>) : <></>}
                     </animated.div>
                 }
         </Spring>}
