@@ -7,7 +7,7 @@ import "../../assets/css/tableWithHeader.css"
 function MansonryWithHeader (props) {
     return (<div className="header-with-table">
         <h2 className="body-part-header" onClick={() => props.expandOnClick()}>{props.bodypart}</h2>
-        <Spring
+        {<Spring
             native
             from={{height: 0}}
             to={{ height: props.expanded ?  "auto" : 0}}>
@@ -16,7 +16,7 @@ function MansonryWithHeader (props) {
                     <ExerciseTileMansonry listOfExercises={props.listOfExercises} filter={props.filter} getExerciseCartStatus={props.getExerciseCartStatus} addToCart={props.addToCart}/>
                     </animated.div>
                 }
-        </Spring>
+        </Spring>}
     </div>);
 }
 

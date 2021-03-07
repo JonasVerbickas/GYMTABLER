@@ -70,7 +70,17 @@ class AllSortedExercises extends React.Component {
             {
                 old_expansion_states = this.state.old_expansion_states;
             }
-            this.setState({ filter: new_filter, old_expansion_states: old_expansion_states, expanded: this.state.expanded.map(() => true) });
+            // only expand everything if nothing is expanded yet
+            let new_expansion_states;
+            if(!this.state.expanded.includes(true))
+            {
+                new_expansion_states = this.state.expanded.map(() => true);
+            }
+            else
+            {
+                new_expansion_states = this.state.expanded;
+            }
+            this.setState({ filter: new_filter, old_expansion_states: old_expansion_states, expanded: new_expansion_states});
         }
     }
     

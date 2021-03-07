@@ -17,7 +17,7 @@ export default function ExerciseTileMansonry(props) {
                         if (filtered_exercise_mask[index])
                         {
                             return (
-                                <ExerciseTile key={exercise.name} exercise={exercise} addToCart={props.addToCart} getExerciseCartStatus={() => props.getExerciseCartStatus(exercise.name)}/>
+                                <ExerciseTile key={exercise.id} exercise={exercise} addToCart={props.addToCart} getExerciseCartStatus={() => props.getExerciseCartStatus(exercise.name)}/>
                             );
                         }
                     })
