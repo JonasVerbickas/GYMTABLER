@@ -10,7 +10,7 @@ function MansonryWithHeader (props) {
         {<Spring
             native
             force
-            config={config.stiff}
+            config={config.default}
             from={{ height: "auto" }}
             to={{ height: "auto" }}>
             {({ height }) =>
