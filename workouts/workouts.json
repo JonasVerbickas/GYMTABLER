@@ -1,0 +1,203 @@
+[
+    {
+        "Workout_id": 1,
+        "Difficulty": "Easy",
+        "Bodypart": [
+            "legs"
+        ],
+        "Exercises": [
+            "Squat",
+            "Calf Raise",
+            "Lunges"
+        ]
+    },
+    {
+        "Workout_id": 2,
+        "Bodypart": [
+            "legs"
+        ],
+        "Difficulty": "Medium",
+        "Exercises": [
+            "Lunges",
+            "Side Lunges",
+            "Calf Raise"
+        ]
+    },
+    {
+        "Workout_id": 3,
+        "Bodypart": [
+            "legs"
+        ],
+        "Difficulty": "Hard",
+        "Exercises": [
+            "Side Lunges",
+            "Pistol Squat",
+            "Lunges"
+        ]
+    },
+    {
+        "Workout_id": 4,
+        "Bodypart": [
+            "back",
+            "arms"
+        ],
+        "Difficulty": "Easy",
+        "Exercises": [
+            "Pike Push Ups",
+            "Elevated Pike Push Ups",
+            "Face Pulls"
+        ]
+    },
+    {
+        "Workout_id": 5,
+        "Bodypart": [
+            "back",
+            "arms"
+        ],
+        "Difficulty": "Hard",
+        "Exercises": [
+            "Parallel Rows",
+            "Chin Up",
+            "Scapula Shrugs"
+        ]
+    },
+    {
+        "Workout_id": 6,
+        "Bodypart": [
+            "back",
+            "arms"
+        ],
+        "Difficulty": "Medium",
+        "Exercises": [
+            "Negative Pull Up",
+            "Negative Chin Up",
+            "Jumping Chin Ups"
+        ]
+    },
+    {
+        "Workout_id": 7,
+        "Bodypart": [
+            "chest",
+            "arms"
+        ],
+        "Difficulty": "Easy",
+        "Exercises": [
+            "Push Ups",
+            "Lateral Raises",
+            "Tricep Dips"
+        ]
+    },
+    {
+        "Workout_id": 8,
+        "Bodypart": [
+            "chest",
+            "arms"
+        ],
+        "Difficulty": "Medium",
+        "Exercises": [
+            "Decline Press Ups",
+            "Parallel Rows",
+            "Incline Dumbbell Press"
+        ]
+    },
+    {
+        "Workout_id": 9,
+        "Bodypart": [
+            "chest",
+            "arms"
+        ],
+        "Difficulty": "Hard",
+        "Exercises": [
+            "Push Up to Plank",
+            "Parallel Rows",
+            "Bench Press"
+        ]
+    },
+    {
+        "Workout_id": 10,
+        "Bodypart": [
+            "full"
+        ],
+        "Difficulty": "Easy",
+        "Exercises": [
+            "Squat",
+            "Calf Raise",
+            "Side leg raises",
+            "Alternate Side Plank",
+            "Anterior Raises Alternating",
+            "Anterior Raises",
+            "Pike Push Ups",
+            "Australian Chin Ups"
+        ]
+    },
+    {
+        "Workout_id": 11,
+        "Bodypart": [
+            "full"
+        ],
+        "Difficulty": "Medium",
+        "Exercises": [
+            "Lunges",
+            "Side Lunges",
+            "Plank",
+            "Flutter Kick",
+            "Elevated Pike Push Ups",
+            "Pike Push Ups",
+            "Elevated Pike Push Ups",
+            "Military Press"
+        ]
+    },
+    {
+        "Workout_id": 12,
+        "Bodypart": [
+            "full"
+        ],
+        "Difficulty": "Hard",
+        "Exercises": [
+            "Pistol Squat",
+            "Plank",
+            "Side Lunges",
+            "Side Plank",
+            "Behind back shrugs",
+            "Lateral raises",
+            "Pike Push Ups",
+            "Wall Plank"
+        ]
+    },
+    {
+        "Workout_id": 13,
+        "Bodypart": [
+            "Core"
+        ],
+        "Difficulty": "Easy",
+        "Exercises": [
+            "Superman Hold",
+            "Mountain Climbers",
+            "Flutter Kick"
+        ]
+    },
+    {
+        "Workout_id": 14,
+        "Bodypart": [
+            "Core"
+        ],
+        "Difficulty": "Medium",
+        "Exercises": [
+            "Plank",
+            "Side leg raises",
+            "Flutter Kick"
+        ]
+    },
+    {
+        "Workout_id": 15,
+        "Bodypart": [
+            "Core"
+        ],
+        "Difficulty": "Hard",
+        "Exercises": [
+            "Plank",
+            "Raised Leg Hold",
+            "Flutter Kick"
+        ]
+    }
+]
