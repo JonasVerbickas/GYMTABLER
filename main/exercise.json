@@ -1,33 +1,33 @@
 [{
 		"name": "Squat",
-		"description": "lowers their hips from a standing position and then stands back up",
+		"description": "Lowers your hips from a standing position and then stan back up",
 		"equipment": null,
 		"difficulty": 1,
 		"bodypart": ["legs"],
 		"link": "https://www.youtube.com/watch?v=aclHkVaku9U"
 	}, {
 		"name": "Lunges",
-		"description": "refer to any position of the human body where one leg is positioned forward with knee bent and foot flat on the ground while the other leg is not positioned behind",
+		"description": "Refer to any position of the human body where one leg is positioned forward with knee bent and foot flat on the ground while the other leg is not positioned behind",
 		"equipment": null,
-		"difficulty": 2,
+		"difficulty": 1,
 		"bodypart": ["legs"],
 		"link": "https://www.youtube.com/watch?v=3XDriUn0udo"
 	},
 	{
 		"name": "Pistol Squat",
-		"description": "",
+		"description": "Extend one leg and both arms in front of you. Bend your standing leg and lower into a squat position on one leg. Return to the start position slowly.",
 		"equipment": null,
 		"difficulty": 3,
 		"bodypart": ["legs"],
-		"link": "https://www.menshealth.com/fitness/a19530190/how-do-pistol-squat/"
+		"link": "https://www.youtube.com/watch?v=DjxQrgLsty4"
 	},
 	{
 		"name": "Side Lunges",
 		"description": "Start standing with legs slightly wider than shoulder-distance apart and toes pointed forward. Shift your body weight to one leg bending the knee until it reaches a 90-degree angle and the other leg is straight. Glutes are pressing back behind you. Return to center and switch sides.",
 		"equipment": null,
-		"difficulty": 2,
+		"difficulty": 1,
 		"bodypart": ["legs"],
-		"link": "https://gethealthyu.com/exercise/side-lunge/"
+		"link": "https://www.youtube.com/watch?v=FUX6Pz8vV0s"
 	},
 	{
 		"name": "Calf Raise",
@@ -35,7 +35,7 @@
 		"equipment": null,
 		"difficulty": 1,
 		"bodypart": ["legs"],
-		"link": "https://www.youtube.com/watch?v=-M4-G8p8fmc/"
+		"link": "https://www.youtube.com/watch?v=-M4-G8p8fmc"
 	},
 	{
 		"name": "Plank",
@@ -43,7 +43,7 @@
 		"equipment": null,
 		"difficulty": 3,
 		"bodypart": ["core"],
-		"link": "https://www.verywellfit.com/the-plank-exercise-3120068"
+		"link": "https://www.youtube.com/watch?v=pSHjTRCQxIw"
 	},
 	{
 		"name": "Side Plank",
@@ -64,7 +64,7 @@
 		"name": "Raised Leg Hold",
 		"description": "Raise legs up while lying down and then hold for 20 seconds",
 		"equipment": null,
-		"difficulty": 3,
+		"difficulty": 2,
 		"bodypart": ["core", "legs"],
 		"link": "https://www.youtube.com/watch?v=JB2oyawG9KI"
 	},
@@ -87,7 +87,7 @@
 	{
 		"name": "Anterior Raises Alternating",
 		"description": "Raise arm in a forward position in an alternating manner",
-		"equipment": ["dumbbell", "kettlebell", "elastic bands"],
+		"equipment": ["dumbbell", "kettlebell", "resistance band"],
 		"difficulty": 1,
 		"bodypart": ["shoulders"],
 		"link": "https://www.youtube.com/watch?v=mxPSKwWtezQ"
@@ -95,7 +95,7 @@
 	{
 		"name": "Anterior Raises",
 		"description": "Raise both arms in a forward position together",
-		"equipment": ["barbell", "resistance bands"],
+		"equipment": ["barbell", "resistance band"],
 		"difficulty": 1,
 		"bodypart": ["shoulders"],
 		"link": "https://www.youtube.com/watch?v=D-3JnFrFUOw"
@@ -109,18 +109,18 @@
 		"link": "https://www.youtube.com/watch?v=OoUQRw91D94"
 	},
 	{
-		"name": "Lateral raises",
-		"description": "Raise arms to the side until neck level",
+		"name": "Lateral Raises",
+		"description": "Holding a dumbbell in each hand, raise your arms until the dumbbells are level with your shoulders, then lower slowly back to the starting position",
 		"equipment": ["dumbbell", "kettlebell", "resistance bands"],
 		"difficulty": 1,
-		"bodypart": ["shoulders"],
+		"bodypart": ["shoulders", "arms"],
 		"link": "https://www.youtube.com/watch?v=3VcKaXpzqRo"
 	},
 	{
 		"name": "Pike Push Ups",
 		"description": "Get into a pike position and do push ups",
 		"equipment": null,
-		"difficulty": 1,
+		"difficulty": 2,
 		"bodypart": ["shoulders", "chest"],
 		"link": "https://www.youtube.com/watch?v=66x0qQiJ-MA"
 	},
@@ -160,7 +160,7 @@
 		"name": "Handstand hold on the wall",
 		"description": "Kick your feet onto the wall and hold the position",
 		"equipment": null,
-		"difficulty": 2,
+		"difficulty": 3,
 		"bodypart": ["shoulders"],
 		"link": "https://www.youtube.com/watch?v=LwnOCipO4QY"
 	},
@@ -176,8 +176,8 @@
 		"name": "Push Up to Plank",
 		"description": "Switch alternatingly between push up position and plank position",
 		"equipment": null,
-		"difficulty": 1,
-		"bodypart": ["shoulders", "abs"],
+		"difficulty": 3,
+		"bodypart": ["shoulders", "abs", "arms"],
 		"link": "https://www.youtube.com/watch?v=2kEnT-CdXyE"
 	},
 	{
@@ -192,7 +192,7 @@
 		"name": "Shoulder Taps",
 		"description": "Get into a push up position and bring arms to chest alternatingly",
 		"equipment": null,
-		"difficulty": 1,
+		"difficulty": 2,
 		"bodypart": ["shoulders", "abs"],
 		"link": "https://www.youtube.com/watch?v=wcKyqAMqueQ"
 	},
@@ -216,7 +216,7 @@
 		"name": "Jumping Pull Ups",
 		"description": "Jump towards the bar and do a pull up",
 		"equipment": ["pull up bar"],
-		"difficulty": 1,
+		"difficulty": 2,
 		"bodypart": ["back"],
 		"link": "https://www.youtube.com/watch?v=fKe5S1dd0fw"
 	},
@@ -224,7 +224,7 @@
 		"name": "Jumping Chin Ups",
 		"description": "Jump towards the bar and do a chin up",
 		"equipment": ["pull up bar"],
-		"difficulty": 1,
+		"difficulty": 2,
 		"bodypart": ["back"],
 		"link": "https://www.youtube.com/watch?v=XO4ttaJ3bYA"
 	},
@@ -265,7 +265,7 @@
 		"description": "Get into a prone position and raise your arms and legs as much as possible and hold",
 		"equipment": null,
 		"difficulty": 1,
-		"bodypart": null,
+		"bodypart": ["back", "core"],
 		"link": "https://www.youtube.com/watch?v=z6PJMT2y8GQ"
 	},
 	{
@@ -273,7 +273,7 @@
 		"description": "Get into a prone position and raise your arms and legs as much as possible and hold and relax alternatingly",
 		"equipment": null,
 		"difficulty": 1,
-		"bodypart": null,
+		"bodypart": ["back", "core"],
 		"link": "https://www.youtube.com/watch?v=VUT1RHyMEuc"
 	},
 	{
@@ -281,7 +281,7 @@
 		"description": "Get into a prone position and rotate your arms like a butterfly",
 		"equipment": null,
 		"difficulty": 1,
-		"bodypart": null,
+		"bodypart": ["back", "shoulders"],
 		"link": "https://www.youtube.com/watch?v=Q_5fUoY7TkA"
 	},
 	{
@@ -296,8 +296,8 @@
 		"name": "Parallel Rows",
 		"description": "Lower your back to 45 degrees and pull the weights toward your chest",
 		"equipment": ["dumbbell", "barbell"],
-		"difficulty": 1,
-		"bodypart": ["back"],
+		"difficulty": 2,
+		"bodypart": ["back", "core", "shoulders", "arms"],
 		"link": "https://www.youtube.com/watch?v=HE5IBnWYEq4"
 	},
 	{
@@ -307,6 +307,62 @@
 		"difficulty": 1,
 		"bodypart": ["back"],
 		"link": "https://www.youtube.com/watch?v=JoCRRZ3zRtI"
+	},
+	{
+		"name": "Bench Press",
+		"description": "Grip the Barbell with your hands shoulder width apart, lie with your shoulders and palms engaged on a bench. Starting with arms fully extended, lower the bar until it touches your chest and explosively push the bar back to the start position.",
+		"equipment": ["barbell", "bench"],
+		"difficulty": 3,
+		"bodypart": ["chest", "shoulders", "arms"],
+		"link": "https://www.youtube.com/watch?v=gRVjAtPip0Y"
+	},
+	{
+		"name": "Push Ups",
+		"description": "Lie on a floor on all fours, with hands positioned just outside and level with your shoulders. Keeping your core tight, extend arms until straight, but without locking elbows. Lower back to the starting position until elbows are at a 90 degree angle.",
+		"equipment": null,
+		"difficulty": 2,
+		"bodypart": ["chest", "core", "shoulders", "arms"],
+		"link": "https://www.youtube.com/watch?v=IODxDxX7oi4"
+	},
+	{
+		"name": "Overhead Extension",
+		"description": "Hold a dumbbell with both hands. Raise your arms over and behind your head so it is vertical. Point elbows to the ceiling. Return to the starting position.",
+		"equipment": ["dumbbell"],
+		"difficulty": 2,
+		"bodypart": ["arms"],
+		"link": "https://www.youtube.com/watch?v=-Vyt2QdsR7E"
+	},
+	{
+		"name": "Tricep Dips",
+		"description": "Sit on the edge of a bench or table, knees bent and feet planted on floor. Grip the bench with both hands and move glutes off the bench, lowering the body about 10cm down. Raise body back to starting position. ",
+		"equipment": null,
+		"difficulty": 1,
+		"bodypart": ["arms", "chest"],
+		"link": "https://www.youtube.com/watch?v=0326dy_-CzM"
+	},
+	{
+		"name": "Incline Dumbbell Press",
+		"description": "Using a bench with at about a 30 degree angle, perform a dumbbell bench press as normal. ",
+		"equipment": ["dumbbell"],
+		"difficulty": 3,
+		"bodypart": ["arms", "chest"],
+		"link": "https://www.youtube.com/watch?v=0G2_XV7slIg"
+	},
+	{
+		"name": "Decline Press Ups",
+		"description": "Place your feet on a bench or other raised surface. Lower yourself to nearly floor level and push back up to the starting position. ",
+		"equipment": null,
+		"difficulty": 2,
+		"bodypart": ["chest", "core", "arms"],
+		"link": "https://www.youtube.com/watch?v=SKPab2YC8BE"
+	},
+	{
+		"name": "Medicine Ball Throws",
+		"description": "Hold the ball with both hands at chest height. With as much power as possible, throw the ball parallel and forward.",
+		"equipment": ["medicine ball"],
+		"difficulty": 1,
+		"bodypart": ["chest"],
+		"link": "https://www.youtube.com/watch?v=c7fB-K8Ih54"
 	}
 ]
 

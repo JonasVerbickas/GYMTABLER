@@ -97,11 +97,15 @@ def get_workout(request):
 def populate_db(request):
     try:
         with open(exe_pth, 'r') as f:
-	        exercise_dict = json.load(f)
+            Exercise.objects.all().delete()
+            exercise_dict = json.load(f)
 
         for exercise in exercise_dict:
-            exercise_var = Exercise(name=exercise['name'],description=exercise['description'],equipment=exercise['equipment'],difficulty=exercise['difficulty'],bodypart=exercise['bodypart'],link=exercise['link'])
+            exercise_var = Exercise(name=exercise['name'],description=exercise['description'],
+                equipment=exercise['equipment'],difficulty=exercise['difficulty'],
+                bodypart=exercise['bodypart'],link=exercise['link'])
             exercise_var.save()
+
     except ValueError:
         res = HttpResponse("<h2>ERROR</h2>")
         res.status_code = 400
@@ -112,13 +116,30 @@ def populate_db(request):
 @csrf_exempt
 @require_http_methods(["GET"])
 def getexercises(request):
+    data = {"arms": [], "legs": [], "core": [], "chest": [],
+            "shoulders": [], "back": [], "abs": [], "none": []}
     try:
-        print(Exercise.objects.values())
+        #print(Exercise.objects.values())
         exercises = list(Exercise.objects.values())
-        response = json.dumps(exercises)
+
+        for e in exercises:
+            if e["bodypart"] is not None:
+                bodyparts = eval(e["bodypart"])
+                for bp in bodyparts:
+                    data[bp].append(e)
+            else:
+                data["none"].append(e)
+
+        response = json.dumps(data)
     except ValueError:
         response = json.dumps([{'Error': 'No exercises found.'}])
 
     return HttpResponse(response, content_type='text/json')
 
     
+@csrf_exempt
+@require_http_methods(["GET"])
+
+def get_body_parts(request):
+    data = ["shoulders", "arms", "chest", "core", "back", "legs", "abs"]
+    return HttpResponse(json.dumps(data), content_type="application/json")

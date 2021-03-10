@@ -9,6 +9,7 @@ import InputPage from './views/InputPage'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Dashboard from './views/Dashboard.js'
+import LoginPage from './views/LoginPage'
 
 function App() {
   React.useEffect(() => {
@@ -28,6 +29,7 @@ function App() {
             <Route exact path="/" component={Home} />
             <Route exact path="/dashboard" component={Dashboard} />
             <Route exact path="/input" component={InputPage} />
+            <Route exact path="/loginpage" component={LoginPage} />
           </Switch>
         </div>
         <Footer />

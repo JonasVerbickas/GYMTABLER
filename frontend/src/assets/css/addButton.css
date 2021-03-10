@@ -1,0 +1,29 @@
+.cart-btn{
+    display:inline-block;
+    padding:0.3em 1.2em;
+    margin:0.3em 0.3em;
+    border-radius:2em;
+    box-sizing: border-box;
+    text-decoration:none;
+    font-weight:400;
+    color:#FFFFFF;
+    text-align:center;
+    transition: all 0.2s;
+    border: 0;
+}
+
+.btn-add{
+    background-color:#4eb5f1;
+}
+
+.btn-add:hover{
+    background-color:#4095c6;
+}
+
+.btn-remove{
+    background-color:#f14e4e;
+}
+
+.btn-remove:hover{
+    background-color:#bb3b3b;
+}
