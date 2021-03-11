@@ -46,30 +46,22 @@ class ExerciseTile extends React.Component {
         this.state = {
             exercise: fillInBlanksInExercise(props.exercise),
             addToCart: props.addToCart,
-            expanded: false,
-            getExerciseCartStatus: props.getExerciseCartStatus
+            expanded: false
         }
-        this.expandOnClick = this.expandOnClick.bind(this);
-        this.wrappedAddToCart = this.wrappedAddToCart.bind(this);
+        this.handleClick = this.handleClick.bind(this);
     }
 
-    expandOnClick()
+    handleClick()
     {
         this.setState({expanded: !this.state.expanded});
     }
 
-    wrappedAddToCart(e, exercise)
-    {
-        e.stopPropagation();
-        this.state.addToCart(exercise);
-    }
-
     render() {
         if (!this.state.expanded) {
-            return (<SmallExerciseTile expandOnClick={this.expandOnClick} exercise={this.state.exercise} wrappedAddToCart={this.wrappedAddToCart} added_to_cart={this.state.getExerciseCartStatus()}/>);
+            return (<SmallExerciseTile handleClick={this.handleClick} exercise={this.state.exercise} addToCart={this.state.addToCart}/>);
         }
         else {
-            return (<ExpandedExerciseTile expandOnClick={this.expandOnClick} exercise={this.state.exercise} />);
+            return (<ExpandedExerciseTile handleClick={this.handleClick} exercise={this.state.exercise} />);
         }
     }
 }

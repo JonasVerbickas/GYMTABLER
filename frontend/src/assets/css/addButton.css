@@ -13,17 +13,17 @@
 }
 
 .btn-add{
-    background-color:#2b77e9;
+    background-color:#4eb5f1;
 }
 
 .btn-add:hover{
-    background-color:#2361be;
+    background-color:#4095c6;
 }
 
 .btn-remove{
-    background-color:#e92b2b;
+    background-color:#f14e4e;
 }
 
 .btn-remove:hover{
-    background-color:#c52727;
+    background-color:#bb3b3b;
 }

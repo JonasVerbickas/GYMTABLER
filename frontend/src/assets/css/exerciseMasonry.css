@@ -1,9 +1,0 @@
-.exercise-tile-table{
-  background-color: #1b1b1b;
-}
-
-@media (min-width:700px){
-  .exercise-tile-table{
-    padding: 20px;
-  }
-}

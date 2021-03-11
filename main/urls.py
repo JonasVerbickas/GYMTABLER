@@ -1,7 +1,7 @@
 from django.urls import path
 
 
-from .views import index, get_workout, register_user, user_login,get_exercises, populate_db
+from .views import index, get_workout, register_user, user_login,getexercises, populate_db
 
 urlpatterns = [
     path('main/', index, name='index'),

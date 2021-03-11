@@ -1,139 +1,96 @@
-import MansonryWithHeader from './MasonryWithHeader.js';
+import TableForASpecificBodypart from './TableWithHeader.js';
 import ExerciseTileFilters from './ExerciseTableFilters.js';
 import ExerciseCart from './exerciseCart.js'
 import "../../assets/css/allSortedExercises.css";
+import PropTypes from 'prop-types';
 import React from 'react';
 
-const EMPTY_FILTER = { text: "", equipment: [] }
 
 class AllSortedExercises extends React.Component {
     constructor(props){
-        super(props);
+        super(props);        
+        let sorted_exercises = {};  // stores all possible exercises sorted by bodypart
+        let possible_equipment = [];  // list of every possible piece of equipment used
+        // sort the dataset
+        // should probably be done on the backend
+        props.listOfExercises.forEach(function (exercise) {
+            if (exercise) {
+                if (exercise.bodypart) {
+                    exercise.bodypart.forEach(function (bp) {
+                        Object.keys(sorted_exercises).includes(bp) ? sorted_exercises[bp].push(exercise) : sorted_exercises[bp] = [exercise];
+                    })
+                }
+                if (exercise.equipment)
+                {
+                    exercise.equipment.forEach(function (e){
+                        if (!possible_equipment.includes(e)) {
+                            possible_equipment.push(e);
+                        }
+                    })
+                }
+            }
+        });
         this.state = {
-            sorted_exercises: {},
-            possible_equipment: [],
-            filter: this.deepObjectCopy(EMPTY_FILTER),
-            old_expansion_states: [],  // is used to remember the expanded categories before a filter was applied AND later to restore their state after the filter becomes EMPTY again
-            cart: [],  // uses exercise.name that way works better with duplicates
-            expanded: []  // keeps track of the expansion state for each of the categories
+            listOfExercises: props.listOfExercises,
+            sorted_exercises: sorted_exercises,
+            possible_equipment: possible_equipment,
+            filter: {text: "", equipment: []},
+            cart: []
         };
+        this.searchFilterChange =  this.searchFilterChange.bind(this);
+        this.equipmentCheckboxChange = this.equipmentCheckboxChange.bind(this);
         this.addExerciseToCart = this.addExerciseToCart.bind(this);
-        this.getExerciseCartStatus = this.getExerciseCartStatus.bind(this);
-        this.onFilterChange = this.onFilterChange.bind(this);
-        this.expandACategory = this.expandACategory.bind(this);
-        this.removeExerciseFromCart = this.removeExerciseFromCart.bind(this);
+        console.log(sorted_exercises);
     }
 
-    componentDidMount()
-    {
-        fetch("http://127.0.0.1:8000/get_exercises")
-            .then(res => res.json())
-            .then((result) => {
-                console.log("Server response:", result);
-                let expansion_states = Object.keys(result).map(() => false);
-                this.setState({ sorted_exercises: result, expanded: expansion_states.slice(), old_expansion_states: expansion_states.slice() });
-            });
+    searchFilterChange(e){
+        let new_filter = this.state.filter;
+        new_filter.text = e.target.value.toLowerCase();
+        this.setState({filter: new_filter});
     }
 
-    compareFilterToEmpty(filter){
-        // compare everything both filters
-        let compared_to_empty = Object.keys(filter).map(key => (EMPTY_FILTER[key].length === filter[key].length));
-        // if there is at least one miss match return false
-        return !compared_to_empty.includes(false);
+    equipmentCheckboxChange(e){
+        let name_of_changed = e.target.name;
+        console.log(name_of_changed);
+        let new_filter = this.state.filter;
+        if (new_filter.equipment.includes(name_of_changed)){
+            let i = new_filter.equipment.indexOf(name_of_changed);
+            new_filter.equipment.splice(i, 1);
+        }
+        else{
+            new_filter.equipment.push(name_of_changed);
+        }
+        this.setState({filter: new_filter});
     }
     
-    deepObjectCopy(obj){
-        return JSON.parse(JSON.stringify(obj));
-    }
-
-
-    // new_filter param is a DEEP copy of this.state.filters after one change
-    onFilterChange(new_filter){
-        let back_to_being_empty = this.compareFilterToEmpty(new_filter);
-        if (back_to_being_empty)
-        {
-            console.log("ALL FILTERS ARE GONE!");
-            let old_expansion_states = this.state.old_expansion_states.slice();
-            this.setState({ filter: new_filter, expanded: old_expansion_states });
-        }
-        else
-        {
-            let old_expansion_states;
-            // if the filter before this change was empty
-            // save the current category expansion state
-            if(this.compareFilterToEmpty(this.state.filter))
-            {
-                old_expansion_states = this.state.expanded.slice();
-            }
-            // otherwise don't change it
-            else
-            {
-                old_expansion_states = this.state.old_expansion_states;
-            }
-            // only expand everything if nothing is expanded yet
-            let new_expansion_states;
-            if(!this.state.expanded.includes(true))
-            {
-                new_expansion_states = this.state.expanded.map(() => true);
-            }
-            else
-            {
-                new_expansion_states = this.state.expanded;
-            }
-            this.setState({ filter: new_filter, old_expansion_states: old_expansion_states, expanded: new_expansion_states});
-        }
-    }
-    
-    addExerciseToCart(new_exercise){
+    addExerciseToCart(e){
         let new_cart = this.state.cart;
-        let index = this.state.cart.indexOf(new_exercise.name);
+        let index = this.state.cart.indexOf(e);
         if (index > -1)
         {
             new_cart.splice(index, 1);
         }
         else
         {
-            new_cart.push(new_exercise.name);
+            new_cart.push(e);
         }
         this.setState({cart: new_cart});
     }
 
-    removeExerciseFromCart(to_remove_name) {
-        let new_cart = this.state.cart;
-        let index = this.state.cart.indexOf(to_remove_name);
-        if (index > -1) {
-            new_cart.splice(index, 1);
-        }
-        this.setState({ cart: new_cart });
-    }
-
-    getExerciseCartStatus(exercise_name){
-        let status = this.state.cart.includes(exercise_name);
-        return status;
-    }
-
-    expandACategory(index){
-        let curr_expanded = this.state.expanded;
-        curr_expanded[index] = !curr_expanded[index];
-        this.setState({expanded: curr_expanded});
-    }
-
     render(){
-        if(Object.keys(this.state.sorted_exercises).length > 0)
-        {
-           return (<div id="exercise-tables-and-filters">
-               <ExerciseTileFilters onFilterChange={this.onFilterChange} possible_equipment={this.state.possible_equipment} filter={this.deepObjectCopy(this.state.filter)} />
+        if(this.state)
+            return (<div id="exercise-tables-and-filters">
+                <ExerciseTileFilters searchChange={this.searchFilterChange} equipmentChange={this.equipmentCheckboxChange} possible_equipment={this.state.possible_equipment}/>
                 <div id="all-exercise-tables-with-headers">
-                   {Object.keys(this.state.sorted_exercises).map((bodypart, index) => (<MansonryWithHeader key={bodypart} bodypart={bodypart} listOfExercises={this.state.sorted_exercises[bodypart]} filter={this.state.filter} addToCart={this.addExerciseToCart} expanded={this.state.expanded[index]} expandOnClick={() => this.expandACategory(index)} getExerciseCartStatus={this.getExerciseCartStatus} />))}
+                    {Object.keys(this.state.sorted_exercises).map((bodypart) => (<TableForASpecificBodypart key={bodypart} bodypart={bodypart} listOfExercises={this.state.sorted_exercises[bodypart]} filter={this.state.filter} addToCart={this.addExerciseToCart}/>))}
                 </div>
-                <ExerciseCart cart={this.state.cart} removeFromCart={this.removeExerciseFromCart} />
+                <ExerciseCart cart={this.state.cart}/>
             </div>)
-        }
-        else
-        {
-            return <h1 style={{color: 'red'}}>Fetching data from server...<br/>If nothing changes in a couple of seconds try refreshing</h1>
-        }
     }
+}
+
+AllSortedExercises.propTypes = {
+    listOfExercises: PropTypes.array.isRequired
 }
 
 export default AllSortedExercises;

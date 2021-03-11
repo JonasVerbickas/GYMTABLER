@@ -189,7 +189,7 @@ select option{
 #progressbar li {
   list-style-type: none;
   font-size: 12px;
-  width: 50%;
+  width: 33.33%;
   float: left;
   position: relative;
 }
@@ -202,6 +202,11 @@ select option{
 #progressbar #preferences:before {
   font-family: Nucleo;
   content: "\ea18";
+}
+
+#progressbar #info:before {
+  font-family: Nucleo;
+  content: "\ea59";
 }
 
 .noUi-connect {
@@ -235,34 +240,4 @@ select option{
 #progressbar li.active:before,
 #progressbar li.active:after {
   background: #8c3db9;
-}
-
-.exerciseContainer {
-  display: flex;
-  overflow: hidden;
-  flex-direction: column;
-  padding: 5em;
-  margin: 2em;
-  background: rgb(58, 58, 58);
-  border-radius: 20px 20px;
-  -webkit-user-select: none; /* Safari */        
-  -moz-user-select: none; /* Firefox */
-  -ms-user-select: none; /* IE10+/Edge */
-  user-select: none; /* Standard */
-}
-.exerciseContainer:hover {
-  transform: scale(1.1);
-}
-
-.plusSign{
-  font-size: 4em;
-  -webkit-user-select: none; /* Safari */        
-  -moz-user-select: none; /* Firefox */
-  -ms-user-select: none; /* IE10+/Edge */
-  user-select: none; /* Standard */
-  color: white;
-}
-.plusSign :hover{
- color:#8c3db9;
- cursor: pointer;
 }

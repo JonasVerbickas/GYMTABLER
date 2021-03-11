@@ -1,7 +1,7 @@
 export default function ExpandedExerciseTile(props) {
     return (
         <div className="exercise-tile-border">
-            <div className="exercise-tile expanded-exercise-tile" onClick={() => props.expandOnClick()}>
+            <div className="exercise-tile expanded-exercise-tile" onClick={() => props.handleClick()}>
                 <img src={props.exercise.img} alt={props.exercise.name + " image"}></img>
                 <h3 className="exercise-title">{props.exercise.name}</h3>
                 <div className="exercise-stats">
@@ -22,7 +22,7 @@ export default function ExpandedExerciseTile(props) {
                     <div className="exercise-stats-row">
                         <p>Muscle groups:</p>
                         <ul>
-                            {/*props.exercise.bodypart*/[].map(function (bodypart, i) {
+                            {props.exercise.bodypart.map(function (bodypart, i) {
                                 return <li key={i}>{bodypart}</li>
                             })}
                         </ul>

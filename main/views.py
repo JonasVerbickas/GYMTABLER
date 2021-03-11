@@ -109,7 +109,7 @@ def populate_db(request):
 
 @csrf_exempt
 @require_http_methods(["GET"])
-def get_exercises(request):
+def getexercises(request):
     data = {"arms": [], "legs": [], "core": [], "chest": [],
             "shoulders": [], "back": [], "abs": [], "none": []}
     try:
