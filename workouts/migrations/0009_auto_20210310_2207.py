@@ -3,7 +3,7 @@
 from django.db import migrations
 from json import loads
 from main.models import Exercise
-from account.models import Account
+from django.contrib.auth.models import User
 from workouts.models import Workout
 
 
@@ -25,9 +25,9 @@ def importworkouts(apps, se):
     with open("workouts/workouts.json") as f:
         data = loads(f.read())
 
-    if list(Account.objects.filter(username="SUPER")) == []:
-        Account.objects.create(email="super@super.com",
-                               username="SUPER", password="abcd1234")
+    if list(User.objects.filter(username="SUPER")) == []:
+        User.objects.create(username="SUPER", password="abcd1234", 
+                            email="super@super.com",)
 
     diffs = {"Easy": 1, "Medium": 2, "Hard": 3}
 
@@ -48,7 +48,7 @@ def importworkouts(apps, se):
 
         workout.difficulty = diffs[dataworkout["Difficulty"]]
 
-        workout.account = Account.objects.get(username="SUPER")
+        workout.account = User.objects.get(username="SUPER")
         workout.save()
 
         workout.exercises.add(*exers)
