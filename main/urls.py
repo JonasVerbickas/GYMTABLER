@@ -6,8 +6,8 @@ from .views import index, get_workout, register_user, user_login,get_exercises, 
 urlpatterns = [
     path('main/', index, name='index'),
     path('get_workout', get_workout),
-    #path('login', user_login),
-    #path("register", register_user),
-    path('get_exercises',getexercises),
+    path('login', user_login),
+    path("register", register_user),
+    path('get_exercises',get_exercises),
     path('populate_db',populate_db)
 ]

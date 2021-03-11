@@ -4,19 +4,17 @@ from django.utils.text import slugify
 from django.conf import settings
 from django.db.models.signals import pre_save
 from main.models import Exercise
-from django.contrib.auth.models import User
 
 
 class Workout(models.Model):
 
     bodyparts = models.TextField()
-    exercises = models.TextField()
-    #ManyToManyField(Exercise)
+    exercises = models.ManyToManyField(Exercise)
     difficulty = models.IntegerField(
         default=2)  # 1 = easy, 2 = medium, 3 = hard
 
     account = models.ForeignKey(
-        User, on_delete=models.CASCADE)
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     slug = models.SlugField(blank=True, unique=True)
 
     class Meta:
