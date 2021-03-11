@@ -8,6 +8,6 @@ urlpatterns = [
     path('get_workout', get_workout),
     path('login', user_login),
     path("register", register_user),
-    path('get_exercises',get_exercises),
+    path('get_exercises',getexercises),
     path('populate_db',populate_db)
 ]

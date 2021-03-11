@@ -29,14 +29,8 @@ def register_user(request):
     password = request.POST['password']
 
     result, msg = validateusername(username, email)
-    if result == 1:
-        return HttpResponse(msg, status=403)
-    elif result == 2:
+    if not result:
         return HttpResponse(msg, status=409)
-    
-    result, msg = validatepassword(password)
-    if result == 1:
-        return HttpResponse(msg, status=403)
 
     user = User.objects.create_user(username, email, password)
     return HttpResponse(f"User {username} created successfully.")
