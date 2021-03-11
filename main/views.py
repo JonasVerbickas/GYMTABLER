@@ -86,12 +86,12 @@ def get_workout(request):
     return HttpResponse(workout_data_response)
 
 
-@csrf_exempt
-@require_http_methods(["POST"])
+#@csrf_exempt
+#@require_http_methods(["POST"],)
 def populate_db(request):
     try:
         with open(exe_pth, 'r') as f:
-            Exercise.objects.all().delete()
+            #Exercise.objects.all().delete()
             exercise_dict = json.load(f)
 
         for exercise in exercise_dict:
