@@ -2,5 +2,11 @@
   display: flex;
   flex-direction: column;
   width: auto;
-  margin: 5vw;
+  
+}
+
+@media (min-width: 700px){
+#exercise-tables-and-filters{
+    margin: 5vw;
+  }
 }

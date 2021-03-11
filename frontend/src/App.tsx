@@ -10,6 +10,7 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Dashboard from './views/Dashboard.js'
 import LoginPage from './views/LoginPage'
+import Workouts from './views/WorkoutsPage'
 
 function App() {
   React.useEffect(() => {
@@ -18,16 +19,17 @@ function App() {
     return function cleanup() {
       document.body.classList.toggle("index-page");
     };
-  },[]);
+  }, []);
   return (
     <BrowserRouter>
       <Navbar />
       <div className="wrapper">
         <div className="main">
-        <ToastContainer />
+          <ToastContainer />
           <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/dashboard" component={Dashboard} />
+            <Route exact path="/workouts" component={Workouts} />
             <Route exact path="/input" component={InputPage} />
             <Route exact path="/loginpage" component={LoginPage} />
           </Switch>

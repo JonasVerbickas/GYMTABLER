@@ -5,7 +5,6 @@ import {
     Container
 } from "reactstrap";
 import AllSortedExercises from '../components/exerciseTiles/AllSortedExercises.js';
-import exercise_json from '../exercise.json';
 
 
 function Home() {
@@ -26,7 +25,7 @@ function Home() {
                     </div>
                 </Container>
             </div>
-            <AllSortedExercises listOfExercises={exercise_json}/>
+            <AllSortedExercises/>
             <div className="section section-examples" data-background-color="black">
                 <div className="space-50" />
                 <h3 className="text-center d-sm-block">
