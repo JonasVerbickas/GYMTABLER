@@ -42,10 +42,16 @@ INSTALLED_APPS = [
     # Custom Apps
     'main',
     'frontend',
-    'account',
+    #'account',
     'workouts',
     'rest_framework',
-    'corsheaders'
+    'rest_framework.authtoken',
+    'dj_rest_auth',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'dj_rest_auth.registration',
 ]
 
 MIDDLEWARE = [
@@ -128,15 +134,15 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-CORS_ORIGIN_ALLOW_ALL = True
+# REST_FRAMEWORK = {
+#     'DEFAULT_AUTHENTICATION_CLASSES': [
+#         'rest_framework.authentication.TokenAuthentication',
+#     ],
+#     'DEFAULT_PERMISSION_CLASSES': [
+#         'rest_framework.permissions.IsAuthenticated', 
+#         ]
+#     }
 
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.SessionAuthentication', 
-    ),
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated', 
-        ]
-    }
+SITE_ID = 1
 
-AUTH_USER_MODEL = 'account.Account'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
