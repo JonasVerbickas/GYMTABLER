@@ -1,24 +1,23 @@
 import { useState, useRef, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import {
     Button,
     Input,
     FormGroup,
     Label,
     FormText,
-    Container,
-    UncontrolledDropdown,
-    DropdownToggle,
-    DropdownMenu,
-    DropdownItem
+    Container
 } from "reactstrap";
 // @ts-ignore
 import Slider from "nouislider";
 import { toast } from 'react-toastify';
+import { REGISTER_URL } from '../constants/index'
+
 function InputPage() {
+    let history = useHistory()
     const [step, UpdateStep] = useState(1)
-    const [weightUnit,UpdateWeightUnit] = useState('')
-    const [heightUnit,UpdateHeightUnit] = useState('')
+    const [status, UpdateStatus] = useState("")
+    const [feedback, Updatefeedback] = useState("")
     const second = useRef<HTMLLIElement>(null)
     const third = useRef<HTMLLIElement>(null)
     const user = useRef<HTMLDivElement>(null)
@@ -88,40 +87,96 @@ function InputPage() {
 
         });
     }, [])
+    useEffect(() => {
+        if (status === "success") {
+            toast.success('Registered Successfully!', {
+                position: "bottom-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: false,
+                progress: undefined,
+            });
+            history.push("/")
+        }
+        else if (status === "") { }
+        else {
+            toast.error(status, {
+                position: "bottom-right",
+                autoClose: 2000,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: false,
+                draggable: false,
+                progress: undefined,
+            });
+        }
+    }, [status])
 
     function SubmitForm() {
-        toast.success('Registered Successfully!', {
-            position: "bottom-right",
-            autoClose: 2000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: false,
-            draggable: false,
-            progress: undefined,
-        });
         let element = document.querySelector('form') as HTMLFormElement
-        const sliderRef = document.getElementById('slider') as Slider.Instance
-        const experienceRef = document.getElementById('experienceSlider') as Slider.Instance
-        if (element){
+        if (element) {
             let formData = new FormData(element)
-            for(let [name, value] of formData) {
-                console.log(`${name} = ${value}`); // key1 = value1, then key2 = value2
-              }
-            console.log(weightUnit)
-            console.log(heightUnit)
-            if (sliderRef && experienceRef){
-                console.log(sliderRef.noUiSlider.get())
-                console.log(experienceRef.noUiSlider.get())
+            let datapayload = new FormData()
+            for (let [id, value] of formData) {
+                datapayload.append(id, value)
             }
-
+            const requestOptions = {
+                method: 'POST',
+                headers: { Accept: 'application/json' },
+                body: datapayload
+            };
+            fetch(REGISTER_URL, requestOptions)
+                .then(response => {
+                    if (response.status === 200) {
+                        UpdateStatus("success")
+                    }
+                    else if (response.status === 409) {
+                        UpdateStatus("Username or email already in use!")
+                    }
+                })
         }
-            
+
     }
-    function selectUnitforWeight(value:string){
-        UpdateWeightUnit(value)
+    function ValidateEmail() {
+        let element = document.querySelector('form') as HTMLFormElement
+        if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(element.email.value)) {
+            return (true)
+        }
+        return (false)
     }
-    function selectUnitforHeight(value:string){
-        UpdateHeightUnit(value)
+    function ValidateUsername() {
+        let element = document.querySelector('form') as HTMLFormElement
+        if (element.username.value < 4 || element.username.value > 15) {
+            return (false)
+        }
+        return (true)
+    }
+    function ValidatePassword() {
+        let element = document.querySelector('form') as HTMLFormElement
+        if (element.password.value < 8) {
+            return (false)
+        }
+        else if (!/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/.test(element.password.value)) {
+            return (false)
+        }
+        return (true)
+    }
+    function validateForm() {
+        if (!ValidateEmail()) {
+            Updatefeedback("Please enter a valid email address!")
+        }
+        else if (!ValidateUsername()) {
+            Updatefeedback("The username should have between 4-15 characters")
+        }
+        else if (!ValidatePassword()) {
+            Updatefeedback("The password should be at least 8 characters long.\n The password should contain at least 1 lowercase letter, 1 uppercase letter, 1 numerical character and 1 special character")
+        }
+        else {
+            Updatefeedback("")
+            incrementStep()
+        }
     }
     return (
         <Container style={{ marginTop: '5em' }}>
@@ -132,11 +187,10 @@ function InputPage() {
                 </div>
                 <div className="row">
                     <div className="col-md-12 mx-0">
-                        <form id="msform">
+                        <form id="msform" autoComplete="on">
                             <ul id="progressbar">
                                 <li className="active" id="account"><strong>Account</strong></li>
                                 <li ref={second} id="preferences"><strong>Preferences</strong></li>
-                                <li ref={third} id="info"><strong>Info</strong></li>
                             </ul>
                             <div ref={user} className="activediv">
                                 <FormGroup>
@@ -158,14 +212,16 @@ function InputPage() {
                                         type="password"
                                         name="password"
                                         id="examplePass"
+                                        autoComplete="current-password"
                                         placeholder="Enter password"
                                         className="msInput"
                                     />
+                                    <span style={{ color: 'red' }} >{feedback}</span>
                                     <Button
                                         className="nav-link d-lg-block"
                                         color="primary"
                                         name="next"
-                                        onClick={incrementStep}>
+                                        onClick={validateForm}>
                                         Next Step
                                     </Button>
                                 </FormGroup>
@@ -176,14 +232,14 @@ function InputPage() {
                                     <div id='slider' style={{ margin: '20px' }} ></div>
                                     <div className="custom-form-radio" >
                                         <FormText style={{ margin: '20px' }}>Select your equipment access: </FormText>
-                                        <Label >
-                                            <Input type="radio" name="noEquipment" id="equipment1" defaultChecked />No equipment
-                                    </Label>
-                                        <Label >
-                                            <Input type="radio" name="basicEquipment" id="equipment2" />Basic equipment
+                                        <Label className="form-check-label">
+                                            <Input type="radio" name="equipment" id="equipment1" value="noEquipment" defaultChecked />No equipment
                                     </Label>
                                         <Label className="form-check-label">
-                                            <Input type="radio" name="gymEquipment" id="equipment3" />Gym equipment
+                                            <Input type="radio" name="equipment" id="equipment2" value="basicEquipment" />Basic equipment
+                                    </Label>
+                                        <Label className="form-check-label">
+                                            <Input type="radio" name="equipment" id="equipment3" value="gymEquipment" />Gym equipment
                                     </Label>
                                     </div>
                                     <FormText>How would you rate your level of comfort and experience working out:</FormText>
@@ -200,67 +256,9 @@ function InputPage() {
                                             className="nav-link d-lg-block"
                                             color="primary"
                                             name="next"
-                                            onClick={incrementStep}>
-                                            Next Step
-                                    </Button>
-                                    </div>
-                                </FormGroup>
-                            </div>
-                            <div ref={info} className="hidden" >
-                                <FormGroup>
-                                    <div>
-                                        <Label for="exampleSelectMulti">Select Age</Label>
-                                        <Input className="selectGroup" type="select" name="ageSelect" id="ageSelect">
-                                            <option>16-18</option>
-                                            <option>18-25</option>
-                                            <option>25-35</option>
-                                            <option>35-45</option>
-                                            <option>&gt;50</option>
-                                        </Input>
-                                        <Label for="exampleSelectMulti">Select Height</Label>
-                                        <div className="split-dropdown">
-                                            <Input className="selectGroup" type="number" name="heightSelect" id="heightSelect"/>
-                                            <UncontrolledDropdown>
-                                                <DropdownToggle caret data-toggle="dropdown">
-                                                    {heightUnit || 'Select a unit' } 
-                                                </DropdownToggle>
-                                                <DropdownMenu>
-                                                    <DropdownItem onClick={()=>{selectUnitforHeight('cm')}} dropDownValue="cm">cm</DropdownItem>
-                                                    <DropdownItem onClick={()=>{selectUnitforHeight('inch')}} dropDownValue="inch">inch</DropdownItem>
-                                                </DropdownMenu>
-                                            </UncontrolledDropdown>
-                                        </div>
-                                        <Label for="exampleSelectMulti">Select Weight</Label>
-                                        <div className="split-dropdown">
-                                            <Input className="selectGroup" type="number" name="weightSelect" id="weightSelect" />
-                                            <UncontrolledDropdown>
-                                                <DropdownToggle caret data-toggle="dropdown">
-                                                    {weightUnit || 'Select a unit' } 
-                                                </DropdownToggle>
-                                                <DropdownMenu>
-                                                    <DropdownItem onClick={()=>{selectUnitforWeight('kg')}} dropDownValue="kg">kg</DropdownItem>
-                                                    <DropdownItem onClick={()=>{selectUnitforWeight('lbs')}} dropDownValue="lbs">lbs</DropdownItem>
-                                                </DropdownMenu>
-                                            </UncontrolledDropdown>
-                                        </div>
-                                    </div>
-                                    <div style={{ display: 'flex' }}>
-                                        <Button
-                                            className="nav-link d-lg-block"
-                                            color="default"
-                                            name="prev"
-                                            onClick={decrementStep}>
-                                            Previous
-                                    </Button>
-                                    <Link style={{ color: 'white' }} to="/">
-                                        <Button
-                                            className="nav-link d-lg-block"
-                                            color="primary"
-                                            name="next"
                                             onClick={SubmitForm}>
                                             Confirm
                                         </Button>
-                                    </Link>
                                     </div>
                                 </FormGroup>
                             </div>
