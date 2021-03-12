@@ -33,12 +33,15 @@ function checkIfMatchesFilter(exercise, filter) {
     }
 }
 
-export default function filteredExercises(listOfExercises, filter) {
-    let filtered_exercises = [];
+export default function filteredExerciseMask(listOfExercises, filter) {
+    let exercise_mask = [];
     listOfExercises.forEach(function (exercise) {
         if (checkIfMatchesFilter(exercise, filter)) {
-            filtered_exercises.push(exercise);
+            exercise_mask.push(true);
+        }
+        else{
+            exercise_mask.push(false);
         }
     });
-    return filtered_exercises;
+    return exercise_mask;
 }
