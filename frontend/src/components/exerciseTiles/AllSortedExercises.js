@@ -26,7 +26,7 @@ class AllSortedExercises extends React.Component {
 
     componentDidMount()
     {
-        fetch("http://127.0.0.1:8000/get_exercises")
+        fetch("http://127.0.0.1:8000/mainget_exercises")
             .then(res => res.json())
             .then((result) => {
                 console.log("Server response:", result);
