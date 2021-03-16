@@ -118,7 +118,7 @@ def getexercises(request):
 
         for e in exercises:
             if e["bodypart"] is not None:
-                bodyparts = eval(e["bodypart"])
+                bodyparts = e["bodypart"].split(',')
                 for bp in bodyparts:
                     data[bp].append(e)
             else:
