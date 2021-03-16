@@ -6,9 +6,7 @@ import {
     Input,
     FormGroup,
     Container
-} from "reactstrap"
-// @ts-ignore
-import Cookies from 'js-cookie'
+} from "reactstrap";
 // @ts-ignore
 import { toast } from 'react-toastify';
 import { LOGIN_URL } from '../constants/index'
@@ -79,7 +77,6 @@ function LoginPage() {
 
     // Send User Input to Backend
     function sendLoginData() {
-        const token = Cookies.get('key')
         let element = document.querySelector('form') as HTMLFormElement
         if (element) {
             let formData = new FormData(element)
@@ -89,20 +86,18 @@ function LoginPage() {
             }
             const requestOptions = {
                 method: 'POST',
-                headers: { Accept: 'application/json', Authorization: `Token ${token}` },
+                headers: { Accept: 'application/json' },
                 body: datapayload
             };
             fetch(LOGIN_URL, requestOptions)
-                .then(response => response.json())
-                .then(data => {
-                    console.log(data)
-                    if (data["key"]) {
+                .then(response => {
+                    if (response.status === 200) {
                         UpdateStatus("success")
                     }
-                    else if (data["username"] || data["email"]) {
-                        UpdateStatus("Username or email already in use!")
+                    else if (response.status === 403) {
+                        UpdateStatus("The username doesn't exist! Please register first.")
                     }
-                });
+                })
         }
 
     }
