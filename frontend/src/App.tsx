@@ -4,6 +4,7 @@ import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import Home from './views/Home'
+import Workouts from './views/WorkoutsPage'
 
 import InputPage from './views/InputPage'
 import { ToastContainer } from 'react-toastify';
@@ -31,6 +32,7 @@ function App() {
             <Route exact path="/dashboard" component={Dashboard} />
             <Route exact path="/workouts" component={Workouts} />
             <Route exact path="/input" component={InputPage} />
+            <Route exact path="/workouts" component={Workouts} />
             <Route exact path="/loginpage" component={LoginPage} />
           </Switch>
         </div>

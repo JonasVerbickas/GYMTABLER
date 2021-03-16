@@ -1,7 +1,6 @@
 import {
     Container,
     Row,
-    Col,
 } from "reactstrap";
 import "../App.css";
 import { Link } from "react-router-dom"

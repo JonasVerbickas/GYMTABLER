@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
+    'corsheaders',
     # Custom Apps
     'main',
     'frontend',
@@ -66,7 +66,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'gymtabler.urls'
-
+CORS_ORIGIN_ALLOW_ALL = True
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',

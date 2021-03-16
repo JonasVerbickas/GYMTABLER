@@ -189,7 +189,7 @@ select option{
 #progressbar li {
   list-style-type: none;
   font-size: 12px;
-  width: 50%;
+  width: 100%;
   float: left;
   position: relative;
 }
@@ -199,10 +199,8 @@ select option{
   content: "\ea49";
 }
 
-#progressbar #preferences:before {
-  font-family: Nucleo;
-  content: "\ea18";
-}
+
+
 
 .noUi-connect {
   background: #8c3db9 !important;
@@ -236,7 +234,6 @@ select option{
 #progressbar li.active:after {
   background: #8c3db9;
 }
-
 .exerciseContainer {
   display: flex;
   overflow: hidden;
