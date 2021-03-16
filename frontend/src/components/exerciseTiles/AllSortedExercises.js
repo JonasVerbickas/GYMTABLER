@@ -24,14 +24,56 @@ class AllSortedExercises extends React.Component {
         this.removeExerciseFromCart = this.removeExerciseFromCart.bind(this);
     }
 
+    getEquipementFromExercise(exercise_obj) {
+        if (exercise_obj['equipment']) {
+            let exercises_equipment = exercise_obj['equipment'].replaceAll("'", "\"");
+            let parsed = JSON.parse(exercises_equipment);
+            return parsed;
+        }
+        else {
+            return [];
+        }
+    }
+
+    getAllPossibleEquipent(response)
+    {
+        let equipment = [];
+        Object.keys(response).forEach((key) => {
+            response[key].forEach((exercise) => {
+                exercise['equipment'].forEach(e => {
+                    if (!equipment.includes(e)) {
+                        equipment.push(e);
+                    }
+                }
+                )
+            })
+        })
+        return equipment;
+    }
+
+    adjustResponse(response)
+    {
+        Object.keys(response).forEach((key) => {
+            response[key].forEach((exercise) => {
+                let eq = this.getEquipementFromExercise(exercise);
+                exercise['equipment'] = eq;
+                let bp = exercise['bodypart'].split(",");
+                exercise['bodypart'] = bp;
+            })
+        })
+    }
+
     componentDidMount()
     {
         fetch("http://127.0.0.1:8000/mainget_exercises")
             .then(res => res.json())
-            .then((result) => {
-                console.log("Server response:", result);
-                let expansion_states = Object.keys(result).map(() => false);
-                this.setState({ sorted_exercises: result, expanded: expansion_states.slice(), old_expansion_states: expansion_states.slice() });
+            .then((response) => {
+                console.log("Server response:", response);
+                this.adjustResponse(response);
+                console.log("Adjusted:", response);
+                let expansion_states = Object.keys(response).map(() => false);
+                let all_equipment = this.getAllPossibleEquipent(response);
+                this.setState({ sorted_exercises: response, possible_equipment: all_equipment, expanded: expansion_states.slice(), old_expansion_states: expansion_states.slice() });
             });
     }
 

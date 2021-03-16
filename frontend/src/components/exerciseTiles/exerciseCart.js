@@ -3,8 +3,8 @@ import CartItem from "./cartItem.js";
 
 export default function ExerciseCart(props) {
     return (<div id="exercise-cart">
-        <h4>Exercise cart:</h4>
-        {props.cart.length > 0 ? <ul>{props.cart.map((exercise_in_cart) => (<CartItem key={exercise_in_cart} name={exercise_in_cart} removeFromCart={() => props.removeFromCart(exercise_in_cart)}/>))}</ul> : <h6>No exercises added</h6>}
+        <h3 className="cart-header">Exercise cart</h3>
+        {props.cart.length > 0 ? <div className="cart-list">{props.cart.map((exercise_in_cart) => (<CartItem key={exercise_in_cart} name={exercise_in_cart} removeFromCart={() => props.removeFromCart(exercise_in_cart)} />))}</div> : <h6 style={{margin: 30}}>No exercises added</h6>}
         <button disabled={props.cart.length === 0} className="continue-button">Continue</button>
     </div>);
 }

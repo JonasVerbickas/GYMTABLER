@@ -22,7 +22,7 @@ export default function ExpandedExerciseTile(props) {
                     <div className="exercise-stats-row">
                         <p>Muscle groups:</p>
                         <ul>
-                            {/*props.exercise.bodypart*/[].map(function (bodypart, i) {
+                            {props.exercise.bodypart.map(function (bodypart, i) {
                                 return <li key={i}>{bodypart}</li>
                             })}
                         </ul>
