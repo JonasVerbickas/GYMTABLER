@@ -14,8 +14,6 @@ import {
   Col,
   NavbarBrand,
 } from "reactstrap";
-//@ts-ignore
-import Cookies from 'js-cookie'
 
 export default function IndexNavbar() {
   const [collapseOpen, setCollapseOpen] = React.useState(false);
@@ -55,9 +53,9 @@ export default function IndexNavbar() {
       <Container>
         <div className="navbar-translate">
           <NavbarBrand id="navbar-brand">
-            <Link to='/'>
-              <img src={MainLogo} alt="Logo" style={{ height: "50px" }} />
-            </Link>
+          <Link to='/'>
+              <img src={MainLogo} alt="Logo" style={{height: "50px"}}/>
+          </Link>
           </NavbarBrand>
           <button
             aria-expanded={collapseOpen}
@@ -93,42 +91,35 @@ export default function IndexNavbar() {
           </div>
           <Nav navbar>
             <NavItem className="p-0">
-              <div style={{ paddingLeft: '20px', paddingTop: '8px' }}>
-                <Link to="/">Home</Link>
-              </div>
+            <div style={{ paddingLeft: '20px', paddingTop: '8px' }}>
+            <Link to="/">Home</Link>
+            </div>
+            </NavItem>
+            <NavItem className="p-0">
+            <div style={{ paddingLeft: '20px', paddingTop: '8px' }}>
+            <Link to="/dashboard">Dashboard</Link>
+            </div>
             </NavItem>
             <NavItem className="p-0">
               <div style={{ paddingLeft: '20px', paddingTop: '8px' }}>
-                <Link to="/dashboard">Dashboard</Link>
-              </div>
+              <Link to="/workouts">Workouts</Link>
+            </div>
             </NavItem>
             <NavItem className="p-0">
-              <div style={{ paddingLeft: '20px', paddingTop: '8px' }}>
-                <Link to="/workouts">Workouts</Link>
-              </div>
+            <div style={{ paddingLeft: '20px', paddingTop: '8px' }}>
+            <Link to="/loginpage">Login</Link>
+            </div>
             </NavItem>
-            {Cookies.get('key') ?
-              <NavItem className="p-0">
-                <div style={{ paddingLeft: '20px', paddingTop: '8px' }}>
-                  <Button
-                    color="link"
-                    onClick={Cookies.remove('key')}
-                  >Logout</Button>
-                </div>
-              </NavItem>
-              : <>
-                <NavItem className="p-0">
-                  <div style={{ paddingLeft: '20px', paddingTop: '8px' }}>
-                    <Link to="/loginpage">Login</Link>
-                  </div>
-                </NavItem>
-                <NavItem><Button className="nav-link d-lg-block" color="primary">
-                  <Link to='/input'>
-                    Start now
+            <NavItem>
+              <Button
+                className="nav-link d-lg-block"
+                color="primary"
+              >
+                <Link to='/input'>
+                Start now
                 </Link>
-                </Button>
-                </NavItem>
-              </>}
+              </Button>
+            </NavItem>
           </Nav>
         </Collapse>
       </Container>
