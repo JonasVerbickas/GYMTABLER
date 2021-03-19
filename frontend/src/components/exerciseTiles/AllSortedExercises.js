@@ -63,9 +63,22 @@ class AllSortedExercises extends React.Component {
         })
     }
 
-    componentDidMount()
+    fetchJSON()
     {
-        fetch("http://127.0.0.1:8000/mainget_exercises")
+        function wait(delay) {
+            return new Promise((resolve) => setTimeout(resolve, delay));
+        }
+        function fetchRetry(url, delay, tries, fetchOptions = {}) {
+            function onError(err) {
+                let triesLeft = tries - 1;
+                if (!triesLeft) {
+                    throw err;
+                }
+                return wait(delay).then(() => fetchRetry(url, delay, triesLeft, fetchOptions));
+            }
+            return fetch(url, fetchOptions).catch(onError);
+        }
+        fetchRetry("http://127.0.0.1:8000/mainget_exercises", 5000, 5)
             .then(res => res.json())
             .then((response) => {
                 console.log("Server response:", response);
@@ -74,7 +87,12 @@ class AllSortedExercises extends React.Component {
                 let expansion_states = Object.keys(response).map(() => false);
                 let all_equipment = this.getAllPossibleEquipent(response);
                 this.setState({ sorted_exercises: response, possible_equipment: all_equipment, expanded: expansion_states.slice(), old_expansion_states: expansion_states.slice() });
-            });
+            })
+    }
+
+    componentDidMount()
+    {
+        this.fetchJSON()
     }
 
     compareFilterToEmpty(filter){
@@ -173,7 +191,7 @@ class AllSortedExercises extends React.Component {
         }
         else
         {
-            return <h1 style={{color: 'red'}}>Fetching data from server...<br/>If nothing changes in a couple of seconds try refreshing</h1>
+            return <h1 style={{color: 'red', textAlign: 'center', fontWeight: 'bolder'}}>Fetching data from server...</h1>
         }
     }
 }
