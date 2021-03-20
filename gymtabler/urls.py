@@ -16,11 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-urlpatterns = [ 
+urlpatterns = [
     path('', include("main.urls")),
     path('admin/', admin.site.urls),
+    path("workout/", include("workouts.urls")),
 
     # REST FRAMEWORK URLS
-    path('api/workout/', include('workouts.api.urls', 'workout-api')),
     path('api/account/', include('account.api.urls', 'account-api')),
 ]
