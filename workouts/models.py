@@ -14,7 +14,7 @@ class Workout(models.Model):
         default=2)  # 1 = easy, 2 = medium, 3 = hard
 
     account = models.ForeignKey(
-        User, on_delete=models.CASCADE)
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name = "workouts")
     slug = models.SlugField(blank=True, unique=True)
 
     class Meta:
