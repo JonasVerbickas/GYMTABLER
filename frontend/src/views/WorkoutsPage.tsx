@@ -4,8 +4,20 @@ import {
 } from "reactstrap";
 import "../App.css";
 import { Link } from "react-router-dom"
-
+import { useEffect } from "react";
+import { PREBUILD_WKOUT } from '../constants/index'
 function WorkoutsPage() {
+    useEffect(() => {
+        const requestOptions = {
+            method: 'POST',
+            headers: { Accept: 'application/json' }
+        };
+        fetch(PREBUILD_WKOUT, requestOptions)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data)
+            });
+    }, [])
     return (
         <div>
             <div className="page-header header-filter">

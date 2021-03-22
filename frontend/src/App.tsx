@@ -11,7 +11,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Dashboard from './views/Dashboard.js'
 import LoginPage from './views/LoginPage'
 import Workouts from './views/WorkoutsPage'
-
+import CreateWorkout from './views/CreateWorkout'
 function App() {
   React.useEffect(() => {
     document.body.classList.toggle("index-page");
@@ -31,7 +31,7 @@ function App() {
             <Route exact path="/dashboard" component={Dashboard} />
             <Route exact path="/workouts" component={Workouts} />
             <Route exact path="/input" component={InputPage} />
-            <Route exact path="/workouts" component={Workouts} />
+            <Route exact path="/createworkout" component={CreateWorkout} />
             <Route exact path="/loginpage" component={LoginPage} />
           </Switch>
         </div>

@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.conf import settings
 from django.utils.text import slugify
 from django.contrib.auth.models import User
 from django.db.models.signals import pre_save
@@ -14,7 +14,7 @@ class Workout(models.Model):
         default=2)  # 1 = easy, 2 = medium, 3 = hard
 
     account = models.ForeignKey(
-        User, on_delete=models.CASCADE)
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     slug = models.SlugField(blank=True, unique=True)
 
     class Meta:
