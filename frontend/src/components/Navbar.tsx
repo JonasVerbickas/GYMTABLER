@@ -119,10 +119,11 @@ export default function IndexNavbar() {
                 <Link to="/workouts">Workouts</Link>
               </div>
             </NavItem>
-            {Cookies.get('key') != null ?
+            {Cookies.get('key') != "" ?
               <NavItem className="p-0">
-                <div style={{ paddingLeft: '20px', paddingTop: '8px' }}>
+                <div style={{ paddingLeft: '20px' }}>
                   <Button
+                    className="nav-link d-lg-block"
                     color="link"
                     onClick={logout}
                   >Logout</Button>
