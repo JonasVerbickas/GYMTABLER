@@ -16,6 +16,7 @@ import {
 } from "reactstrap";
 //@ts-ignore
 import Cookies from 'js-cookie'
+import { LOGOUT_URL } from '../constants/index'
 
 export default function IndexNavbar() {
   const [collapseOpen, setCollapseOpen] = React.useState(false);
@@ -49,6 +50,17 @@ export default function IndexNavbar() {
   };
   const onCollapseExited = () => {
     setCollapseOut("");
+  };
+  const logout = () => {
+    const requestOptions = {
+      method: 'POST',
+      headers: { Accept: 'application/json' },
+    };
+    fetch(LOGOUT_URL, requestOptions)
+      .then(response => response.json())
+      .then(data => {
+        console.log(data)
+      });
   };
   return (
     <Navbar className={"fixed-top " + color} color-on-scroll="100" expand="lg">
@@ -112,7 +124,7 @@ export default function IndexNavbar() {
                 <div style={{ paddingLeft: '20px', paddingTop: '8px' }}>
                   <Button
                     color="link"
-                    onClick={Cookies.remove('key')}
+                    onClick={logout}
                   >Logout</Button>
                 </div>
               </NavItem>
