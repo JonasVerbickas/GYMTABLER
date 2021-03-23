@@ -1,4 +1,4 @@
-input[type=search]{
+input[type="search"] {
   padding: 0 30px;
   width: 500px;
   height: 55px;
@@ -6,11 +6,11 @@ input[type=search]{
   border: 0;
 }
 
-#equipment-filter > p{
+#equipment-filter > p {
   margin: 0;
 }
 
-#filters{
+#filters {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
@@ -19,18 +19,18 @@ input[type=search]{
   margin: 20px;
 }
 
-#equipment-filter{
+#equipment-filter {
   display: flex;
   flex-direction: row;
   align-items: center;
   margin: 20px;
 }
 
-.equipment-checkbox > input{
+.equipment-checkbox > input {
   margin: 5px 5px 5px 10px;
 }
 
-.equipment-checkbox > label{
+.equipment-checkbox > label {
   color: rgb(168, 168, 168);
   font-weight: 500;
   margin: 0;

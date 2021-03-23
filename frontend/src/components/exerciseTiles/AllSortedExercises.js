@@ -197,7 +197,7 @@ class AllSortedExercises extends React.Component {
         }
         else
         {
-            return <h1 style={{color: 'red', textAlign: 'center', fontWeight: 'bolder'}}>Fetching data from server...</h1>
+            return <h1 style={{color: 'red', textAlign: 'center', fontWeight: 'bolder'}}>Failed to fetch data from server...</h1>
         }
     }
 }

@@ -1,48 +1,50 @@
 .dashboard {
-display:flex;
-flex-direction:row;
-align-items:center;
-height:85vh;
-margin: 90px 4.1vw;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 85vh;
+  margin: 90px 4.1vw;
 }
 
 .dashboard-table {
-width: 250px;
-font-size:x-large;
-border-radius:5px;
-background-color: slateblue;
+  width: 250px;
+  font-size: x-large;
+  border-radius: 5px;
+  background-color: slateblue;
 }
 
 .exercise {
-padding: 8px 30px;
-font-weight: 500;
-border-top: 1px solid darkgray;
+  padding: 8px 30px;
+  font-weight: 500;
+  color: rgb(245, 245, 245);
+  border-top: 1px solid darkgray;
 }
 
 .exercise-category {
-color:#40E0D0;
-font-weight:700;
-padding:15px 20px 0px 20px;
+  color: #40e0d0;
+  font-weight: 700;
+  padding: 15px 20px 0px 20px;
 }
 
-iframe,.empty-frame {
-align-self:stretch;
-flex-grow:1;
-border: 1px solid gray;
-border-radius: 2px;
+iframe,
+.empty-frame {
+  align-self: stretch;
+  flex-grow: 1;
+  border: 1px solid gray;
+  border-radius: 2px;
 }
 
 .empty-frame {
-display:flex;
-font-size:large;
-font-weight:700;
-justify-content:center;
-align-items:center;
+  display: flex;
+  font-size: large;
+  font-weight: 700;
+  justify-content: center;
+  align-items: center;
 }
 
-.dashboard-dropdown{
-    border-radius: 5px;
-    margin: 15px auto 20px;
-    font-size: x-large;
-    display: block;
+.dashboard-dropdown {
+  border-radius: 5px;
+  margin: 15px auto 20px;
+  font-size: x-large;
+  display: block;
 }

@@ -1,12 +1,11 @@
-#exercise-tables-and-filters{
+#exercise-tables-and-filters {
   display: flex;
   flex-direction: column;
   width: auto;
-  
 }
 
-@media (min-width: 700px){
-#exercise-tables-and-filters{
+@media (min-width: 700px) {
+  #exercise-tables-and-filters {
     margin: 5vw;
   }
 }

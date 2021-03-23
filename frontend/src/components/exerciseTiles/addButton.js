@@ -1,5 +1,9 @@
-import "../../assets/css/cartButton.css"
+import "../../assets/css/cartButton.css";
 
 export default function AddButton(props) {
-    return (<button onClick={props.onClick} className={"cart-btn btn-add"}>Add</button>);
+  return (
+    <button onClick={props.onClick} className={"cart-btn btn-add"}>
+      Add
+    </button>
+  );
 }

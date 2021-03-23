@@ -1,17 +1,17 @@
-.continue-button{
-    margin: 30px;
-    padding: 10px 20px;
-    border-radius: 10px;
-    border: none;
-    color: white;
-    background-color: #e14eca;
+.continue-button {
+  margin: 30px;
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: none;
+  color: white;
+  background-color: #e14eca;
 }
 
-.continue-button:hover{
-    background-color: #c241ae;
+.continue-button:hover {
+  background-color: #c241ae;
 }
 
-.continue-button:disabled{
-   background-color: #474747; 
-   color: gray;
+.continue-button:disabled {
+  background-color: #474747;
+  color: gray;
 }
