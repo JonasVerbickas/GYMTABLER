@@ -12,14 +12,15 @@ function matchesSearchFilter(exercise, filter) {
 
 function matchesEquipmentFilter(exercise, filter) {
     if (filter.equipment.length > 0) {
-        if (exercise.equipment) {
+        if (exercise.equipment.length > 0) {
             for (let i = 0; i < exercise.equipment.length; i++) {
                 if (filter.equipment.includes(exercise.equipment[i])) {
                     return true;
                 }
             }
+            // exercise requires equipment and does not match filter
+            return false;
         }
-        return false;
     }
     return true;
 }
