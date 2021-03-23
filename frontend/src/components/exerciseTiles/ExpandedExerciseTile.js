@@ -1,3 +1,19 @@
+function statsColumn(title, list) {
+  console.log(list);
+  return (
+    <div className="exercise-stats-column">
+      <h6 style={{ borderBottom: "solid black 1px" }}>{title}</h6>
+      {list.length > 0 ? (
+        list.map(function (equipment, i) {
+          return <p key={i}>{equipment}</p>;
+        })
+      ) : (
+        <p>None</p>
+      )}
+    </div>
+  );
+}
+
 export default function ExpandedExerciseTile(props) {
   return (
     <div className="exercise-tile-border">
@@ -16,24 +32,8 @@ export default function ExpandedExerciseTile(props) {
             <p className="exercise-description">{props.exercise.description}</p>
           </div>
           <div className="exercise-stats-row">
-            <p>Equipment needed:</p>
-            {props.exercise.equipment.lenght > 0 ? (
-              <ul>
-                {props.exercise.equipment.map(function (equipment, i) {
-                  return <li key={i}>{equipment}</li>;
-                })}
-              </ul>
-            ) : (
-              <p style={{ marginLeft: "5px" }}>None</p>
-            )}
-          </div>
-          <div className="exercise-stats-row">
-            <p>Muscle groups:</p>
-            <ul>
-              {props.exercise.bodypart.map(function (bodypart, i) {
-                return <li key={i}>{bodypart}</li>;
-              })}
-            </ul>
+            {statsColumn("Muscle groups", props.exercise.bodypart)}
+            {statsColumn("Equipment needed", props.exercise.equipment)}
           </div>
           <div
             className="exercise-stats-row"
@@ -42,7 +42,7 @@ export default function ExpandedExerciseTile(props) {
             <a
               href={props.exercise.link}
               target="_blank"
-              style={{ fontWeight: 400 }}
+              style={{ fontWeight: 400, color: "darkmagenta" }}
             >
               VIDEO
             </a>
