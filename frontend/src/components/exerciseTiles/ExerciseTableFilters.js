@@ -11,7 +11,6 @@ function ExerciseTileFilters(props) {
 
     function equipmentCheckboxChange(event) {
         let name_of_changed = event.target.name;
-        console.log(name_of_changed);
         let new_filter = props.filter;
         if (new_filter.equipment.includes(name_of_changed)) {
             let i = new_filter.equipment.indexOf(name_of_changed);
@@ -24,9 +23,9 @@ function ExerciseTileFilters(props) {
     }
 
     return (<div id="filters">
-        <input id="searchbox" type="search" placeholder="Search.." onChange={(e) => searchFilterChange(e)}></input>
-        <EquipmentFilter possible_equipment={props.possible_equipment} equipmentCheckboxChange={equipmentCheckboxChange}/>
-        <PurpleButton text="Clear filters"/>
+        <input id="searchbox" type="search" placeholder="Search.." onChange={(e) => searchFilterChange(e)} value={props.filter.text}></input>
+        <EquipmentFilter possible_equipment={props.possible_equipment} checkboxState={props.filter.equipment} equipmentCheckboxChange={equipmentCheckboxChange}/>
+        <PurpleButton text="Clear filters" onClick={props.resetFilter}/>
     </div>);
 }
 

@@ -22,6 +22,7 @@ class AllSortedExercises extends React.Component {
         this.onFilterChange = this.onFilterChange.bind(this);
         this.expandACategory = this.expandACategory.bind(this);
         this.removeExerciseFromCart = this.removeExerciseFromCart.bind(this);
+        this.resetFilter = this.resetFilter.bind(this);
     }
 
     getEquipementFromExercise(exercise_obj) {
@@ -78,12 +79,11 @@ class AllSortedExercises extends React.Component {
             }
             return fetch(url, fetchOptions).catch(onError);
         }
-        fetchRetry("http://127.0.0.1:8000/mainget_exercises", 5000, 5)
+        fetchRetry("http://127.0.0.1:8000/mainget_exercises", 2000, 2)
             .then(res => res.json())
             .then((response) => {
                 console.log("Server response:", response);
                 this.adjustResponse(response);
-                console.log("Adjusted:", response);
                 let expansion_states = Object.keys(response).map(() => false);
                 let all_equipment = this.getAllPossibleEquipent(response);
                 this.setState({ sorted_exercises: response, possible_equipment: all_equipment, expanded: expansion_states.slice(), old_expansion_states: expansion_states.slice() });
@@ -143,6 +143,12 @@ class AllSortedExercises extends React.Component {
             this.setState({ filter: new_filter, old_expansion_states: old_expansion_states, expanded: new_expansion_states});
         }
     }
+
+    resetFilter()
+    {
+        console.log("RESET FILTER");
+        this.onFilterChange(this.deepObjectCopy(EMPTY_FILTER));
+    }
     
     addExerciseToCart(new_exercise){
         let new_cart = this.state.cart;
@@ -182,7 +188,7 @@ class AllSortedExercises extends React.Component {
         if(Object.keys(this.state.sorted_exercises).length > 0)
         {
            return (<div id="exercise-tables-and-filters">
-               <ExerciseTileFilters onFilterChange={this.onFilterChange} possible_equipment={this.state.possible_equipment} filter={this.deepObjectCopy(this.state.filter)} />
+               <ExerciseTileFilters onFilterChange={this.onFilterChange} resetFilter={this.resetFilter} possible_equipment={this.state.possible_equipment} filter={this.deepObjectCopy(this.state.filter)} />
                 <div id="all-exercise-tables-with-headers">
                    {Object.keys(this.state.sorted_exercises).map((bodypart, index) => (<MansonryWithHeader key={bodypart} bodypart={bodypart} listOfExercises={this.state.sorted_exercises[bodypart]} filter={this.state.filter} addToCart={this.addExerciseToCart} expanded={this.state.expanded[index]} expandOnClick={() => this.expandACategory(index)} getExerciseCartStatus={this.getExerciseCartStatus} />))}
                 </div>
