@@ -3,15 +3,16 @@
   padding: 10px 20px;
   border-radius: 10px;
   border: none;
-  color: white;
-  background-color: #e14eca;
+  color: white !important;
+  background-image: linear-gradient(to bottom right, #e14eca, #ba54f5);
+  box-shadow: 0px 5px 10px -5px rgb(20, 20, 20);
 }
 
 .continue-button:hover {
-  background-color: #c241ae;
+  background-image: linear-gradient(to bottom right, #cc45b8, #a64bdb);
 }
 
 .continue-button:disabled {
-  background-color: #474747;
+  background-image: linear-gradient(to bottom right, #474747, #474747);
   color: gray;
 }
