@@ -1,5 +1,6 @@
-import PropTypes from 'prop-types';
 import "../../assets/css/exerciseTileFilters.css";
+import PurpleButton from "../purpleButton";
+import EquipmentFilter from "../exerciseTiles/equipmentFilter";
 
 function ExerciseTileFilters(props) {
     function searchFilterChange(event) {
@@ -24,23 +25,9 @@ function ExerciseTileFilters(props) {
 
     return (<div id="filters">
         <input id="searchbox" type="search" placeholder="Search.." onChange={(e) => searchFilterChange(e)}></input>
-        <div id="equipment-filter">
-            <p>Equipment:</p>
-            <div id="equipment-checkboxes">
-                {props.possible_equipment.map(piece_of_equipment => <div key={piece_of_equipment} className="equipment-checkbox">
-                    <input id={"checkbox " + piece_of_equipment} type="checkbox" name={piece_of_equipment} onChange={(e) => equipmentCheckboxChange(e)}></input>
-                    <label htmlFor={"checkbox " + piece_of_equipment}>{piece_of_equipment}</label>
-                </div>)}
-            </div>
-        </div>
+        <EquipmentFilter possible_equipment={props.possible_equipment} equipmentCheckboxChange={equipmentCheckboxChange}/>
+        <PurpleButton text="Clear filters"/>
     </div>);
-}
-
-
-ExerciseTileFilters.propTypes = {
-    onFilterChange: PropTypes.func.isRequired,
-    possible_equipment: PropTypes.array.isRequired,
-    filter: PropTypes.object.isRequired
 }
 
 export default ExerciseTileFilters;
