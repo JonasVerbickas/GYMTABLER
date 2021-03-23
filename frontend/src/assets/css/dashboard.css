@@ -38,3 +38,10 @@ font-weight:700;
 justify-content:center;
 align-items:center;
 }
+
+.dashboard-dropdown{
+    border-radius: 5px;
+    margin: 15px auto 20px;
+    font-size: x-large;
+    display: block;
+}

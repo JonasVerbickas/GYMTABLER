@@ -57,7 +57,7 @@ class Dashboard extends React.Component {
     }
     else
     {
-      return <h1>Failed to fetch workouts</h1>
+      return <h1 style={{textAlign: "center", color: "red", fontWeight: "bolder"}}>Failed to fetch workouts</h1>
     }
   }
 }
