@@ -17,11 +17,12 @@ import {
 //@ts-ignore
 import Cookies from 'js-cookie'
 import { LOGOUT_URL } from '../constants/index'
-
+import { useEffect } from 'react'
 export default function IndexNavbar() {
   const [collapseOpen, setCollapseOpen] = React.useState(false);
   const [collapseOut, setCollapseOut] = React.useState("");
   const [color, setColor] = React.useState("navbar-transparent");
+  const [cookie, setCookie] = React.useState()
   React.useEffect(() => {
     window.addEventListener("scroll", changeColor);
     return function cleanup() {
@@ -60,8 +61,14 @@ export default function IndexNavbar() {
       .then(response => response.json())
       .then(data => {
         console.log(data)
+        if (data["detail"] == "Successfully logged out.") {
+          setCookie(Cookies.remove("key"))
+        }
       });
   };
+  useEffect(() => {
+    setCookie(Cookies.get('key'))
+  }, [Cookies.get('key')])
   return (
     <Navbar className={"fixed-top " + color} color-on-scroll="100" expand="lg">
       <Container>
@@ -119,7 +126,7 @@ export default function IndexNavbar() {
                 <Link to="/workouts">Workouts</Link>
               </div>
             </NavItem>
-            {Cookies.get('key') != "" ?
+            {cookie != undefined ?
               <NavItem className="p-0">
                 <div style={{ paddingLeft: '20px' }}>
                   <Button
