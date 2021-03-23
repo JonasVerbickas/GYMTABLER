@@ -1,6 +1,7 @@
 import React from 'react';
 import Exercise from '../components/dashboard/DashboardExercise.js';
 import Category from '../components/dashboard/DashboardCategory.js';
+import Dropdown from '../components/dashboard/DashboardDropdown.js';
 import DashboardVideo from '../components/dashboard/DashboardVideo.js';
 import "../assets/css/dashboard.css"
 
@@ -11,61 +12,53 @@ class Dashboard extends React.Component {
     this.state = {
       video_link: ""
     };
+    this.handleWorkoutChange = this.handleWorkoutChange.bind(this);
   }
 
-  exercise2link(exercise)
-  {
-    let converter = { "Bench Press": "https://www.youtube.com/embed/rT7DgCr-3pg",
-                      "Deadlift": "https://www.youtube.com/embed/SaYX-7emO4U"};
-    
-    if (Object.keys(converter).indexOf(exercise) > -1)
-    {
-      return converter[exercise];
-    }
-    else
-    {
-      return "";
-    }
+  componentDidMount(){
+    fetch("http://127.0.0.1:8000/workout/get_prebuilt/")
+      .then(res => res.json())
+      .then((response) => {
+        console.log("dashboard response[0]", response[0]);
+        this.setState({workouts: response, selected_index: 0});
+      })
   }
 
-  handleClick(ex_name)
+  adjustedExerciseLink(exercise_link){
+    return exercise_link.replace("watch?v=", "embed/");
+  } 
+
+  handleClick(exercise)
   {
-    let link = this.exercise2link(ex_name);
-    this.setState({video_link: link});
+    let link = exercise.link;
+    let adjusted_link = this.adjustedExerciseLink(link);
+    this.setState({video_link: adjusted_link});
   }
 
-  renderExercise(ex_name)
+  handleWorkoutChange(event)
   {
-    return (
-      <Exercise
-        name={ex_name}
-        onClick={() => this.handleClick(ex_name)}
-      />
-    );
-  }
-
-  renderCategory(cat_name)
-  {
-    return (
-      <Category cat_name={cat_name}/>
-    )
+    console.log(event.target.value);
+    this.setState({ selected_index: event.target.value })
   }
 
   render()
   {
-    return (
-      <div className="dashboard">
-        <table className='dashboard-table'>
-            {this.renderCategory("Day1")}
-            {this.renderExercise("Bench Press")}
-            {this.renderExercise("Deadlift")}
-            {this.renderCategory("Day2")}
-            {this.renderExercise("Bench Press")}
-            {this.renderExercise("Deadlift")}
-        </table>
-        <DashboardVideo video_link={this.state.video_link}/>
-      </div>
-    );
+    if(this.state.workouts)
+    {
+      return (
+        <div className="dashboard">
+          <div className='dashboard-table'>
+            <Dropdown workouts={this.state.workouts} handleWorkoutChange={this.handleWorkoutChange}/>
+            {this.state.workouts[this.state.selected_index].exercises.map(exercise => <Exercise key={exercise.name} exercise={exercise} onClick={() => this.handleClick(exercise)} />)}
+          </div>
+          <DashboardVideo video_link={this.state.video_link} />
+        </div>
+      );
+    }
+    else
+    {
+      return <h1>Failed to fetch workouts</h1>
+    }
   }
 }
 
