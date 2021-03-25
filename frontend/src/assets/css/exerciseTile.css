@@ -46,7 +46,8 @@
 }
 
 .small-exercise-tile .exercise-title {
-  padding: 10px;
+  padding-left: 15px;
+  padding-right: 10px;
 }
 
 .exercise-description {

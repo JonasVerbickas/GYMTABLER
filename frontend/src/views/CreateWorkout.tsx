@@ -2,7 +2,7 @@ import {
     Container,
 } from "reactstrap";
 import "../App.css";
-import AllSortedExercises from '../components/exerciseTiles/AllSortedExercises';
+import AllSortedExercises from '../components/createWorkout/AllSortedExercises';
 function CreateWorkout() {
     return (
         <div>

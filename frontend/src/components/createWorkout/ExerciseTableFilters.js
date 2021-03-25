@@ -1,6 +1,6 @@
 import "../../assets/css/exerciseTileFilters.css";
 import PurpleButton from "../purpleButton";
-import EquipmentFilter from "../exerciseTiles/equipmentFilter";
+import EquipmentFilter from "./equipmentFilter";
 
 function ExerciseTileFilters(props) {
   function searchFilterChange(event) {
