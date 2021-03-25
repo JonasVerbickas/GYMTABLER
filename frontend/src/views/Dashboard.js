@@ -10,6 +10,7 @@ class Dashboard extends React.Component {
     super(props);
     this.state = {
       video_link: "",
+      failed_to_fetch: false,
     };
     this.handleWorkoutChange = this.handleWorkoutChange.bind(this);
   }
@@ -20,7 +21,8 @@ class Dashboard extends React.Component {
       .then((response) => {
         console.log("dashboard response[0]", response[0]);
         this.setState({ workouts: response, selected_index: 0 });
-      });
+      })
+      .catch(() => this.setState({ failed_to_fetch: true }));
   }
 
   adjustedExerciseLink(exercise_link) {
@@ -38,8 +40,23 @@ class Dashboard extends React.Component {
     this.setState({ selected_index: event.target.value });
   }
 
+  getFetchState() {
+    if (this.state.failed_to_fetch) {
+      return (
+        <h1 style={{ textAlign: "center", color: "red", fontWeight: "bolder" }}>
+          Failed to fetch workouts
+        </h1>
+      );
+    } else if (!this.state.workouts) {
+      return <p style={{ textAlign: "center" }}>Fetching data</p>;
+    } else {
+      return "OK";
+    }
+  }
+
   render() {
-    if (this.state.workouts) {
+    let fetch_state = this.getFetchState();
+    if (fetch_state === "OK") {
       return (
         <div className="dashboard">
           <div className="dashboard-table">
@@ -61,11 +78,7 @@ class Dashboard extends React.Component {
         </div>
       );
     } else {
-      return (
-        <h1 style={{ textAlign: "center", color: "red", fontWeight: "bolder" }}>
-          Failed to fetch workouts
-        </h1>
-      );
+      return fetch_state;
     }
   }
 }
