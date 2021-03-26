@@ -18,6 +18,7 @@
   font-weight: 500;
   color: rgb(245, 245, 245);
   border-top: 1px solid darkgray;
+  cursor: pointer;
 }
 
 .exercise-category {

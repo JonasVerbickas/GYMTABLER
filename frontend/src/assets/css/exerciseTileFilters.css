@@ -28,6 +28,7 @@ input[type="search"] {
 
 .equipment-checkbox > input {
   margin: 5px 5px 5px 10px;
+  cursor: pointer;
 }
 
 .equipment-checkbox > label {
