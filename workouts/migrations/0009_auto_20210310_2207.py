@@ -3,9 +3,9 @@
 from django.db import migrations
 from json import loads
 from main.models import Exercise
-from django.contrib.auth.models import User
 from workouts.models import Workout
-
+from django.contrib.auth import get_user_model
+User = get_user_model()
 
 def importexercises(apps, se):
 

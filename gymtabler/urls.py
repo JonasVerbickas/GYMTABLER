@@ -15,17 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from dj_rest_auth.registration.views import VerifyEmailView
 
 urlpatterns = [ 
+    #path('', include('django.contrib.auth.urls')),
     path('main', include("main.urls")),
-    path('admin/', admin.site.urls),
-    path('', include('django.contrib.auth.urls')),
-    path('dj-rest-auth/', include('dj_rest_auth.urls')),
-    path('dj-rest-auth/registration/', include('dj_rest_auth.registration.urls')),
-    path('dj-rest-auth/account-confirm-email/', VerifyEmailView.as_view(), name='account_email_verification_sent'),
-    path("workout/", include("workouts.urls"))
-    # REST FRAMEWORK URLS
+    path("workout/", include("workouts.urls")),
     #path('api/workout/', include('workouts.api.urls', 'workout-api')),
-    #path('api/account/', include('account.api.urls', 'account-api')),
+    path('account/', include('account.urls')),
 ]
