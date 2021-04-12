@@ -16,9 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-urlpatterns = [ 
+urlpatterns = [
     #path('', include('django.contrib.auth.urls')),
-    path('main', include("main.urls")),
+    path('main/', include("main.urls")),
     path("workout/", include("workouts.urls")),
     #path('api/workout/', include('workouts.api.urls', 'workout-api')),
     path('account/', include('account.urls')),
