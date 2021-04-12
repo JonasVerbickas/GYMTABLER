@@ -6,7 +6,7 @@ from main.models import Exercise
 
 
 class Workout(models.Model):
-
+    name = models.TextField()
     bodyparts = models.TextField()
     exercises = models.ManyToManyField(Exercise)
     difficulty = models.IntegerField(

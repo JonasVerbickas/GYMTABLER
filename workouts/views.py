@@ -29,24 +29,27 @@ def get_prebuilt_workouts(request):
 
 def get_user_workouts(request):
     user = request.user()
-    workouts = get_user_model().workouts.all()
+    workouts = user.workouts.all()
 
-    # json -
-    # return HttpResponse( )
+    return HttpResponse(serializejson(workouts))
 
 
-def save_workouts(request):
+def save_workout(request):
     user = request.user()
     parameters = request.POST
     difficulty = int(parameters["difficulty"])
-    body_part = parameters["body parts"]
+    body_part = parameters["bodyparts"]
     Exercises = parameters["exercises"].split(", ")
     workout = Workout()
 
     for x in Exercises:
         ex = Exercises.objects.get(name=x)
         workout.exercises.add(ex)
-    workout.name = parameters["name"]
+    try:
+        workout.name = parameters["name"]
+    except KeyError:
+        workout.name = "Default"
+
     workout.difficulty = difficulty
     workout.bodypart = body_part
     workout.account = user
