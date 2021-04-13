@@ -2,7 +2,21 @@ import "../../assets/css/exerciseCart.css";
 import CartItem from "./cartItem.js";
 import PurpleButton from "../purpleButton";
 
+function postReq(exercise_cart) {
+  fetch("http://127.0.0.1:8000/workouts/save/", {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      exercises: exercise_cart,
+    }),
+  });
+}
+
 export default function ExerciseCart(props) {
+  console.log(props.cart);
   return (
     <div id="exercise-cart">
       <h3 className="cart-header">Exercise cart</h3>
@@ -19,7 +33,11 @@ export default function ExerciseCart(props) {
       ) : (
         <h6 style={{ margin: 30 }}>No exercises added</h6>
       )}
-      <PurpleButton disabled={props.cart.length === 0} text={"Continue"} />
+      <PurpleButton
+        disabled={props.cart.length === 0}
+        text={"Continue"}
+        onClick={() => postReq(props.cart)}
+      />
     </div>
   );
 }
