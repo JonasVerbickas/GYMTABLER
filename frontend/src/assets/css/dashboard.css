@@ -6,6 +6,12 @@
   margin: 90px 4.1vw;
 }
 
+@media (max-width: 1000px) {
+  .dashboard {
+    flex-direction: column-reverse;
+  }
+}
+
 .dashboard-table {
   width: 250px;
   font-size: x-large;
