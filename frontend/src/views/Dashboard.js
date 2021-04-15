@@ -11,12 +11,20 @@ class Dashboard extends React.Component {
     this.state = {
       video_link: "",
       failed_to_fetch: false,
+      access: localStorage.getItem('access'),
     };
     this.handleWorkoutChange = this.handleWorkoutChange.bind(this);
   }
 
   componentDidMount() {
-    fetch("http://127.0.0.1:8000/workout/get_prebuilt/")
+    fetch("http://127.0.0.1:8000/workout/get_prebuilt/", {
+      method: 'GET', // *GET, POST, PUT, DELETE, etc.
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': `JWT ${this.state.access}`,
+        }
+      })
       .then((res) => res.json())
       .then((response) => {
         console.log("dashboard response[0]", response[0]);
