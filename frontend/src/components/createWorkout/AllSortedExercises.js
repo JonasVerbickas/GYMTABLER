@@ -77,7 +77,7 @@ class AllSortedExercises extends React.Component {
       }
       return fetch(url, fetchOptions).catch(onError);
     }
-    fetchRetry("http://127.0.0.1:8000/mainget_exercises", 2000, 2)
+    fetchRetry("http://127.0.0.1:8000/main/get_exercises", 2000, 2)
       .then((res) => res.json())
       .then((response) => {
         console.log("Server response:", response);
