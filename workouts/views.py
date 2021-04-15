@@ -28,10 +28,15 @@ def get_prebuilt_workouts(request):
 
 
 def get_user_workouts(request):
-    user = request.user()
-    workouts = user.workouts.all()
-
-    return HttpResponse(serializejson(workouts))
+    try:
+        user = request.user
+        print("user", user)
+        workouts = Workout.objects.filter(account=user)
+        print("workouts", workouts)
+        return HttpResponse(serializejson(workouts))
+    except:
+        print("except")
+        return HttpResponse("Not working")
 
 
 def save_workout(request):

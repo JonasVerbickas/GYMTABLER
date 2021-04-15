@@ -1,6 +1,5 @@
 import React from "react";
 import Exercise from "../components/dashboard/DashboardExercise.js";
-import Category from "../components/dashboard/DashboardCategory.js";
 import Dropdown from "../components/dashboard/DashboardDropdown.js";
 import DashboardVideo from "../components/dashboard/DashboardVideo.js";
 import "../assets/css/dashboard.css";
@@ -16,13 +15,21 @@ class Dashboard extends React.Component {
   }
 
   componentDidMount() {
-    fetch("http://127.0.0.1:8000/workout/get_prebuilt/")
-      .then((res) => res.json())
+    fetch("http://127.0.0.1:8000/workout/get_user/", {
+      headers: { Accept: "application/json" },
+    })
+      .then((res) => {
+        console.log("res:", res);
+        res.json();
+      })
       .then((response) => {
         console.log("dashboard response[0]", response[0]);
         this.setState({ workouts: response, selected_index: 0 });
       })
-      .catch(() => this.setState({ failed_to_fetch: true }));
+      .catch((e) => {
+        console.log("error:", e);
+        this.setState({ failed_to_fetch: true });
+      });
   }
 
   adjustedExerciseLink(exercise_link) {
@@ -44,7 +51,7 @@ class Dashboard extends React.Component {
     if (this.state.failed_to_fetch) {
       return (
         <h1 style={{ textAlign: "center", color: "red", fontWeight: "bolder" }}>
-          Failed to fetch workouts
+          Failed to fetch workouts. You need to login/register first.
         </h1>
       );
     } else if (!this.state.workouts) {

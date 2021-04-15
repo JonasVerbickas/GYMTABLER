@@ -3,7 +3,7 @@ import CartItem from "./cartItem.js";
 import PurpleButton from "../purpleButton";
 
 function postReq(exercise_cart) {
-  fetch("http://127.0.0.1:8000/workouts/save/", {
+  fetch("http://127.0.0.1:8000/workout/save/", {
     method: "POST",
     headers: {
       Accept: "application/json",
