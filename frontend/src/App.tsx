@@ -13,6 +13,15 @@ import LoginPage from './views/LoginPage'
 import Workouts from './views/WorkoutsPage'
 import CreateWorkout from './views/CreateWorkout'
 import WorkoutPage from './views/WorkoutPage'
+
+import Login from './containers/Login';
+import SignUp from './containers/Signup';
+import Activate from './containers/Activate';
+import ResetPassword from './containers/ResetPassword';
+import ResetPasswordConfirm from './containers/ResetPasswordConfirm';
+import { Provider } from 'react-redux';
+import store from './store';
+
 function App() {
   React.useEffect(() => {
     document.body.classList.toggle("index-page");
@@ -22,25 +31,29 @@ function App() {
     };
   }, []);
   return (
-    <BrowserRouter>
-      <Navbar />
-      <div className="wrapper">
-        <div className="main">
-          <ToastContainer />
-          <Switch>
+    <Provider store={store}>
+      <BrowserRouter>
+        <Navbar />
+        <div className="wrapper">
+          <div className="main">
+            <ToastContainer />
+            <Switch>
             <Route exact path="/" component={Home} />
-            <Route exact path="/dashboard" component={Dashboard} />
-            <Route exact path="/workouts/:id" component={WorkoutPage} />
-            <Route exact path="/workouts" component={Workouts} />
-            <Route exact path="/input" component={InputPage} />
-            <Route exact path="/createworkout" component={CreateWorkout} />
-            <Route exact path="/loginpage" component={LoginPage} />
-
-          </Switch>
+              <Route exact path="/dashboard" component={Dashboard} />
+              <Route exact path="/workouts/:id" component={WorkoutPage} />
+              <Route exact path="/workouts" component={Workouts} />
+              <Route exact path="/createworkout" component={CreateWorkout} />
+              <Route exact path="/login" component={Login} />
+              <Route exact path='/signup' component={SignUp}/>
+              <Route exact path='/reset-password' component={ResetPassword}/>
+              <Route exact path='/password/reset/confirm/:uid/:token' component={ResetPasswordConfirm}/>
+              <Route exact path='/activate/:uid/:token' component={Activate}/>
+            </Switch>
+          </div>
+          <Footer />
         </div>
-        <Footer />
-      </div>
-    </BrowserRouter>
+      </BrowserRouter>
+    </Provider>
   );
 }
 

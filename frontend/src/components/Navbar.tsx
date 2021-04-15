@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { Fragment, useState } from 'react';
+import { Link, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { logout } from '../actions/auth';
 import MainLogo from "../assets/img/logo.png"
 
-import { Link } from "react-router-dom";
 // reactstrap components
 import {
   Button,
@@ -15,10 +17,9 @@ import {
   NavbarBrand,
 } from "reactstrap";
 //@ts-ignore
-import Cookies from 'js-cookie'
-import { LOGOUT_URL } from '../constants/index'
-import { useEffect } from 'react'
-export default function IndexNavbar() {
+
+
+const IndexNavbar = ({ logout, isAuthenticated }) => {
   const [collapseOpen, setCollapseOpen] = React.useState(false);
   const [collapseOut, setCollapseOut] = React.useState("");
   const [color, setColor] = React.useState("navbar-transparent");
@@ -52,23 +53,7 @@ export default function IndexNavbar() {
   const onCollapseExited = () => {
     setCollapseOut("");
   };
-  const logout = () => {
-    const requestOptions = {
-      method: 'POST',
-      headers: { Accept: 'application/json' },
-    };
-    fetch(LOGOUT_URL, requestOptions)
-      .then(response => response.json())
-      .then(data => {
-        console.log(data)
-        if (data["detail"] == "Successfully logged out.") {
-          setCookie(Cookies.remove("key"))
-        }
-      });
-  };
-  useEffect(() => {
-    setCookie(Cookies.get('key'))
-  }, [Cookies.get('key')])
+
   return (
     <Navbar className={"fixed-top " + color} color-on-scroll="100" expand="lg">
       <Container>
@@ -126,32 +111,38 @@ export default function IndexNavbar() {
                 <Link to="/workouts">Workouts</Link>
               </div>
             </NavItem>
-            {cookie != undefined ?
+            {isAuthenticated ?
               <NavItem className="p-0">
-                <div style={{ paddingLeft: '20px' }}>
-                  <Button
-                    className="nav-link d-lg-block"
-                    color="link"
-                    onClick={logout}
-                  >Logout</Button>
+              <div style={{ paddingLeft: '20px' }}>
+                <Button
+                  className="nav-link d-lg-block"
+                  color="link"
+                  onClick={logout}
+                >Logout</Button>
+              </div>
+            </NavItem>
+            : <>
+              <NavItem className="p-0">
+                <div style={{ paddingLeft: '20px', paddingTop: '8px' }}>
+                  <Link to="/login">Login</Link>
                 </div>
               </NavItem>
-              : <>
-                <NavItem className="p-0">
-                  <div style={{ paddingLeft: '20px', paddingTop: '8px' }}>
-                    <Link to="/loginpage">Login</Link>
-                  </div>
-                </NavItem>
-                <NavItem><Button className="nav-link d-lg-block" color="primary">
-                  <Link to='/input'>
-                    Start now
-                </Link>
-                </Button>
-                </NavItem>
-              </>}
+              <NavItem><Button className="nav-link d-lg-block" color="primary">
+                <Link to='/signup'>
+                  Start now
+              </Link>
+              </Button>
+              </NavItem>
+            </>}
           </Nav>
         </Collapse>
       </Container>
     </Navbar>
   );
 }
+
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated
+});
+
+export default connect(mapStateToProps, { logout })(IndexNavbar);
