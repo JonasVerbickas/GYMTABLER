@@ -4,6 +4,7 @@ from main.models import Exercise
 from django.contrib.auth import get_user_model
 from django.http import HttpResponse
 import json
+from rest_framework.decorators import api_view
 
 
 def serializejson(workouts):
@@ -19,26 +20,25 @@ def serializejson(workouts):
     return json.dumps(data)
 
 
+@api_view(['GET', ])
 def get_prebuilt_workouts(request):
     user = get_user_model().objects.get(username="SUPER")
     workouts = Workout.objects.filter(account=user)
     wdata = {}
+    print(user)
+    return HttpResponse(serializejson(workouts))
+
+
+@api_view(['GET', ])
+def get_user_workouts(request):
+    user = request.user
+    workouts = Workout.objects.filter(account=user)
+    print(user)
 
     return HttpResponse(serializejson(workouts))
 
 
-def get_user_workouts(request):
-    try:
-        user = request.user
-        print("user", user)
-        workouts = Workout.objects.filter(account=user)
-        print("workouts", workouts)
-        return HttpResponse(serializejson(workouts))
-    except:
-        print("except")
-        return HttpResponse("Not working")
-
-
+@api_view(['POST'])
 def save_workout(request):
     user = request.user()
     parameters = request.POST
