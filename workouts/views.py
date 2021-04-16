@@ -11,6 +11,7 @@ def serializejson(workouts):
     data = []
     for w in workouts:
         wdata = {}
+        wdata["name"] = w.name
         wdata["slug"] = w.slug
         wdata["user"] = w.account.username
         wdata["difficulty"] = w.difficulty
@@ -41,11 +42,11 @@ def get_user_workouts(request):
 @api_view(['POST'])
 def save_workout(request):
     user = request.user
-    print(user)
+    print("user",user)
     parameters = request.POST
 
     exercises = json.loads(parameters["exercises"])
-
+    print("exercises",exercises)
     workout = Workout()
     workout.difficulty = 2
     workout.bodypart = ""
@@ -64,4 +65,3 @@ def save_workout(request):
 
     workout.save()
     return HttpResponse(status=200)
-
