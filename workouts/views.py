@@ -40,22 +40,28 @@ def get_user_workouts(request):
 
 @api_view(['POST'])
 def save_workout(request):
-    user = request.user()
+    user = request.user
+    print(user)
     parameters = request.POST
-    difficulty = int(parameters["difficulty"])
-    body_part = parameters["bodyparts"]
-    Exercises = parameters["exercises"].split(", ")
+
+    exercises = json.loads(parameters["exercises"])
+
     workout = Workout()
-
-    for x in Exercises:
-        ex = Exercises.objects.get(name=x)
-        workout.exercises.add(ex)
-    try:
-        workout.name = parameters["name"]
-    except KeyError:
-        workout.name = "Default"
-
-    workout.difficulty = difficulty
-    workout.bodypart = body_part
+    workout.difficulty = 2
+    workout.bodypart = ""
     workout.account = user
+    
+    try:
+        workout.name = json.loads(parameters["name"])
+    except KeyError:
+        workout.name = "default"
     workout.save()
+
+    for x in exercises:
+        print(x)
+        ex = Exercise.objects.get(name=x)
+        workout.exercises.add(ex)
+
+    workout.save()
+    return HttpResponse(status=200)
+

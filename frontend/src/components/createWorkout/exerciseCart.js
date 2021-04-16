@@ -3,14 +3,17 @@ import CartItem from "./cartItem.js";
 import PurpleButton from "../purpleButton";
 
 function postReq(exercise_cart) {
+  console.log("EXERCISE CART", exercise_cart);
   fetch("http://127.0.0.1:8000/workout/save/", {
     method: "POST",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
+      Authorization: `JWT ${localStorage.getItem("access")}`,
     },
     body: JSON.stringify({
       exercises: exercise_cart,
+      bodyparts: "custom_workout",
     }),
   });
 }

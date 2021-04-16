@@ -16,8 +16,8 @@ class Dashboard extends React.Component {
   }
 
   componentDidMount() {
-    fetch("http://127.0.0.1:8000/workout/get_prebuilt/", {
-      method: "GET", // *GET, POST, PUT, DELETE, etc.
+    fetch("http://127.0.0.1:8000/workout/get_user/", {
+      method: "GET",
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
@@ -27,24 +27,25 @@ class Dashboard extends React.Component {
       .then((res) => res.json())
       .then((response) => {
         console.log("dashboard response", response);
-        this.setState({ workouts: response, selected_index: 0 });
+        console.log("res");
+        if (!response.length > 0) {
+          fetch("http://127.0.0.1:8000/workout/get_prebuilt/", {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json",
+              Authorization: `JWT ${this.state.access}`,
+            },
+          })
+            .then((res) => res.json())
+            .then((response) =>
+              this.setState({ workouts: response, selected_index: 0 })
+            );
+        } else {
+          this.setState({ workouts: response, selected_index: 0 });
+        }
       })
       .catch(() => this.setState({ failed_to_fetch: true }));
-    // Is it here
-    // fetch("http://127.0.0.1:8000/workout/get_user/", {
-    //   method: 'GET', // *GET, POST, PUT, DELETE, etc.
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //     'Accept': 'application/json',
-    //     'Authorization': `JWT ${this.state.access}`,
-    //     }
-    //   })
-    //   .then((res) => res.json())
-    //   .then((response) => {
-    //     console.log("dashboard response[0]", response[0]);
-    //     this.setState({ workouts: response, selected_index: 0 });
-    //   })
-    //   .catch(() => this.setState({ failed_to_fetch: true }));
   }
 
   adjustedExerciseLink(exercise_link) {
@@ -86,14 +87,18 @@ class Dashboard extends React.Component {
               workouts={this.state.workouts}
               handleWorkoutChange={this.handleWorkoutChange}
             />
-            {this.state.workouts[this.state.selected_index].exercises.map(
-              (exercise) => (
+            {this.state.selected_index < this.state.workouts.length ? (
+              this.state.workouts[
+                this.state.selected_index
+              ].exercises.map((exercise) => (
                 <Exercise
                   key={exercise.name}
                   exercise={exercise}
                   onClick={() => this.handleClick(exercise)}
                 />
-              )
+              ))
+            ) : (
+              <p>This workout has no exercises</p>
             )}
           </div>
           <DashboardVideo video_link={this.state.video_link} />
